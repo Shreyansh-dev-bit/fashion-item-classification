@@ -1,13 +1,7 @@
 import React, { useState, useRef } from 'react'
 import {
   UploadCloud,
-  Sparkles,
-  CheckCircle2,
-  AlertCircle,
-  FileImage,
-  RefreshCw,
   Info,
-  Medal,
   SlidersHorizontal,
 } from 'lucide-react'
 import {
@@ -70,7 +64,7 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
 
     if (!validExtensions.includes(ext)) {
       setError(
-        `Invalid file type "${file.name}". Only PNG, JPG, and JPEG images are supported by the CNN inference pipeline.`
+        `Invalid file format "${file.name}". Only PNG, JPG, and JPEG images are supported by the CNN inference pipeline.`
       )
       setSelectedFile(null)
       setPreviewUrl(null)
@@ -86,7 +80,7 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
     const url = URL.createObjectURL(file)
     setPreviewUrl(url)
 
-    // Execute real CNN prediction
+    // Run real inference
     executeInference(file, invertOption)
   }
 
@@ -137,340 +131,310 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
     : []
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto pb-12">
-      {/* Title */}
-      <div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100 mb-2">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Real CNN Inference Service</span>
+    <div className="max-w-5xl mx-auto space-y-16 pb-20">
+      {/* Editorial Header */}
+      <section className="pt-4 sm:pt-8 border-b border-stone-200 pb-10">
+        <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-stone-500 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
+          <span>Real-Time Inference Console &bull; Keras CNN Service</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight leading-tight">
           Live Fashion Item Classification
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Upload any apparel image (PNG, JPG, JPEG) to classify it using the trained Convolutional Neural Network.
+
+        <p className="mt-4 text-base text-stone-600 leading-relaxed max-w-3xl font-normal">
+          Upload any apparel image or test with genuine Fashion-MNIST test samples. 
+          The backend service converts images to single-channel 28&times;28 tensors, normalizes pixel 
+          intensities to [0.0, 1.0], executes the real saved CNN, and returns verified softmax probabilities.
         </p>
-      </div>
+      </section>
 
-      {/* Distribution Shift & Benchmark Reality Callout */}
-      <div className="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-950 flex items-start gap-3.5 shadow-2xs">
-        <div className="p-2 rounded-xl bg-amber-100 text-amber-700 shrink-0 mt-0.5">
-          <Info className="w-5 h-5" />
+      {/* Prominent Upload Area */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-stone-400">01</span>
+            <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+              Input Console &bull; Upload or Select Garment
+            </h2>
+          </div>
+          <span className="text-[11px] font-mono text-stone-400">PNG, JPG, JPEG</span>
         </div>
-        <div className="text-xs sm:text-sm space-y-1">
-          <h4 className="font-bold text-amber-950">
-            Important Note on Benchmark Distribution & Color Photos
-          </h4>
-          <p className="text-amber-900 leading-relaxed">
-            This deep learning model was trained strictly on <strong>28×28 grayscale</strong> Fashion-MNIST images featuring centered clothing on dark backgrounds. 
-            When uploading ordinary full-color retail photos, prediction accuracy may be lower because real-world product photos exhibit a <strong>distribution shift</strong> (RGB color variations, diverse lighting, complex retail backgrounds, and multi-angle perspectives) compared to the normalized 28×28 grayscale benchmark.
-          </p>
-        </div>
-      </div>
 
-      {/* Main Grid: Upload vs Result */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Left Column: Upload Box & Quick Test Presets (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
-          {/* Upload Zone */}
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-            <h3 className="text-sm font-bold text-slate-900 mb-1">Image Ingestion Box</h3>
-            <p className="text-xs text-slate-500 mb-4">Drag and drop or browse local files (PNG, JPG, JPEG)</p>
+        {/* Large Drag & Drop Box */}
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+          className={`relative border-2 border-dashed rounded-xl p-10 sm:p-14 text-center cursor-pointer transition-all ${
+            isDragging
+              ? 'border-indigo-600 bg-indigo-50/50'
+              : 'border-stone-300 hover:border-stone-400 bg-white hover:bg-stone-50/40 shadow-xs'
+          }`}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+            onChange={handleFileChange}
+            className="hidden"
+          />
 
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              accept=".png,.jpg,.jpeg,image/png,image/jpeg"
-              className="hidden"
-            />
-
-            <div
-              onClick={() => fileInputRef.current?.click()}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[190px] ${
-                isDragging
-                  ? 'border-indigo-600 bg-indigo-50 shadow-md scale-102'
-                  : 'border-slate-300 hover:border-indigo-500 bg-slate-50/50 hover:bg-indigo-50/20'
-              }`}
-            >
-              {previewUrl ? (
-                <div className="flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-indigo-500/40 bg-black shadow-md mb-3 flex items-center justify-center p-1">
-                    <img
-                      src={previewUrl}
-                      alt="Uploaded apparel preview"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="text-xs font-bold text-slate-900 truncate max-w-[220px]">
-                    {selectedFile?.name || 'Selected Image'}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-mono mt-0.5">
-                    {selectedFile?.size ? `${(selectedFile.size / 1024).toFixed(1)} KB` : 'Preset sample'}
-                  </span>
-                  <span className="text-[11px] text-indigo-600 mt-2 font-semibold hover:underline">
-                    Click or drop another file to change
-                  </span>
-                </div>
-              ) : (
-                <>
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 flex items-center justify-center mb-3">
-                    <UploadCloud className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs font-bold text-slate-800">
-                    Drag and drop your apparel image here
-                  </span>
-                  <span className="text-[11px] text-indigo-600 font-semibold mt-1">
-                    or click to browse local files
-                  </span>
-                  <span className="text-[10px] text-slate-400 mt-2">PNG, JPG, or JPEG</span>
-                </>
-              )}
-            </div>
-
-            {/* Inversion Setting */}
-            <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs text-slate-600">
-                <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400" />
-                <span>Background Adaptation:</span>
-              </div>
-              <div className="flex gap-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setInvertOption(undefined)
-                    if (selectedFile) executeInference(selectedFile, undefined)
-                  }}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all ${
-                    invertOption === undefined
-                      ? 'bg-indigo-600 text-white shadow-2xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  Auto
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setInvertOption(true)
-                    if (selectedFile) executeInference(selectedFile, true)
-                  }}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all ${
-                    invertOption === true
-                      ? 'bg-indigo-600 text-white shadow-2xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                  title="Invert bright white background to dark Fashion-MNIST format"
-                >
-                  Invert
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setInvertOption(false)
-                    if (selectedFile) executeInference(selectedFile, false)
-                  }}
-                  className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all ${
-                    invertOption === false
-                      ? 'bg-indigo-600 text-white shadow-2xs'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                  title="Preserve original background"
-                >
-                  Standard
-                </button>
-              </div>
-            </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="mt-4 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5">
-                <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                <span className="leading-snug">{error}</span>
-              </div>
-            )}
+          <div className="w-12 h-12 rounded-full border border-stone-200 bg-stone-50 flex items-center justify-center mx-auto text-stone-600 mb-4">
+            <UploadCloud className="w-6 h-6 text-stone-700" />
           </div>
 
-          {/* Quick-Test Presets from real Fashion-MNIST test set */}
-          <div className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-600">
-                One-Click Test Presets
-              </h3>
-              <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">
-                Real Test Set
+          <h3 className="text-base font-bold text-stone-950 tracking-tight">
+            Drop an apparel image here, or click to browse
+          </h3>
+
+          <p className="text-xs text-stone-500 mt-2 max-w-md mx-auto leading-relaxed">
+            Upload any apparel photo (PNG, JPG, or JPEG). The pipeline will automatically downsample, 
+            convert to grayscale, and stream to the trained CNN.
+          </p>
+
+          <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-mono text-stone-400 border border-stone-200 bg-white px-3 py-1 rounded-md">
+            <span>FastAPI POST /api/predict</span>
+            <span>&bull;</span>
+            <span>Max 10MB</span>
+          </div>
+        </div>
+
+        {/* Inversion and Preprocessing Controls */}
+        <div className="p-4 rounded-lg bg-white border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
+          <div className="flex items-center gap-2 text-stone-700">
+            <SlidersHorizontal className="w-4 h-4 text-stone-500 shrink-0" />
+            <span className="font-semibold text-stone-900">Background Inversion:</span>
+            <span className="text-stone-500">
+              Fashion-MNIST expects light garments on dark backgrounds.
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 font-mono text-[11px]">
+            <button
+              onClick={() => {
+                setInvertOption(undefined)
+                if (selectedFile) executeInference(selectedFile, undefined)
+              }}
+              className={`px-3 py-1 rounded border transition-colors ${
+                invertOption === undefined
+                  ? 'bg-stone-900 text-white border-stone-900 font-semibold'
+                  : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+              }`}
+            >
+              Auto Detect
+            </button>
+            <button
+              onClick={() => {
+                setInvertOption(true)
+                if (selectedFile) executeInference(selectedFile, true)
+              }}
+              className={`px-3 py-1 rounded border transition-colors ${
+                invertOption === true
+                  ? 'bg-stone-900 text-white border-stone-900 font-semibold'
+                  : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+              }`}
+            >
+              Invert (White BG)
+            </button>
+            <button
+              onClick={() => {
+                setInvertOption(false)
+                if (selectedFile) executeInference(selectedFile, false)
+              }}
+              className={`px-3 py-1 rounded border transition-colors ${
+                invertOption === false
+                  ? 'bg-stone-900 text-white border-stone-900 font-semibold'
+                  : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'
+              }`}
+            >
+              Standard (Dark BG)
+            </button>
+          </div>
+        </div>
+
+        {/* Quick Test Samples */}
+        {samples.length > 0 && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-mono uppercase tracking-wider text-stone-400 font-semibold text-[10px]">
+                Quick Test Samples &bull; Genuine Held-Out Test Set
+              </span>
+              <span className="text-stone-400 font-mono text-[11px]">
+                Click any garment to run inference
               </span>
             </div>
-            <p className="text-xs text-slate-500 mb-3.5">
-              Click any authentic 28×28 sample below to test inference instantly:
-            </p>
 
-            <div className="grid grid-cols-5 gap-2">
-              {samples.slice(0, 10).map((sample) => (
+            <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+              {samples.slice(0, 8).map((sample) => (
                 <button
                   key={sample.test_index}
-                  type="button"
                   onClick={() => handleSelectSample(sample)}
-                  className="p-1.5 rounded-xl border border-slate-200 hover:border-indigo-500 hover:bg-indigo-50/40 transition-all flex flex-col items-center group text-center cursor-pointer shadow-2xs"
-                  title={`${sample.true_label_name} (Index #${sample.test_index})`}
+                  className="p-2 rounded-lg bg-white border border-stone-200 hover:border-indigo-600 hover:shadow-xs transition-all text-center group"
                 >
                   <img
                     src={sample.image_base64}
                     alt={sample.true_label_name}
-                    className="w-10 h-10 object-contain rounded bg-black"
+                    className="w-12 h-12 mx-auto object-contain rounded bg-black pixelated"
+                    style={{ imageRendering: 'pixelated' }}
                   />
-                  <span className="text-[9px] font-bold text-slate-700 truncate w-full mt-1 group-hover:text-indigo-900">
-                    {sample.true_label_name.split('/')[0]}
+                  <span className="text-[10px] font-mono text-stone-600 group-hover:text-indigo-950 font-medium block mt-1.5 truncate">
+                    {sample.true_label_name}
                   </span>
                 </button>
               ))}
             </div>
           </div>
+        )}
+      </section>
+
+      {/* Error Notice */}
+      {error && (
+        <div className="p-4 rounded-lg bg-rose-50 border border-rose-200 text-rose-900 text-xs">
+          <p className="font-semibold">{error}</p>
         </div>
+      )}
 
-        {/* Right Column: Prediction Results, Sorted Top 3, & Distribution (7 cols) */}
-        <div className="lg:col-span-7">
-          <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs min-h-[500px] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="text-base font-bold text-slate-900">CNN Model Inference Output</h3>
-                {prediction && (
-                  <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Real Forward Pass Completed</span>
-                  </span>
-                )}
-              </div>
+      {/* Prediction Output Results (Ranked Layout) */}
+      {(prediction || loading) && (
+        <section className="space-y-6">
+          <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-mono font-bold text-stone-400">02</span>
+              <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+                Inference Results &bull; Top-3 Ranked Probabilities
+              </h2>
+            </div>
+            {loading && (
+              <span className="text-[11px] font-mono text-indigo-600 animate-pulse">
+                Computing CNN Feed-Forward Pass...
+              </span>
+            )}
+          </div>
 
-              {loading ? (
-                <div className="py-28 text-center">
-                  <RefreshCw className="w-9 h-9 text-indigo-600 animate-spin mx-auto mb-3" />
-                  <p className="text-sm font-semibold text-slate-800">
-                    Running CNN Neural Network Inference...
-                  </p>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Preprocessing image to (1, 28, 28, 1) and computing softmax distribution
-                  </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Left: Input Image Inspection */}
+            <div className="p-6 rounded-lg bg-white border border-stone-200 shadow-xs space-y-4">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+                Preprocessed Input
+              </span>
+
+              {previewUrl && (
+                <div className="w-36 h-36 mx-auto rounded-lg bg-black border border-stone-300 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    className="w-full h-full object-contain pixelated"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
                 </div>
-              ) : prediction ? (
-                <div className="space-y-6">
-                  {/* Top Predicted Category Banner */}
-                  <div className="p-5 rounded-2xl bg-gradient-to-r from-indigo-50 via-violet-50/40 to-transparent border border-indigo-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600">
-                        Top Predicted Category
-                      </span>
-                      <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-0.5">
+              )}
+
+              <div className="pt-2 border-t border-stone-100 space-y-2 text-xs font-mono text-stone-600">
+                <div className="flex justify-between">
+                  <span className="text-stone-400">Input Tensor:</span>
+                  <span className="font-semibold text-stone-800">1 &times; 28 &times; 28 &times; 1</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-stone-400">Target Resolution:</span>
+                  <span className="text-stone-800">28 &times; 28 px</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-stone-400">Dynamic Range:</span>
+                  <span className="text-stone-800">[0.0, 1.0] float32</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Ranked Result Layout */}
+            <div className="md:col-span-2 p-6 sm:p-8 rounded-lg bg-white border border-stone-200 shadow-xs space-y-6">
+              {prediction ? (
+                <>
+                  {/* Large Predicted Class Header */}
+                  <div className="border-b border-stone-100 pb-5">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+                      Predicted Category
+                    </span>
+                    <div className="flex flex-wrap items-baseline gap-3 mt-1">
+                      <h3 className="text-3xl sm:text-4xl font-extrabold text-stone-950 tracking-tight">
                         {prediction.predicted_class_name}
-                      </div>
-                      <span className="text-xs text-slate-500 font-mono">
-                        Class Index: #{prediction.predicted_class_id}
+                      </h3>
+                      <span className="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded border border-indigo-100">
+                        {prediction.confidence_percentage}% Confidence
                       </span>
-                    </div>
-
-                    <div className="sm:text-right">
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                        Confidence Score
-                      </span>
-                      <div className="text-2xl sm:text-3xl font-black text-indigo-600 font-mono mt-0.5">
-                        {prediction.confidence_percentage}%
-                      </div>
-                      <span className="text-[10px] text-slate-400">Softmax output unit</span>
                     </div>
                   </div>
 
-                  {/* Sorted Top-3 Ranked Predictions */}
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-                      <Medal className="w-4 h-4 text-amber-500" />
-                      <span>Sorted Top 3 Probabilities</span>
-                    </h4>
+                  {/* Refined Top-Three Probability Bars */}
+                  <div className="space-y-3">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+                      Top-3 Ranked Probabilities
+                    </span>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {topThree.map((item, idx) => {
-                        const rankColors = [
-                          'bg-indigo-50 border-indigo-200 text-indigo-950',
-                          'bg-slate-50 border-slate-200 text-slate-800',
-                          'bg-slate-50 border-slate-200 text-slate-700',
-                        ]
-                        const badgeColors = [
-                          'bg-indigo-600 text-white',
-                          'bg-slate-400 text-white',
-                          'bg-slate-300 text-slate-700',
-                        ]
-
-                        return (
-                          <div
-                            key={item.class_id}
-                            className={`p-3.5 rounded-xl border ${rankColors[idx]} flex flex-col justify-between`}
-                          >
-                            <div className="flex items-center justify-between mb-1.5">
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColors[idx]}`}>
-                                #{idx + 1} Rank
-                              </span>
-                              <span className="text-[10px] font-mono text-slate-400 font-semibold">
-                                #{item.class_id}
+                    <div className="space-y-2.5">
+                      {topThree.map((item, idx) => (
+                        <div key={item.class_id} className="space-y-1">
+                          <div className="flex items-center justify-between text-xs font-mono">
+                            <div className="flex items-center gap-2">
+                              <span className="text-stone-400 font-bold">#{idx + 1}</span>
+                              <span className="font-sans font-semibold text-stone-900">
+                                {item.class_name}
                               </span>
                             </div>
-
-                            <div className="font-bold text-sm truncate my-1">
-                              {item.class_name}
-                            </div>
-
-                            <div className="flex items-end justify-between mt-1">
-                              <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden mr-2">
-                                <div
-                                  className={`h-full rounded-full ${idx === 0 ? 'bg-indigo-600' : 'bg-slate-400'}`}
-                                  style={{ width: `${item.percentage}%` }}
-                                />
-                              </div>
-                              <span className="font-mono text-xs font-bold shrink-0">
-                                {item.percentage}%
-                              </span>
-                            </div>
+                            <span className="text-stone-700 font-bold">{item.percentage}%</span>
                           </div>
-                        )
-                      })}
+
+                          <div className="h-2 rounded-full bg-stone-100 overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-500 ${
+                                idx === 0 ? 'bg-indigo-600' : 'bg-stone-400'
+                              }`}
+                              style={{ width: `${Math.max(item.percentage, 1)}%` }}
+                            />
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  {/* 10-Class Horizontal Probability Chart */}
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                      Full 10-Class Output Vector
-                    </h4>
-                    <div className="h-64 w-full">
+                  {/* Full 10-Class Horizontal Bar Breakdown */}
+                  <div className="pt-4 border-t border-stone-100 space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+                      Full 10-Class Posterior Distribution
+                    </span>
+
+                    <div className="h-44 w-full pt-1">
                       <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                           data={chartData}
                           layout="vertical"
-                          margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
+                          margin={{ top: 0, right: 30, left: 45, bottom: 0 }}
                         >
-                          <XAxis type="number" domain={[0, 100]} unit="%" tick={{ fontSize: 10, fill: '#64748B' }} />
+                          <XAxis type="number" domain={[0, 100]} unit="%" tick={{ fontSize: 9, fill: '#78716C' }} />
                           <YAxis
                             dataKey="name"
                             type="category"
-                            tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
+                            tick={{ fontSize: 10, fill: '#44403C' }}
                             width={75}
                           />
                           <Tooltip
-                            formatter={(value: any) => [`${value}%`, 'Probability']}
+                            formatter={(val: any) => [`${val}%`, 'Probability']}
                             contentStyle={{
-                              backgroundColor: '#0F172A',
-                              borderRadius: '10px',
+                              backgroundColor: '#1C1917',
+                              borderRadius: '4px',
                               border: 'none',
-                              color: '#F8FAFC',
-                              fontSize: '12px',
+                              color: '#FAF9F6',
+                              fontSize: '11px',
+                              fontFamily: 'monospace',
                             }}
                           />
-                          <Bar dataKey="percentage" radius={[0, 6, 6, 0]}>
+                          <Bar dataKey="percentage" radius={[0, 4, 4, 0]}>
                             {chartData.map((entry, index) => (
                               <Cell
                                 key={`cell-${index}`}
-                                fill={entry.isTop ? '#4F46E5' : '#CBD5E1'}
+                                fill={entry.isTop ? '#4F46E5' : '#D9D5CC'}
                               />
                             ))}
                           </Bar>
@@ -478,40 +442,52 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
                       </ResponsiveContainer>
                     </div>
                   </div>
-
-                  {/* Preprocessing Inspector Footer */}
-                  <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <FileImage className="w-4 h-4 text-slate-400" />
-                      <span>Original: {prediction.input_image_details.original_size.join('×')} px</span>
-                    </div>
-                    <span className="text-slate-300">&bull;</span>
-                    <span>Grayscale 28×28</span>
-                    <span className="text-slate-300">&bull;</span>
-                    <span>Normalized [0, 1]</span>
-                    <span className="text-slate-300">&bull;</span>
-                    <span className="font-mono text-indigo-700 font-semibold">
-                      {prediction.input_image_details.inverted_for_dark_background
-                        ? 'Auto-Inverted (Light Background Detected)'
-                        : 'Standard (Dark Background)'}
-                    </span>
-                  </div>
-                </div>
+                </>
               ) : (
-                <div className="py-28 text-center text-slate-400">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
-                    <Sparkles className="w-7 h-7" />
-                  </div>
-                  <h4 className="text-sm font-semibold text-slate-700">No Image Classified Yet</h4>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto mt-1">
-                    Upload an image or pick a test preset from the left to execute the real CNN forward pass.
-                  </p>
+                <div className="py-12 text-center text-stone-400 text-xs font-mono">
+                  Loading prediction...
                 </div>
               )}
             </div>
           </div>
+        </section>
+      )}
+
+      {/* Editorial Domain Generalization Caveat */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-stone-400">03</span>
+            <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+              Domain Adaptation Caveat &bull; Fashion-MNIST vs. Real Product Photos
+            </h2>
+          </div>
+          <span className="text-[11px] font-mono text-stone-400">Methodological Note</span>
         </div>
-      </div>
+
+        <div className="p-6 sm:p-8 rounded-lg bg-white border border-stone-200 shadow-xs space-y-4">
+          <div className="flex items-start gap-3">
+            <Info className="w-5 h-5 text-indigo-600 mt-0.5 shrink-0" />
+            <div>
+              <h3 className="text-base font-bold text-stone-900 tracking-tight">
+                Distribution Shift in E-Commerce Imagery
+              </h3>
+              <p className="text-xs text-stone-500 mt-0.5">
+                Why standard high-resolution product photography may exhibit lower empirical accuracy
+              </p>
+            </div>
+          </div>
+
+          <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            This CNN model is trained strictly on 28&times;28 single-channel images from the 
+            canonical <strong>Fashion-MNIST</strong> benchmark dataset. In Fashion-MNIST, items are tightly centered 
+            against black backgrounds with standardized normalization. Real-world retail catalog photos 
+            differ substantially: they feature varied studio lighting, white backgrounds, human mannequins, 
+            and complex multi-color patterns. For production retail deployment, transfer learning with 
+            pre-trained RGB backbones (such as EfficientNet or ResNet) on 224&times;224 resolution is recommended.
+          </p>
+        </div>
+      </section>
     </div>
   )
 }

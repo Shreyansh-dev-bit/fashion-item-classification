@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react'
 import {
-  AlertOctagon,
   CheckCircle2,
   XCircle,
   Eye,
   Info,
-  Lightbulb,
-  TrendingDown,
-  Layers,
-  Sparkles,
+  X,
+  Filter,
 } from 'lucide-react'
 import { fetchSamples } from '../services/api'
 import { ConfusionMatrixResponse, SamplePredictionItem } from '../types/api'
@@ -31,41 +28,41 @@ const ALL_CLASSES = [
   'Ankle boot',
 ]
 
-const IMPROVEMENT_IDEAS = [
+const RESEARCH_DIRECTIONS = [
   {
+    step: '01',
     title: 'Data Augmentation',
-    icon: Sparkles,
-    color: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    subtitle: 'Spatial Invariance',
     description:
-      'Inject random horizontal flips, minor rotations (±10°), slight width/height zoom, and subtle shifts during training to teach invariance to varied clothing poses and folds.',
+      'Inject random horizontal reflections, slight rotations (±10°), width/height shifts, and minor zoom transforms during training to make convolutional filters invariant to varied garment drape and folds.',
   },
   {
+    step: '02',
     title: 'Batch Normalization',
-    icon: Layers,
-    color: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    subtitle: 'Activation Conditioning',
     description:
-      'Insert BatchNormalization layers after Conv2D operations to standardize intermediate feature map activations, smoothing the optimization landscape and speeding up convergence.',
+      'Insert BatchNormalization layers immediately after Conv2D operations to standardize intermediate channel distributions, smoothing the optimization loss landscape and accelerating convergence.',
   },
   {
+    step: '03',
     title: 'Learning-Rate Scheduling',
-    icon: TrendingDown,
-    color: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    subtitle: 'Fine-Grained Convergence',
     description:
-      'Implement ReduceLROnPlateau or Cosine Annealing schedules that decay the Adam learning rate from 1e-3 down to 1e-5 when validation loss plateaus, enabling fine-grained convergence.',
+      'Incorporate ReduceLROnPlateau or Cosine Decay schedules that attenuate the Adam learning rate from 1e-3 down to 1e-5 when validation loss plateaus, preventing oscillation around sharp minima.',
   },
   {
+    step: '04',
     title: 'Deeper Residual Architecture',
-    icon: Layers,
-    color: 'bg-violet-50 text-violet-700 border-violet-200',
+    subtitle: 'Skip-Connection Feature Re-use',
     description:
-      'Add a third Conv block (128 filters) with residual skip connections (ResNet blocks) to preserve low-level edge details while abstracting deeper garment contours.',
+      'Adopt a third convolutional stage with residual skip connections (ResNet blocks) to preserve delicate low-level collar and hem geometry through deeper layers without gradient degradation.',
   },
   {
-    title: 'Transfer Learning for Real Photos',
-    icon: Lightbulb,
-    color: 'bg-amber-50 text-amber-800 border-amber-200',
+    step: '05',
+    title: 'Transfer Learning for Real Retail',
+    subtitle: 'Cross-Domain Generalization',
     description:
-      'Fine-tune pre-trained ImageNet backbones (e.g., EfficientNetB0 or ResNet-50) on high-resolution 224×224 RGB e-commerce catalog photos to conquer real retail product variation.',
+      'Fine-tune pre-trained ImageNet backbones (e.g. EfficientNetB0) on 224×224 3-channel RGB catalog imagery to overcome the resolution and color limitations inherent to Fashion-MNIST.',
   },
 ]
 
@@ -93,13 +90,13 @@ export function ErrorAnalysisPage({ initialSamples, confusionMatrix }: ErrorAnal
       )
       setSamples(res.samples)
     } catch {
-      // keep current samples if error
+      // keep current samples
     } finally {
       setLoading(false)
     }
   }
 
-  // Extract top off-diagonal confusion pairs directly from the real confusion matrix
+  // Extract top confusing class pairs from real confusion matrix
   const topConfusions = (() => {
     if (!confusionMatrix || !confusionMatrix.matrix) return []
     const cm = confusionMatrix.matrix
@@ -124,429 +121,450 @@ export function ErrorAnalysisPage({ initialSamples, confusionMatrix }: ErrorAnal
   })()
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto pb-12">
-      {/* Title */}
-      <div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-100 mb-2">
-          <AlertOctagon className="w-3.5 h-3.5" />
-          <span>Error Analysis & Misclassification Forensics</span>
+    <div className="max-w-5xl mx-auto space-y-16 pb-20">
+      {/* Editorial Header */}
+      <section className="pt-4 sm:pt-8 border-b border-stone-200 pb-10">
+        <div className="flex items-center gap-2 text-[11px] font-mono tracking-widest uppercase text-stone-500 mb-3">
+          <span className="w-1.5 h-1.5 rounded-full bg-rose-600" />
+          <span>Misclassification Forensics &bull; Held-Out Test Failures</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Model Error Analysis & Failure Modes
+
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-stone-950 tracking-tight leading-tight">
+          Error Analysis &amp; Research Directions
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Investigation of real test set misclassifications to diagnose visual confusion boundaries and plan targeted model improvements.
+
+        <p className="mt-4 text-base text-stone-600 leading-relaxed max-w-3xl font-normal">
+          Rigorous forensic inspection of real test-set failure cases. By cross-referencing 
+          the confusion matrix with individual misclassified silhouettes, we isolate the visual 
+          ambiguities that limit model performance and formulate concrete improvement directions.
         </p>
-      </div>
+      </section>
 
-      {/* Deep-Dive: Why Upper-Body Apparel Is Hard */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-amber-50 text-amber-700 shrink-0">
-            <Info className="w-5 h-5" />
+      {/* Structured "What the Model Finds Difficult" Section */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-stone-400">01</span>
+            <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+              Diagnostic Findings &bull; Primary Confusion Clusters
+            </h2>
           </div>
-          <div>
-            <h3 className="text-base font-bold text-slate-900">
-              The Upper-Body Conundrum: T-shirt/top, Shirt, Pullover & Coat
-            </h3>
-            <p className="text-xs text-slate-500">
-              Why these 4 garment categories account for the vast majority of classification errors
-            </p>
-          </div>
+          <span className="text-[11px] font-mono text-stone-400">Confusion Matrix Analysis</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-1">
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
-            <span className="text-[11px] font-bold text-indigo-700 uppercase">1. Overlapping Outlines</span>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              T-shirts, shirts, pullovers, and coats all feature a torso body flanked by two sleeves. From an outline silhouette standpoint, their structural geometry is nearly identical.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
-            <span className="text-[11px] font-bold text-indigo-700 uppercase">2. Similar Sleeve Shapes</span>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Long-sleeve shirts, coats, and pullovers share virtually identical sleeve lengths. Without color or brand insignias, sleeve silhouettes alone cannot distinguish them.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
-            <span className="text-[11px] font-bold text-indigo-700 uppercase">3. Low 28×28 Resolution</span>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              In a 28×28 matrix, a button placket or zipper is only 1–2 pixels wide. Small structural markers that distinguish a button-down shirt from a sweater get lost in downsampling.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-1.5">
-            <span className="text-[11px] font-bold text-indigo-700 uppercase">4. Limited Grayscale Texture</span>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Single-channel grayscale strips away yarn thickness, knit patterns, and weave textures. Heavy wool coats and cotton pullovers map to similar gray intensity histograms.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Top Real Confusions from Confusion Matrix */}
-      {topConfusions.length > 0 && (
-        <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="text-base font-bold text-slate-900">
-                Primary Confusion Pairs (Measured from Real Confusion Matrix)
-              </h3>
-              <p className="text-xs text-slate-500">
-                Top off-diagonal misclassification counts observed in the 10,000-image test set
-              </p>
-            </div>
-            <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
-              Measured N = 10,000
-            </span>
-          </div>
-
+        {/* Top Confusing Pairs Strip */}
+        {topConfusions.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {topConfusions.map((item) => (
+            {topConfusions.map((pair, idx) => (
               <div
-                key={`${item.trueClass}-${item.predClass}`}
-                className="p-4 rounded-xl border border-rose-200/80 bg-rose-50/20 space-y-2"
+                key={idx}
+                className="p-5 rounded-lg bg-white border border-stone-200 shadow-xs flex flex-col justify-between"
               >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-bold text-slate-900">
-                    True: <span className="text-indigo-900 font-extrabold">{item.trueClass}</span>
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-rose-700 block">
+                    Confusion Cluster #{idx + 1}
                   </span>
-                  <span className="font-mono text-xs font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded-full">
-                    {item.count} errors
-                  </span>
+                  <div className="mt-2 text-sm font-bold text-stone-950">
+                    {pair.trueClass} &rarr; {pair.predClass}
+                  </div>
+                  <p className="text-xs text-stone-500 mt-1">
+                    Misclassified {pair.count} times in the test set.
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs text-slate-600">
-                  <span>Predicted as:</span>
-                  <span className="font-bold text-rose-700">{item.predClass}</span>
-                </div>
-
-                <div className="text-[11px] text-slate-500 leading-snug pt-1 border-t border-rose-100">
-                  {((item.count / 1000) * 100).toFixed(1)}% of all true {item.trueClass} test items were misclassified as {item.predClass}.
+                <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-[11px] font-mono text-stone-400">
+                  <span>Actual #{pair.trueIdx}</span>
+                  <span>Predicted #{pair.predIdx}</span>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Sample Gallery with Multi-Axis Filters */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-6">
-        <div className="flex flex-col gap-4 pb-4 border-b border-slate-100">
-          <div>
-            <h3 className="text-base font-bold text-slate-900">
-              Interactive Test Sample Explorer
-            </h3>
-            <p className="text-xs text-slate-500">
-              Filter authentic test images by correctness, actual ground truth label, and predicted class
-            </p>
+        {/* Diagnostic Explanation Card */}
+        <div className="p-6 sm:p-8 rounded-lg bg-white border border-stone-200 shadow-xs space-y-4">
+          <div className="flex items-start gap-3">
+            <Info className="w-5 h-5 text-indigo-600 mt-0.5 shrink-0" />
+            <div>
+              <h3 className="text-base font-bold text-stone-900 tracking-tight">
+                Morphological Ambiguities in Upper-Body Garments
+              </h3>
+              <p className="text-xs text-stone-500 mt-0.5">
+                Detailed breakdown of root causes driving misclassifications between Shirt, T-shirt/top, Pullover, and Coat
+              </p>
+            </div>
           </div>
 
-          {/* Filter Bar */}
-          <div className="flex flex-wrap items-center gap-3 text-xs">
-            {/* Correctness Toggle */}
-            <div className="flex p-1 rounded-xl bg-slate-100 font-semibold">
-              <button
-                onClick={() => setFilterType('misclassified')}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  filterType === 'misclassified'
-                    ? 'bg-white text-rose-900 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Misclassified Only
-              </button>
-              <button
-                onClick={() => setFilterType('correct')}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  filterType === 'correct'
-                    ? 'bg-white text-emerald-900 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                Correct Only
-              </button>
-              <button
-                onClick={() => setFilterType('all')}
-                className={`px-3 py-1.5 rounded-lg transition-all ${
-                  filterType === 'all'
-                    ? 'bg-white text-indigo-900 shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                All Samples
-              </button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            <div className="space-y-1.5">
+              <h4 className="font-semibold text-stone-900">1. Spatial Resolution Barrier</h4>
+              <p>
+                At 28&times;28 pixels, collar buttons, fine fabric seams, and pocket stitchings are sub-pixel artifacts. 
+                A collared dress shirt collapses into the same coarse geometric envelope as a basic crewneck T-shirt.
+              </p>
             </div>
 
-            {/* Actual Class Dropdown */}
-            <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-1 rounded-xl">
-              <span className="text-slate-500 font-medium">Actual Class:</span>
+            <div className="space-y-1.5">
+              <h4 className="font-semibold text-stone-900">2. Torso Silhouette Overlap</h4>
+              <p>
+                Coats, cardigans, and pullovers share continuous torso outlines with long sleeves. 
+                Unless a coat has distinctive lapels or an open zipper, its silhouette closely mimics a heavy pullover knit.
+              </p>
+            </div>
+
+            <div className="space-y-1.5">
+              <h4 className="font-semibold text-stone-900">3. Absence of Chromatic Cues</h4>
+              <p>
+                Single-channel luminance erases color and contrast boundaries. 
+                In commercial retail catalogs, color is often the dominant distinguishing signal between casual tops and formal outerwear.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial Gallery of Real Test Samples */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-stone-400">02</span>
+            <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+              Empirical Test Sample Gallery &bull; Individual Predictions
+            </h2>
+          </div>
+          <span className="text-[11px] font-mono text-stone-400">
+            {samples.length} Samples Displayed
+          </span>
+        </div>
+
+        {/* Filter Controls Bar */}
+        <div className="p-4 rounded-lg bg-white border border-stone-200 flex flex-wrap items-center justify-between gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-stone-400 mr-1 flex items-center gap-1 font-semibold">
+              <Filter className="w-3 h-3" />
+              <span>Filter:</span>
+            </span>
+
+            <button
+              onClick={() => setFilterType('misclassified')}
+              className={`px-3 py-1 rounded font-mono text-[11px] transition-colors ${
+                filterType === 'misclassified'
+                  ? 'bg-rose-100 text-rose-900 border border-rose-200 font-bold'
+                  : 'bg-stone-50 text-stone-600 hover:bg-stone-100 border border-stone-200'
+              }`}
+            >
+              Misclassified Only
+            </button>
+
+            <button
+              onClick={() => setFilterType('correct')}
+              className={`px-3 py-1 rounded font-mono text-[11px] transition-colors ${
+                filterType === 'correct'
+                  ? 'bg-emerald-100 text-emerald-900 border border-emerald-200 font-bold'
+                  : 'bg-stone-50 text-stone-600 hover:bg-stone-100 border border-stone-200'
+              }`}
+            >
+              Correct Only
+            </button>
+
+            <button
+              onClick={() => setFilterType('all')}
+              className={`px-3 py-1 rounded font-mono text-[11px] transition-colors ${
+                filterType === 'all'
+                  ? 'bg-stone-900 text-white font-bold'
+                  : 'bg-stone-50 text-stone-600 hover:bg-stone-100 border border-stone-200'
+              }`}
+            >
+              All Samples
+            </button>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+              <span className="text-stone-400">Actual:</span>
               <select
                 value={actualClass}
                 onChange={(e) => setActualClass(e.target.value)}
-                className="bg-transparent font-bold text-slate-900 focus:outline-hidden"
+                className="px-2 py-1 rounded bg-stone-50 border border-stone-200 text-stone-800 text-xs focus:outline-hidden"
               >
-                <option value="all">All Actual</option>
+                <option value="all">All Classes</option>
                 {ALL_CLASSES.map((c) => (
-                  <option key={`act-${c}`} value={c}>
+                  <option key={c} value={c}>
                     {c}
                   </option>
                 ))}
               </select>
             </div>
 
-            {/* Predicted Class Dropdown */}
-            <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-1 rounded-xl">
-              <span className="text-slate-500 font-medium">Predicted Class:</span>
+            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+              <span className="text-stone-400">Predicted:</span>
               <select
                 value={predictedClass}
                 onChange={(e) => setPredictedClass(e.target.value)}
-                className="bg-transparent font-bold text-slate-900 focus:outline-hidden"
+                className="px-2 py-1 rounded bg-stone-50 border border-stone-200 text-stone-800 text-xs focus:outline-hidden"
               >
-                <option value="all">All Predicted</option>
+                <option value="all">All Classes</option>
                 {ALL_CLASSES.map((c) => (
-                  <option key={`pred-${c}`} value={c}>
+                  <option key={c} value={c}>
                     {c}
                   </option>
                 ))}
               </select>
             </div>
-
-            {(actualClass !== 'all' || predictedClass !== 'all' || filterType !== 'misclassified') && (
-              <button
-                onClick={() => {
-                  setFilterType('misclassified')
-                  setActualClass('all')
-                  setPredictedClass('all')
-                }}
-                className="text-[11px] font-semibold text-indigo-600 hover:underline px-2"
-              >
-                Reset Filters
-              </button>
-            )}
           </div>
         </div>
 
         {/* Gallery Grid */}
         {loading ? (
-          <div className="py-20 text-center text-xs text-slate-500">
-            Applying filters to authentic test predictions...
+          <div className="py-16 text-center text-stone-400 text-xs font-mono">
+            Querying filtered test set predictions...
           </div>
         ) : samples.length === 0 ? (
-          <div className="py-16 text-center text-slate-400">
-            <Info className="w-8 h-8 mx-auto mb-2 text-slate-300" />
-            <p className="text-xs font-semibold text-slate-600">
-              No sample matches this combination of actual and predicted class
-            </p>
-            <p className="text-[11px] text-slate-400 mt-1">
-              Try setting Actual Class or Predicted Class back to "All"
-            </p>
+          <div className="py-16 text-center text-stone-400 text-xs font-mono border border-stone-200 bg-white rounded-lg">
+            No test samples matching the active filter criteria.
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
             {samples.map((item) => {
               const isCorrect = item.is_correct
               return (
                 <div
-                  key={`${item.test_index}-${item.true_label_id}`}
+                  key={item.test_index}
                   onClick={() => setSelectedModalSample(item)}
-                  className={`p-3.5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between ${
-                    isCorrect
-                      ? 'border-slate-200/90 bg-white hover:border-emerald-300 hover:shadow-sm'
-                      : 'border-rose-200/90 bg-rose-50/20 hover:border-rose-400 hover:shadow-sm'
-                  }`}
+                  className="p-3.5 rounded-lg bg-white border border-stone-200 hover:border-stone-400 hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
                 >
                   <div>
                     {/* Image Box */}
-                    <div className="w-full aspect-square rounded-xl bg-black border border-slate-800 flex items-center justify-center p-2 mb-2.5 overflow-hidden">
+                    <div className="w-full aspect-square rounded bg-black flex items-center justify-center overflow-hidden mb-3 relative">
                       <img
                         src={item.image_base64}
                         alt={item.true_label_name}
-                        className="w-full h-full object-contain filter group-hover:scale-105 transition-transform"
+                        className="w-full h-full object-contain pixelated"
+                        style={{ imageRendering: 'pixelated' }}
                       />
+                      <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <Eye className="w-5 h-5 text-white" />
+                      </div>
                     </div>
 
-                    {/* Status Pill */}
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-mono text-slate-400 font-semibold">
-                        Index #{item.test_index}
-                      </span>
-                      <span
-                        className={`inline-flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                          isCorrect
-                            ? 'bg-emerald-50 text-emerald-700'
-                            : 'bg-rose-100 text-rose-700'
-                        }`}
-                      >
-                        {isCorrect ? (
-                          <CheckCircle2 className="w-3 h-3" />
-                        ) : (
-                          <XCircle className="w-3 h-3" />
-                        )}
-                        <span>{item.confidence_percentage}%</span>
-                      </span>
-                    </div>
-
-                    {/* Labels */}
-                    <div className="space-y-0.5 text-left">
-                      <div className="text-xs font-bold text-slate-900 truncate">
-                        <span className="text-[10px] text-slate-400 font-medium">True: </span>
-                        {item.true_label_name}
+                    {/* Class Labels */}
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[10px] font-mono">
+                        <span className="text-stone-400">Actual:</span>
+                        <span className="font-semibold text-stone-900 truncate">
+                          {item.true_label_name}
+                        </span>
                       </div>
 
-                      {!isCorrect && (
-                        <div className="text-xs font-bold text-rose-600 truncate">
-                          <span className="text-[10px] text-rose-400 font-medium">Pred: </span>
+                      <div className="flex items-center justify-between text-[10px] font-mono">
+                        <span className="text-stone-400">Predicted:</span>
+                        <span
+                          className={`font-semibold truncate ${
+                            isCorrect ? 'text-stone-800' : 'text-rose-700'
+                          }`}
+                        >
                           {item.predicted_label_name}
-                        </div>
-                      )}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="mt-3 pt-2 border-t border-slate-100/80 flex items-center justify-between text-[10px] text-slate-400">
-                    <span>Inspect</span>
-                    <Eye className="w-3 h-3 text-slate-400 group-hover:text-indigo-600" />
+                  {/* Card Footer */}
+                  <div className="mt-3 pt-2 border-t border-stone-100 flex items-center justify-between text-[10px] font-mono">
+                    <span
+                      className={`inline-flex items-center gap-1 font-semibold ${
+                        isCorrect ? 'text-emerald-700' : 'text-rose-700'
+                      }`}
+                    >
+                      {isCorrect ? (
+                        <>
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          <span>Correct</span>
+                        </>
+                      ) : (
+                        <>
+                          <XCircle className="w-3 h-3 text-rose-600" />
+                          <span>Error</span>
+                        </>
+                      )}
+                    </span>
+                    <span className="text-stone-500 font-medium">
+                      {(item.confidence * 100).toFixed(1)}%
+                    </span>
                   </div>
                 </div>
               )
             })}
           </div>
         )}
-      </div>
+      </section>
 
-      {/* Realistic Improvement Strategies */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-indigo-50 text-indigo-600">
-            <Lightbulb className="w-5 h-5" />
+      {/* Numbered Research Directions (Improvement Recommendations) */}
+      <section className="space-y-6">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-stone-400">03</span>
+            <h2 className="text-sm font-mono uppercase tracking-wider font-bold text-stone-900">
+              Research Directions &bull; Recommended Model Improvements
+            </h2>
           </div>
-          <div>
-            <h3 className="text-base font-bold text-slate-900">
-              Realistic Machine Learning Improvement Roadmap
-            </h3>
-            <p className="text-xs text-slate-500">
-              Actionable engineering strategies to boost classification performance beyond 90.7%
-            </p>
-          </div>
+          <span className="text-[11px] font-mono text-stone-400">Five Methodological Tracks</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
-          {IMPROVEMENT_IDEAS.map((idea) => {
-            const Icon = idea.icon
-            return (
-              <div
-                key={idea.title}
-                className="p-4 rounded-xl border border-slate-200/80 bg-slate-50/50 space-y-2"
-              >
-                <div className="flex items-center gap-2">
-                  <div className={`p-1.5 rounded-lg border ${idea.color}`}>
-                    <Icon className="w-4 h-4" />
-                  </div>
-                  <h4 className="text-xs font-bold text-slate-900">{idea.title}</h4>
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">{idea.description}</p>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Modal Inspector for Individual Sample */}
-      {selectedModalSample && (
-        <div
-          className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4"
-          onClick={() => setSelectedModalSample(null)}
-        >
-          <div
-            className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-slate-200 shadow-2xl relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  Forensic Inspector &bull; Test Set #{selectedModalSample.test_index}
+        <div className="space-y-3">
+          {RESEARCH_DIRECTIONS.map((item) => (
+            <div
+              key={item.step}
+              className="p-5 rounded-lg bg-white border border-stone-200 hover:border-stone-300 transition-colors"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
+                <span className="text-xs font-mono font-bold text-stone-400 shrink-0">
+                  {item.step}
                 </span>
-                <h3 className="text-xl font-bold text-slate-900">
-                  {selectedModalSample.is_correct ? 'Correct Classification' : 'Misclassified Sample'}
-                </h3>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-bold text-stone-950 tracking-tight">
+                      {item.title}
+                    </h3>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400">
+                      &bull; {item.subtitle}
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-stone-600 mt-1.5 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <button
-                onClick={() => setSelectedModalSample(null)}
-                className="text-slate-400 hover:text-slate-600 text-sm font-bold p-1.5 rounded-lg hover:bg-slate-100"
-              >
-                ✕
-              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Sample Detail Modal */}
+      {selectedModalSample && (
+        <div className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl border border-stone-200 max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 relative">
+            <button
+              onClick={() => setSelectedModalSample(null)}
+              className="absolute top-4 right-4 p-1.5 rounded-md text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div>
+              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-stone-400">
+                <span>Test Set Sample #{selectedModalSample.test_index}</span>
+                <span>&bull;</span>
+                <span
+                  className={
+                    selectedModalSample.is_correct ? 'text-emerald-700 font-bold' : 'text-rose-700 font-bold'
+                  }
+                >
+                  {selectedModalSample.is_correct ? 'Correctly Classified' : 'Misclassified'}
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-stone-950 mt-1">
+                Sample Forensics Inspection
+              </h3>
             </div>
 
-            <div className="flex items-center gap-5 p-4 rounded-2xl bg-slate-50 border border-slate-100 mb-5">
-              <div className="w-20 h-20 rounded-xl bg-black border border-slate-800 flex items-center justify-center p-1.5 shrink-0">
+            <div className="flex items-center gap-6">
+              <div className="w-24 h-24 rounded-lg bg-black border border-stone-300 flex items-center justify-center shrink-0 overflow-hidden">
                 <img
                   src={selectedModalSample.image_base64}
                   alt={selectedModalSample.true_label_name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain pixelated"
+                  style={{ imageRendering: 'pixelated' }}
                 />
               </div>
-              <div className="space-y-1 text-xs">
+
+              <div className="space-y-1.5 text-xs font-mono">
                 <div>
-                  <span className="text-slate-400 font-semibold">True Ground Truth:</span>{' '}
-                  <span className="font-bold text-slate-900">
+                  <span className="text-stone-400 block text-[10px] uppercase">True Ground Truth</span>
+                  <span className="text-stone-950 font-bold text-sm">
                     {selectedModalSample.true_label_name} (#{selectedModalSample.true_label_id})
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-400 font-semibold">CNN Prediction:</span>{' '}
+                  <span className="text-stone-400 block text-[10px] uppercase">Model Prediction</span>
                   <span
-                    className={`font-bold ${
-                      selectedModalSample.is_correct ? 'text-emerald-700' : 'text-rose-600'
+                    className={`font-bold text-sm ${
+                      selectedModalSample.is_correct ? 'text-emerald-700' : 'text-rose-700'
                     }`}
                   >
                     {selectedModalSample.predicted_label_name} (#{selectedModalSample.predicted_label_id})
                   </span>
                 </div>
-                <div>
-                  <span className="text-slate-400 font-semibold">Model Confidence:</span>{' '}
-                  <span className="font-mono font-bold text-indigo-700">
-                    {selectedModalSample.confidence_percentage}%
-                  </span>
-                </div>
               </div>
             </div>
 
-            {/* Probability vector */}
-            <div>
-              <h4 className="text-xs font-bold text-slate-700 mb-2">Class Probability Distribution:</h4>
-              <div className="space-y-1.5">
-                {ALL_CLASSES.map((cName, idx) => {
-                  const prob = selectedModalSample.probabilities[idx] || 0
-                  const pct = (prob * 100).toFixed(1)
+            {/* Probability Distribution Breakdown */}
+            <div className="space-y-2 pt-2 border-t border-stone-100">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-stone-400 block">
+                Full 10-Class Posterior Probabilities
+              </span>
+
+              <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                {selectedModalSample.probabilities.map((prob: number, idx: number) => {
+                  const isPredicted = idx === selectedModalSample.predicted_label_id
                   const isTrue = idx === selectedModalSample.true_label_id
-                  const isPred = idx === selectedModalSample.predicted_label_id
+                  const percentage = (prob * 100).toFixed(1)
 
                   return (
-                    <div key={cName} className="flex items-center gap-2 text-xs">
-                      <span className="w-24 text-[11px] font-semibold text-slate-700 truncate">
-                        {cName}
-                      </span>
-                      <div className="flex-1 h-3 rounded-full bg-slate-100 overflow-hidden">
+                    <div key={idx} className="space-y-0.5 font-mono text-[11px]">
+                      <div className="flex justify-between items-center text-stone-700">
+                        <span className="flex items-center gap-1.5">
+                          <span className="text-stone-400">#{idx}</span>
+                          <span
+                            className={
+                              isTrue
+                                ? 'font-bold text-stone-950'
+                                : isPredicted
+                                ? 'text-rose-700 font-semibold'
+                                : 'text-stone-600'
+                            }
+                          >
+                            {ALL_CLASSES[idx]}
+                          </span>
+                          {isTrue && (
+                            <span className="text-[9px] text-emerald-700 bg-emerald-50 px-1 rounded">
+                              Truth
+                            </span>
+                          )}
+                          {isPredicted && !isTrue && (
+                            <span className="text-[9px] text-rose-700 bg-rose-50 px-1 rounded">
+                              Pred
+                            </span>
+                          )}
+                        </span>
+                        <span className="font-semibold text-stone-900">{percentage}%</span>
+                      </div>
+
+                      <div className="h-1.5 rounded-full bg-stone-100 overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all ${
-                            isPred ? (selectedModalSample.is_correct ? 'bg-emerald-500' : 'bg-rose-500') : 'bg-indigo-300'
+                          className={`h-full rounded-full ${
+                            isTrue
+                              ? 'bg-indigo-600'
+                              : isPredicted
+                              ? 'bg-rose-500'
+                              : 'bg-stone-300'
                           }`}
-                          style={{ width: `${pct}%` }}
+                          style={{ width: `${Math.max(Number(percentage), 1)}%` }}
                         />
                       </div>
-                      <span className="w-12 text-right font-mono text-[10px] text-slate-500">
-                        {pct}%
-                      </span>
-                      {isTrue && (
-                        <span className="text-[10px] font-bold text-emerald-600 uppercase">True</span>
-                      )}
                     </div>
                   )
                 })}
               </div>
+            </div>
+
+            <div className="pt-2 border-t border-stone-100 flex justify-end">
+              <button
+                onClick={() => setSelectedModalSample(null)}
+                className="px-4 py-2 rounded-md bg-stone-900 text-white text-xs font-medium hover:bg-stone-800 transition-colors"
+              >
+                Close Inspection
+              </button>
             </div>
           </div>
         </div>

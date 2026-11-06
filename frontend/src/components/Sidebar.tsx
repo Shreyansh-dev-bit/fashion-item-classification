@@ -1,13 +1,12 @@
 import {
-  Shirt,
-  LayoutDashboard,
+  Compass,
   Database,
   Layers,
   LineChart,
   Sparkles,
   AlertOctagon,
   X,
-  ExternalLink,
+  Radio,
 } from 'lucide-react'
 
 export type PageId =
@@ -25,42 +24,54 @@ interface SidebarProps {
   onClose: () => void
 }
 
-const NAV_ITEMS: { id: PageId; label: string; icon: typeof LayoutDashboard; description: string }[] = [
+const NAV_ITEMS: {
+  id: PageId
+  number: string
+  label: string
+  icon: typeof Compass
+  caption: string
+}[] = [
   {
     id: 'overview',
+    number: '01',
     label: 'Project Overview',
-    icon: LayoutDashboard,
-    description: 'Retail context & objectives',
+    icon: Compass,
+    caption: 'Context, objectives & taxonomy',
   },
   {
     id: 'dataset',
+    number: '02',
     label: 'Dataset Explorer',
     icon: Database,
-    description: 'Fashion-MNIST distributions',
+    caption: 'Fashion-MNIST partitions',
   },
   {
     id: 'architecture',
+    number: '03',
     label: 'CNN Architecture',
     icon: Layers,
-    description: 'Network layers & hyperparams',
+    caption: 'Layer pipeline & hyperparameters',
   },
   {
     id: 'evaluation',
+    number: '04',
     label: 'Training & Evaluation',
     icon: LineChart,
-    description: 'Curves, metrics & confusion matrix',
+    caption: 'Real curves & confusion matrix',
   },
   {
     id: 'predict',
+    number: '05',
     label: 'Real Prediction',
     icon: Sparkles,
-    description: 'Live CNN image classification',
+    caption: 'Live inference & top-3 ranking',
   },
   {
     id: 'errors',
+    number: '06',
     label: 'Error Analysis',
     icon: AlertOctagon,
-    description: 'Misclassified test patterns',
+    caption: 'Misclassifications & research',
   },
 ]
 
@@ -70,48 +81,44 @@ export function Sidebar({ activePage, onSelectPage, isOpen, onClose }: SidebarPr
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs z-40 lg:hidden"
           onClick={onClose}
         />
       )}
 
-      {/* Sidebar Panel */}
+      {/* Editorial Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200/90 flex flex-col transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
-          isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-[#FAF9F6] border-r border-stone-200 flex flex-col transition-transform duration-200 ease-out lg:static lg:translate-x-0 ${
+          isOpen ? 'translate-x-0 shadow-xl' : '-translate-x-full'
         }`}
       >
-        {/* Brand Header */}
-        <div className="h-20 px-6 border-b border-slate-100 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25">
-              <Shirt className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100">
-                  DL-002
-                </span>
-                <span className="text-[10px] font-semibold text-slate-400">CV &bull; Retail</span>
-              </div>
-              <h1 className="text-sm font-bold text-slate-900 tracking-tight leading-snug">
-                Fashion CNN AI
-              </h1>
-            </div>
+        {/* Header / Brand */}
+        <div className="pt-8 pb-6 px-6 border-b border-stone-200">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono tracking-widest uppercase font-semibold text-stone-500">
+              DL-002 &bull; Computer Vision / Retail
+            </span>
+            <button
+              onClick={onClose}
+              className="p-1 rounded text-stone-400 hover:text-stone-700 hover:bg-stone-200/50 lg:hidden transition-colors"
+              aria-label="Close sidebar"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 lg:hidden"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <h1 className="text-lg font-bold text-stone-900 tracking-tight mt-2">
+            Fashion CNN
+          </h1>
+          <p className="text-xs text-stone-500 mt-0.5 font-normal">
+            Machine Learning Case Study
+          </p>
         </div>
 
         {/* Navigation List */}
-        <nav className="flex-1 px-3 py-6 space-y-1.5 overflow-y-auto">
-          <div className="px-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-            Navigation
+        <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+          <div className="px-3 pb-3 text-[10px] font-mono tracking-widest uppercase text-stone-400">
+            Case Study Index
           </div>
 
           {NAV_ITEMS.map((item) => {
@@ -124,49 +131,52 @@ export function Sidebar({ activePage, onSelectPage, isOpen, onClose }: SidebarPr
                   onSelectPage(item.id)
                   onClose()
                 }}
-                className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left transition-all ${
+                className={`w-full flex items-start gap-3 px-3.5 py-3 rounded-lg text-left transition-all group ${
                   isActive
-                    ? 'bg-indigo-50/90 text-indigo-950 font-semibold shadow-sm border border-indigo-100/80'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium'
+                    ? 'bg-white text-stone-950 font-medium shadow-xs border border-stone-200'
+                    : 'text-stone-600 hover:bg-stone-100/70 hover:text-stone-900'
                 }`}
               >
-                <div
-                  className={`p-2 rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/30'
-                      : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200'
+                <span
+                  className={`text-[11px] font-mono pt-0.5 transition-colors ${
+                    isActive ? 'text-indigo-600 font-bold' : 'text-stone-400 group-hover:text-stone-600'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                </div>
+                  {item.number}
+                </span>
+
                 <div className="flex-1 min-w-0">
-                  <div className={`text-xs ${isActive ? 'font-bold text-indigo-950' : 'text-slate-800'}`}>
-                    {item.label}
+                  <div className="flex items-center gap-2">
+                    <span className={`text-xs ${isActive ? 'font-semibold text-stone-900' : 'text-stone-700'}`}>
+                      {item.label}
+                    </span>
                   </div>
-                  <div className="text-[10px] text-slate-400 truncate">{item.description}</div>
+                  <p className="text-[11px] text-stone-400 truncate mt-0.5 font-normal">
+                    {item.caption}
+                  </p>
                 </div>
+
+                <Icon
+                  className={`w-3.5 h-3.5 mt-0.5 shrink-0 transition-colors ${
+                    isActive ? 'text-indigo-600' : 'text-stone-300 group-hover:text-stone-500'
+                  }`}
+                />
               </button>
             )
           })}
         </nav>
 
-        {/* Footer Info Box */}
-        <div className="p-4 border-t border-slate-100 bg-slate-50/60">
-          <div className="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs">
-            <div className="flex items-center justify-between text-[11px] font-semibold text-slate-700">
-              <span>FastAPI Backend</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            </div>
-            <p className="text-[10px] text-slate-500 mt-1">Real-data pipeline only (no mock results)</p>
-            <a
-              href="http://127.0.0.1:8000/docs"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2.5 inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-600 hover:text-indigo-700"
-            >
-              <span>Swagger API Docs</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+        {/* Editorial Footer Strip */}
+        <div className="p-4 border-t border-stone-200 bg-stone-100/40 text-[11px]">
+          <div className="flex items-center justify-between text-stone-600">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-stone-400">Environment</span>
+            <span className="inline-flex items-center gap-1.5 text-stone-700 font-medium">
+              <Radio className="w-3 h-3 text-emerald-600 animate-pulse" />
+              FastAPI 0.162
+            </span>
+          </div>
+          <div className="mt-1.5 text-[10px] text-stone-400 leading-tight">
+            Deterministic seed 42 &bull; 100% verified artifacts
           </div>
         </div>
       </aside>

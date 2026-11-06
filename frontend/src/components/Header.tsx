@@ -1,4 +1,4 @@
-import { Menu, CheckCircle2, AlertTriangle, Cpu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { HealthResponse } from '../types/api'
 
 interface HeaderProps {
@@ -9,52 +9,52 @@ interface HeaderProps {
 }
 
 export function Header({ onOpenSidebar, health, healthLoading, pageTitle }: HeaderProps) {
+  const isHealthy = health?.status === 'healthy' && health?.model_available
+
   return (
-    <header className="h-16 bg-white border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30">
+    <header className="h-16 bg-[#FAF9F6]/90 backdrop-blur-md border-b border-stone-200 px-4 sm:px-10 flex items-center justify-between sticky top-0 z-30 transition-colors">
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenSidebar}
-          className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 lg:hidden transition-colors"
+          className="p-1.5 rounded-md text-stone-500 hover:text-stone-900 hover:bg-stone-200/60 lg:hidden transition-colors"
           aria-label="Open sidebar"
         >
           <Menu className="w-5 h-5" />
         </button>
-        <div>
-          <h2 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">{pageTitle}</h2>
+
+        <div className="flex items-center gap-2 text-xs">
+          <span className="font-mono text-stone-400 hidden sm:inline">DL-002</span>
+          <span className="text-stone-300 hidden sm:inline">/</span>
+          <h2 className="text-sm sm:text-base font-semibold text-stone-900 tracking-tight">
+            {pageTitle}
+          </h2>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3">
-        {/* Model presence indicator */}
-        <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 border border-slate-200 text-slate-700">
-          <Cpu className="w-3.5 h-3.5 text-indigo-600" />
-          <span>CNN DL-002</span>
+      <div className="flex items-center gap-3">
+        {/* Subtle spec tag */}
+        <div className="hidden md:flex items-center gap-1.5 text-[11px] font-mono text-stone-500 border border-stone-200 bg-white/70 px-2.5 py-1 rounded-md">
+          <span>Keras 3</span>
+          <span className="text-stone-300">&bull;</span>
+          <span>TF 2.18</span>
         </div>
 
-        {/* Live health pill */}
-        <div
-          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border transition-all ${
-            healthLoading
-              ? 'bg-amber-50 text-amber-700 border-amber-200'
-              : health?.status === 'healthy' && health?.model_available
-              ? 'bg-emerald-50 text-emerald-800 border-emerald-200 shadow-2xs'
-              : 'bg-rose-50 text-rose-800 border-rose-200'
-          }`}
-        >
+        {/* Minimal Editorial Status Pill */}
+        <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white border border-stone-200 text-stone-700 shadow-2xs">
           {healthLoading ? (
             <>
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-              <span>Connecting...</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              <span className="text-stone-500">Connecting...</span>
             </>
-          ) : health?.status === 'healthy' && health?.model_available ? (
+          ) : isHealthy ? (
             <>
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               <span>Model & API Online</span>
             </>
           ) : (
             <>
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
-              <span>Offline / Unready</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+              <span className="text-rose-700">Service Unready</span>
             </>
           )}
         </div>

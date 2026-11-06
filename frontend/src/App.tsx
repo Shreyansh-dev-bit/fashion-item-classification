@@ -89,12 +89,12 @@ export default function App() {
 
   // Titles for active page
   const pageTitles: Record<PageId, string> = {
-    overview: 'Project Overview & Retail Problem',
-    dataset: 'Fashion-MNIST Dataset Explorer',
-    architecture: 'CNN Network Architecture',
-    evaluation: 'Training History & Evaluation',
-    predict: 'Real-Time Image Classification',
-    errors: 'Error Analysis & Forensics',
+    overview: 'Project Overview',
+    dataset: 'Dataset Explorer',
+    architecture: 'CNN Architecture',
+    evaluation: 'Training & Evaluation',
+    predict: 'Real Prediction',
+    errors: 'Error Analysis',
   }
 
   // Check if model or artifacts are completely missing
@@ -104,7 +104,7 @@ export default function App() {
     (!health.model_available || !health.artifacts_available)
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex font-sans antialiased">
+    <div className="min-h-screen bg-[#FAF9F6] text-[#1C1917] flex font-sans antialiased">
       {/* Sidebar Navigation */}
       <Sidebar
         activePage={activePage}
@@ -122,7 +122,7 @@ export default function App() {
           pageTitle={pageTitles[activePage]}
         />
 
-        <main className="flex-1 p-4 sm:p-8 overflow-y-auto">
+        <main className="flex-1 p-6 sm:p-12 overflow-y-auto">
           {error && <ErrorBanner message={error} onRetry={loadAllData} />}
 
           {loading ? (
@@ -138,6 +138,8 @@ export default function App() {
                 <OverviewPage
                   health={health}
                   modelInfo={modelInfo}
+                  metrics={metrics}
+                  datasetInfo={datasetInfo}
                   onNavigate={setActivePage}
                 />
               )}
