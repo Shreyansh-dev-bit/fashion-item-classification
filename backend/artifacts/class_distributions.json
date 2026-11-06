@@ -1,0 +1,100 @@
+{
+  "classes": [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot"
+  ],
+  "total_train": 54000,
+  "total_val": 6000,
+  "total_test": 10000,
+  "total_dataset": 70000,
+  "per_class": [
+    {
+      "class_id": 0,
+      "class_name": "T-shirt/top",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 1,
+      "class_name": "Trouser",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 2,
+      "class_name": "Pullover",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 3,
+      "class_name": "Dress",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 4,
+      "class_name": "Coat",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 5,
+      "class_name": "Sandal",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 6,
+      "class_name": "Shirt",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 7,
+      "class_name": "Sneaker",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 8,
+      "class_name": "Bag",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    },
+    {
+      "class_id": 9,
+      "class_name": "Ankle boot",
+      "train_count": 5400,
+      "val_count": 600,
+      "test_count": 1000,
+      "total_count": 7000
+    }
+  ]
+}

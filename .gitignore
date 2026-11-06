@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Node dependencies and build outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Editor / IDE directories
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Machine Learning Artifacts, Datasets & Saved Weights
+# Keep directory placeholders (.gitkeep) intact
+backend/data/*
+!backend/data/.gitkeep
+
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+# Dataset cache: do not upload
+backend/data/*
+!backend/data/.gitkeep
+
+# Upload the trained model and real evaluation results for this project
+# backend/models/ and backend/artifacts/ are intentionally tracked
+
+# Environment files: never upload secrets
+.env
+.env.*
+!.env.example

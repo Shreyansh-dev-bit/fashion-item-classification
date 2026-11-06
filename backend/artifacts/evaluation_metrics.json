@@ -1,0 +1,221 @@
+{
+  "project_id": "DL-002",
+  "dataset": "Fashion-MNIST",
+  "evaluated_set": "Held-Out Test Set",
+  "test_loss": 0.29097381234169006,
+  "test_accuracy": 0.9073,
+  "macro_f1": 0.9081381084298521,
+  "weighted_f1": 0.9081381084298519,
+  "total_test_samples": 10000,
+  "total_correct": 9073,
+  "total_misclassified": 927,
+  "classes": [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot"
+  ],
+  "classification_report": {
+    "T-shirt/top": {
+      "precision": 0.8593272171253823,
+      "recall": 0.843,
+      "f1-score": 0.851085310449268,
+      "support": 1000.0
+    },
+    "Trouser": {
+      "precision": 0.993920972644377,
+      "recall": 0.981,
+      "f1-score": 0.9874182184197282,
+      "support": 1000.0
+    },
+    "Pullover": {
+      "precision": 0.8968609865470852,
+      "recall": 0.8,
+      "f1-score": 0.8456659619450317,
+      "support": 1000.0
+    },
+    "Dress": {
+      "precision": 0.9194831013916501,
+      "recall": 0.925,
+      "f1-score": 0.922233300099701,
+      "support": 1000.0
+    },
+    "Coat": {
+      "precision": 0.8538993089832182,
+      "recall": 0.865,
+      "f1-score": 0.8594138102334824,
+      "support": 1000.0
+    },
+    "Sandal": {
+      "precision": 0.9558541266794626,
+      "recall": 0.996,
+      "f1-score": 0.9755142017629774,
+      "support": 1000.0
+    },
+    "Shirt": {
+      "precision": 0.6920353982300885,
+      "recall": 0.782,
+      "f1-score": 0.7342723004694836,
+      "support": 1000.0
+    },
+    "Sneaker": {
+      "precision": 0.9607645875251509,
+      "recall": 0.955,
+      "f1-score": 0.9578736208625878,
+      "support": 1000.0
+    },
+    "Bag": {
+      "precision": 0.9877551020408163,
+      "recall": 0.968,
+      "f1-score": 0.9777777777777777,
+      "support": 1000.0
+    },
+    "Ankle boot": {
+      "precision": 0.9825641025641025,
+      "recall": 0.958,
+      "f1-score": 0.970126582278481,
+      "support": 1000.0
+    },
+    "accuracy": 0.9073,
+    "macro avg": {
+      "precision": 0.9102464903731334,
+      "recall": 0.9073,
+      "f1-score": 0.9081381084298521,
+      "support": 10000.0
+    },
+    "weighted avg": {
+      "precision": 0.9102464903731334,
+      "recall": 0.9073,
+      "f1-score": 0.9081381084298519,
+      "support": 10000.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      843,
+      0,
+      12,
+      17,
+      3,
+      2,
+      118,
+      0,
+      5,
+      0
+    ],
+    [
+      5,
+      981,
+      0,
+      10,
+      1,
+      0,
+      2,
+      0,
+      1,
+      0
+    ],
+    [
+      20,
+      0,
+      800,
+      8,
+      68,
+      1,
+      103,
+      0,
+      0,
+      0
+    ],
+    [
+      12,
+      4,
+      6,
+      925,
+      22,
+      0,
+      30,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      35,
+      19,
+      865,
+      0,
+      80,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      996,
+      0,
+      3,
+      0,
+      1
+    ],
+    [
+      97,
+      2,
+      37,
+      24,
+      53,
+      0,
+      782,
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      30,
+      0,
+      955,
+      0,
+      15
+    ],
+    [
+      3,
+      0,
+      2,
+      3,
+      1,
+      5,
+      14,
+      3,
+      968,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      8,
+      1,
+      33,
+      0,
+      958
+    ]
+  ]
+}

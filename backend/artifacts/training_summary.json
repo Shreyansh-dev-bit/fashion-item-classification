@@ -1,0 +1,30 @@
+{
+  "project_id": "DL-002",
+  "model_architecture": "FashionMNIST_CNN",
+  "epochs": 15,
+  "batch_size": 64,
+  "random_seed": 42,
+  "train_samples": 54000,
+  "val_samples": 6000,
+  "test_samples": 10000,
+  "training_time_seconds": 62.51,
+  "final_train_loss": 0.1285305917263031,
+  "final_train_accuracy": 0.951462984085083,
+  "final_val_loss": 0.2543056309223175,
+  "final_val_accuracy": 0.921833336353302,
+  "test_loss": 0.29097381234169006,
+  "test_accuracy": 0.9072999954223633,
+  "model_saved_path": "C:\\Users\\shrey\\.gemini\\antigravity\\scratch\\fashion-item-classification\\backend\\models\\fashion_mnist_cnn.keras",
+  "classes": [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot"
+  ]
+}

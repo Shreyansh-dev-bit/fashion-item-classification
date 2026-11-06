@@ -1,0 +1,98 @@
+{
+  "project_id": "DL-002",
+  "project_name": "Fashion Item Classification with CNN",
+  "domain": "Computer Vision / Retail",
+  "seed": 42,
+  "dataset_split_sizes": {
+    "training_samples": 54000,
+    "validation_samples": 6000,
+    "held_out_test_samples": 10000,
+    "total_dataset_samples": 70000
+  },
+  "cnn_configuration": {
+    "model_name": "FashionMNIST_CNN",
+    "input_shape": [
+      28,
+      28,
+      1
+    ],
+    "layers": [
+      {
+        "name": "conv2d_1",
+        "type": "Conv2D",
+        "filters": 32,
+        "kernel_size": [
+          3,
+          3
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "maxpool_1",
+        "type": "MaxPooling2D",
+        "pool_size": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "conv2d_2",
+        "type": "Conv2D",
+        "filters": 64,
+        "kernel_size": [
+          3,
+          3
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "maxpool_2",
+        "type": "MaxPooling2D",
+        "pool_size": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "flatten",
+        "type": "Flatten"
+      },
+      {
+        "name": "dense_features",
+        "type": "Dense",
+        "units": 128,
+        "activation": "relu"
+      },
+      {
+        "name": "dropout",
+        "type": "Dropout",
+        "rate": 0.3
+      },
+      {
+        "name": "output_probabilities",
+        "type": "Dense",
+        "units": 10,
+        "activation": "softmax"
+      }
+    ],
+    "total_trainable_parameters": 225034
+  },
+  "training_configuration": {
+    "epochs": 15,
+    "batch_size": 64,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss_function": "SparseCategoricalCrossentropy",
+    "metrics": [
+      "accuracy"
+    ]
+  },
+  "timestamp": "2026-11-06T10:28:59.270251+00:00",
+  "model_file_path": "C:\\Users\\shrey\\.gemini\\antigravity\\scratch\\fashion-item-classification\\backend\\models\\fashion_mnist_cnn.keras",
+  "consistency_checks": {
+    "confusion_matrix_sum_equals_10000": true,
+    "report_support_sum_equals_10000": true,
+    "distribution_sum_equals_70000": true,
+    "accuracy_matches_confusion_matrix_diagonal": true
+  }
+}
