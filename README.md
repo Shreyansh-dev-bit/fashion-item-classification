@@ -49,10 +49,12 @@ fashion-item-classification/
 │   ├── data/                     # Downloaded / cached Fashion-MNIST data files
 │   ├── evaluate.py               # CLI runner for test set evaluation & artifact generation
 │   ├── models/                   # Saved trained model files (fashion_mnist_cnn.keras)
+│   ├── .env.example              # Example environment variables (CORS_ORIGINS)
 │   ├── requirements.txt          # Python ML & server dependencies
 │   └── train.py                  # CLI script for running real CNN training pipeline
 ├── frontend/
 │   ├── index.html                # Entry HTML
+│   ├── .env.example              # Example environment variables (VITE_API_URL)
 │   ├── package.json              # Frontend dependencies & npm scripts
 │   ├── postcss.config.js         # PostCSS configuration
 │   ├── tailwind.config.js        # Tailwind CSS styling configuration
@@ -214,6 +216,43 @@ To explore the dataset and run the training pipeline interactively:
 
 ---
 
+## 🌐 Deployment (Separate Backend & Frontend)
+
+This project supports independent deployment of the FastAPI backend and React frontend (e.g., Render, Railway, Fly.io, Vercel, Netlify):
+
+1. **Deploy the FastAPI backend first:**
+   - Deploy the Python application from the `backend/` directory.
+   - **Crucial:** The deployment bundle must include the trained model file `backend/models/fashion_mnist_cnn.keras` and all JSON/PNG files in `backend/artifacts/` (or run `python train.py` and `python evaluate.py` during your host build step).
+   - Start command:
+     ```bash
+     uvicorn app.main:app --host 0.0.0.0 --port $PORT
+     ```
+
+2. **Configure Backend CORS:**
+   - Once your frontend domain is known (e.g., `https://my-fashion-app.vercel.app`), set the `CORS_ORIGINS` environment variable on the backend host:
+     ```env
+     CORS_ORIGINS=https://my-fashion-app.vercel.app,https://www.my-fashion-app.vercel.app
+     ```
+   - Multiple origins can be comma-separated. Whitespace is automatically trimmed.
+   - Do not use wildcards (`*`) in production.
+
+3. **Deploy the React frontend:**
+   - Deploy the frontend from the `frontend/` directory (e.g., to Vercel, Netlify, Cloudflare Pages).
+   - Build command: `npm run build`
+   - Output directory: `dist`
+   - Set the build environment variable pointing to your deployed backend's `/api` prefix:
+     ```env
+     VITE_API_URL=https://YOUR-BACKEND-DOMAIN/api
+     ```
+   - **Security note:** `VITE_API_URL` is baked into the public client-side JavaScript bundle and must never contain private tokens or secrets.
+
+4. **Post-Deployment Verification:**
+   - Visit `https://YOUR-BACKEND-DOMAIN/api/health` to confirm the backend reports `"status": "healthy"` with `"model_available": true`.
+   - Open your deployed frontend URL and verify the live status badge displays `Model & API Online`.
+   - Test dashboard metrics, confusion matrix rendering, and upload a test image on the **Real Prediction** page to verify end-to-end inference.
+
+---
+
 ## 🧠 CNN Architecture Specification
 
 | Layer | Type | Specifications | Output Shape | Parameters |
@@ -229,10 +268,6 @@ To explore the dataset and run the training pipeline interactively:
 | `output_probabilities` | Dense | 10 units, Softmax activation | `(None, 10)` | 1,290 |
 
 **Total Parameters:** 225,034 Trainable (879 KB)
-
----
-
-## 📊 Authentic Model Benchmark Results
 
 ---
 

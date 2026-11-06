@@ -8,7 +8,21 @@ import {
   SamplesResponse,
 } from '../types/api'
 
-const API_BASE = '/api'
+/**
+ * Resolves the backend API base URL:
+ * - Uses import.meta.env.VITE_API_URL when configured.
+ * - Safely trims whitespace and trailing slashes to avoid double slashes.
+ * - Falls back to the local "/api" route when unconfigured, preserving local development.
+ */
+function resolveApiBase(): string {
+  const envUrl = import.meta.env.VITE_API_URL
+  if (typeof envUrl === 'string' && envUrl.trim() !== '') {
+    return envUrl.trim().replace(/\/+$/, '')
+  }
+  return '/api'
+}
+
+const API_BASE = resolveApiBase()
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
