@@ -45,6 +45,12 @@ lerna-debug.log*
 backend/data/*
 !backend/data/.gitkeep
 
+# OOD Source Datasets: reproducibly generated via backend/prepare_ood_data.py
+backend/ood_data/*.npz
+backend/ood_data/**/*.npz
+!backend/ood_data/**/.gitkeep
+
+
 
 # Environment variables
 .env

@@ -1,0 +1,554 @@
+{
+  "project_id": "DL-002",
+  "stage": "STAGE 1 - Isolated OOD Dataset Preparation & Audit",
+  "created_at": "2026-11-13 15:20:52 UTC",
+  "random_seed": 42,
+  "preprocessing_specification": {
+    "grayscale_formula": "PIL convert('L') ITU-R 601-2 (0.2989*R + 0.5870*G + 0.1140*B)",
+    "resampling_filter": "PIL Image.Resampling.LANCZOS (Lanczos-3)",
+    "normalization": "uint8 / 255.0 -> float32 [0.0, 1.0]",
+    "background_inversion": "corner_avg = (arr[0,0] + arr[0,-1] + arr[-1,0] + arr[-1,-1]) / 4.0; if corner_avg > 0.5: arr = 1.0 - arr",
+    "canonical_shape": [
+      28,
+      28,
+      1
+    ],
+    "dtype": "float32"
+  },
+  "datasets_used": {
+    "fashion_mnist": {
+      "role": "In-Distribution (Positive, Clothing)",
+      "classes": 10,
+      "train_samples_used": 60000,
+      "test_samples_used": 10000,
+      "source": "tf.keras.datasets.fashion_mnist (Zalando Research, MIT License)"
+    },
+    "cifar10": {
+      "role": "Out-of-Distribution (Known Negative: Animals & Vehicles)",
+      "classes": 10,
+      "train_samples_used": 36000,
+      "test_samples_used": 6000,
+      "source": "tf.keras.datasets.cifar10 (Alex Krizhevsky, U of Toronto)"
+    },
+    "mnist": {
+      "role": "Out-of-Distribution (Known Negative: Handwritten Digits 0-9)",
+      "classes": 10,
+      "train_samples_used": 24000,
+      "test_samples_used": 4000,
+      "source": "tf.keras.datasets.mnist (Yann LeCun et al., CC BY-SA 3.0)"
+    },
+    "cifar100": {
+      "role": "Out-of-Distribution (Reserved Unseen Categories: Fruits/Food, Trees/Plants, Furniture, Electronics, Buildings, Everyday Objects)",
+      "classes": 100,
+      "train_samples_used": 0,
+      "test_samples_used": 10000,
+      "source": "tf.keras.datasets.cifar100 (Alex Krizhevsky, U of Toronto)"
+    }
+  },
+  "split_counts": {
+    "train": {
+      "total": 80000,
+      "pos": 40000,
+      "neg": 40000
+    },
+    "val": {
+      "total": 20000,
+      "pos": 10000,
+      "neg": 10000
+    },
+    "cal": {
+      "total": 20000,
+      "pos": 10000,
+      "neg": 10000
+    },
+    "test": {
+      "total": 20000,
+      "pos": 10000,
+      "neg": 10000
+    },
+    "test_unseen_ood": {
+      "total": 10000,
+      "pos": 0,
+      "neg": 10000
+    }
+  },
+  "splits": {
+    "train": {
+      "split": "train",
+      "total_samples": 80000,
+      "positive_samples": 40000,
+      "negative_samples": 40000,
+      "pos_neg_ratio": "50.0%/50.0%",
+      "tensor_shape": [
+        80000,
+        28,
+        28,
+        1
+      ],
+      "dtype": "float32",
+      "pixel_min": 0.0,
+      "pixel_max": 1.0,
+      "source_breakdown": {
+        "cifar10": 24000,
+        "fashion_mnist": 40000,
+        "mnist": 16000
+      },
+      "class_breakdown": {
+        "Ankle boot": 4000,
+        "Bag": 4000,
+        "Coat": 4000,
+        "Dress": 4000,
+        "Pullover": 4000,
+        "Sandal": 4000,
+        "Shirt": 4000,
+        "Sneaker": 4000,
+        "T-shirt/top": 4000,
+        "Trouser": 4000,
+        "airplane": 2400,
+        "automobile": 2400,
+        "bird": 2400,
+        "cat": 2400,
+        "deer": 2400,
+        "digit_0": 1600,
+        "digit_1": 1600,
+        "digit_2": 1600,
+        "digit_3": 1600,
+        "digit_4": 1600,
+        "digit_5": 1600,
+        "digit_6": 1600,
+        "digit_7": 1600,
+        "digit_8": 1600,
+        "digit_9": 1600,
+        "dog": 2400,
+        "frog": 2400,
+        "horse": 2400,
+        "ship": 2400,
+        "truck": 2400
+      },
+      "status": "PASSED"
+    },
+    "val": {
+      "split": "val",
+      "total_samples": 20000,
+      "positive_samples": 10000,
+      "negative_samples": 10000,
+      "pos_neg_ratio": "50.0%/50.0%",
+      "tensor_shape": [
+        20000,
+        28,
+        28,
+        1
+      ],
+      "dtype": "float32",
+      "pixel_min": 0.0,
+      "pixel_max": 1.0,
+      "source_breakdown": {
+        "cifar10": 6000,
+        "fashion_mnist": 10000,
+        "mnist": 4000
+      },
+      "class_breakdown": {
+        "Ankle boot": 1000,
+        "Bag": 1000,
+        "Coat": 1000,
+        "Dress": 1000,
+        "Pullover": 1000,
+        "Sandal": 1000,
+        "Shirt": 1000,
+        "Sneaker": 1000,
+        "T-shirt/top": 1000,
+        "Trouser": 1000,
+        "airplane": 600,
+        "automobile": 600,
+        "bird": 600,
+        "cat": 600,
+        "deer": 600,
+        "digit_0": 400,
+        "digit_1": 400,
+        "digit_2": 400,
+        "digit_3": 400,
+        "digit_4": 400,
+        "digit_5": 400,
+        "digit_6": 400,
+        "digit_7": 400,
+        "digit_8": 400,
+        "digit_9": 400,
+        "dog": 600,
+        "frog": 600,
+        "horse": 600,
+        "ship": 600,
+        "truck": 600
+      },
+      "status": "PASSED"
+    },
+    "cal": {
+      "split": "cal",
+      "total_samples": 20000,
+      "positive_samples": 10000,
+      "negative_samples": 10000,
+      "pos_neg_ratio": "50.0%/50.0%",
+      "tensor_shape": [
+        20000,
+        28,
+        28,
+        1
+      ],
+      "dtype": "float32",
+      "pixel_min": 0.0,
+      "pixel_max": 1.0,
+      "source_breakdown": {
+        "cifar10": 6000,
+        "fashion_mnist": 10000,
+        "mnist": 4000
+      },
+      "class_breakdown": {
+        "Ankle boot": 1000,
+        "Bag": 1000,
+        "Coat": 1000,
+        "Dress": 1000,
+        "Pullover": 1000,
+        "Sandal": 1000,
+        "Shirt": 1000,
+        "Sneaker": 1000,
+        "T-shirt/top": 1000,
+        "Trouser": 1000,
+        "airplane": 600,
+        "automobile": 600,
+        "bird": 600,
+        "cat": 600,
+        "deer": 600,
+        "digit_0": 400,
+        "digit_1": 400,
+        "digit_2": 400,
+        "digit_3": 400,
+        "digit_4": 400,
+        "digit_5": 400,
+        "digit_6": 400,
+        "digit_7": 400,
+        "digit_8": 400,
+        "digit_9": 400,
+        "dog": 600,
+        "frog": 600,
+        "horse": 600,
+        "ship": 600,
+        "truck": 600
+      },
+      "status": "PASSED"
+    },
+    "test": {
+      "split": "test",
+      "total_samples": 20000,
+      "positive_samples": 10000,
+      "negative_samples": 10000,
+      "pos_neg_ratio": "50.0%/50.0%",
+      "tensor_shape": [
+        20000,
+        28,
+        28,
+        1
+      ],
+      "dtype": "float32",
+      "pixel_min": 0.0,
+      "pixel_max": 1.0,
+      "source_breakdown": {
+        "cifar10": 6000,
+        "fashion_mnist": 10000,
+        "mnist": 4000
+      },
+      "class_breakdown": {
+        "Ankle boot": 1000,
+        "Bag": 1000,
+        "Coat": 1000,
+        "Dress": 1000,
+        "Pullover": 1000,
+        "Sandal": 1000,
+        "Shirt": 1000,
+        "Sneaker": 1000,
+        "T-shirt/top": 1000,
+        "Trouser": 1000,
+        "airplane": 600,
+        "automobile": 600,
+        "bird": 600,
+        "cat": 600,
+        "deer": 600,
+        "digit_0": 400,
+        "digit_1": 400,
+        "digit_2": 400,
+        "digit_3": 400,
+        "digit_4": 400,
+        "digit_5": 400,
+        "digit_6": 400,
+        "digit_7": 400,
+        "digit_8": 400,
+        "digit_9": 400,
+        "dog": 600,
+        "frog": 600,
+        "horse": 600,
+        "ship": 600,
+        "truck": 600
+      },
+      "status": "PASSED"
+    },
+    "test_unseen_ood": {
+      "split": "test_unseen_ood",
+      "total_samples": 9998,
+      "positive_samples": 0,
+      "negative_samples": 9998,
+      "pos_neg_ratio": "0.0%/100.0% (OOD Benchmark)",
+      "tensor_shape": [
+        9998,
+        28,
+        28,
+        1
+      ],
+      "dtype": "float32",
+      "pixel_min": 0.0,
+      "pixel_max": 1.0,
+      "source_breakdown": {
+        "cifar100": 9998
+      },
+      "class_breakdown": {
+        "apple": 100,
+        "aquarium_fish": 100,
+        "baby": 100,
+        "bear": 100,
+        "beaver": 100,
+        "bed": 100,
+        "bee": 100,
+        "beetle": 100,
+        "bicycle": 100,
+        "bottle": 100,
+        "bowl": 100,
+        "boy": 100,
+        "bridge": 100,
+        "bus": 99,
+        "butterfly": 100,
+        "camel": 100,
+        "can": 100,
+        "castle": 100,
+        "caterpillar": 100,
+        "cattle": 99,
+        "chair": 100,
+        "chimpanzee": 100,
+        "clock": 100,
+        "cloud": 100,
+        "cockroach": 100,
+        "couch": 100,
+        "crab": 100,
+        "crocodile": 100,
+        "cup": 100,
+        "dinosaur": 100,
+        "dolphin": 100,
+        "elephant": 100,
+        "flatfish": 100,
+        "forest": 100,
+        "fox": 100,
+        "girl": 100,
+        "hamster": 100,
+        "house": 100,
+        "kangaroo": 100,
+        "keyboard": 100,
+        "lamp": 100,
+        "lawn_mower": 100,
+        "leopard": 100,
+        "lion": 100,
+        "lizard": 100,
+        "lobster": 100,
+        "man": 100,
+        "maple_tree": 100,
+        "motorcycle": 100,
+        "mountain": 100,
+        "mouse": 100,
+        "mushroom": 100,
+        "oak_tree": 100,
+        "orange": 100,
+        "orchid": 100,
+        "otter": 100,
+        "palm_tree": 100,
+        "pear": 100,
+        "pickup_truck": 100,
+        "pine_tree": 100,
+        "plain": 100,
+        "plate": 100,
+        "poppy": 100,
+        "porcupine": 100,
+        "possum": 100,
+        "rabbit": 100,
+        "raccoon": 100,
+        "ray": 100,
+        "road": 100,
+        "rocket": 100,
+        "rose": 100,
+        "sea": 100,
+        "seal": 100,
+        "shark": 100,
+        "shrew": 100,
+        "skunk": 100,
+        "skyscraper": 100,
+        "snail": 100,
+        "snake": 100,
+        "spider": 100,
+        "squirrel": 100,
+        "streetcar": 100,
+        "sunflower": 100,
+        "sweet_pepper": 100,
+        "table": 100,
+        "tank": 100,
+        "telephone": 100,
+        "television": 100,
+        "tiger": 100,
+        "tractor": 100,
+        "train": 100,
+        "trout": 100,
+        "tulip": 100,
+        "turtle": 100,
+        "wardrobe": 100,
+        "whale": 100,
+        "willow_tree": 100,
+        "wolf": 100,
+        "woman": 100,
+        "worm": 100
+      },
+      "status": "PASSED",
+      "superclass_breakdown": {
+        "aquatic_mammals": 500,
+        "fish": 500,
+        "flowers": 500,
+        "food_containers": 500,
+        "fruit_and_vegetables": 500,
+        "household_electrical_devices": 500,
+        "household_furniture": 500,
+        "insects": 500,
+        "large_carnivores": 500,
+        "large_man_made_outdoor_things": 500,
+        "large_natural_outdoor_scenes": 500,
+        "large_omnivores_and_herbivores": 499,
+        "medium_mammals": 500,
+        "non_insect_invertebrates": 500,
+        "people": 500,
+        "reptiles": 500,
+        "small_mammals": 500,
+        "trees": 500,
+        "vehicles_1": 499,
+        "vehicles_2": 500
+      }
+    }
+  },
+  "leakage_and_duplicate_audit": {
+    "index_isolation_checks": [
+      {
+        "source": "fashion_mnist",
+        "description": "Verified zero index overlap across (train, val, cal) for fashion_mnist",
+        "unique_training_samples": 60000,
+        "status": "PASSED"
+      },
+      {
+        "source": "cifar10",
+        "description": "Verified zero index overlap across (train, val, cal) for cifar10",
+        "unique_training_samples": 36000,
+        "status": "PASSED"
+      },
+      {
+        "source": "mnist",
+        "description": "Verified zero index overlap across (train, val, cal) for mnist",
+        "unique_training_samples": 24000,
+        "status": "PASSED"
+      },
+      {
+        "source": "cifar10",
+        "description": "Verified test samples for cifar10 in test originate from official test split",
+        "test_samples": 6000,
+        "status": "PASSED"
+      },
+      {
+        "source": "fashion_mnist",
+        "description": "Verified test samples for fashion_mnist in test originate from official test split",
+        "test_samples": 10000,
+        "status": "PASSED"
+      },
+      {
+        "source": "mnist",
+        "description": "Verified test samples for mnist in test originate from official test split",
+        "test_samples": 4000,
+        "status": "PASSED"
+      },
+      {
+        "source": "cifar100",
+        "description": "Verified test samples for cifar100 in test_unseen_ood originate from official test split",
+        "test_samples": 9998,
+        "status": "PASSED"
+      }
+    ],
+    "exact_byte_hash_checks": [
+      {
+        "check": "Exact MD5 byte collisions between train and test",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "check": "Exact MD5 byte collisions between train and test_unseen_ood",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "check": "Exact MD5 byte collisions between val and test",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "check": "Exact MD5 byte collisions between val and test_unseen_ood",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "check": "Exact MD5 byte collisions between cal and test",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "check": "Exact MD5 byte collisions between cal and test_unseen_ood",
+        "identical_byte_matches": 0,
+        "status": "PASSED"
+      }
+    ],
+    "perceptual_dhash_checks": [
+      {
+        "comparison": "train vs test",
+        "description": "Perceptual dHash matches (H=0, visually similar gradient profiles)",
+        "perceptual_h0_matches": 703,
+        "status": "PASSED"
+      },
+      {
+        "comparison": "train vs test_unseen_ood",
+        "description": "Perceptual dHash matches (H=0) with unseen OOD categories",
+        "perceptual_h0_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "comparison": "val vs test",
+        "description": "Perceptual dHash matches (H=0, visually similar gradient profiles)",
+        "perceptual_h0_matches": 319,
+        "status": "PASSED"
+      },
+      {
+        "comparison": "val vs test_unseen_ood",
+        "description": "Perceptual dHash matches (H=0) with unseen OOD categories",
+        "perceptual_h0_matches": 0,
+        "status": "PASSED"
+      },
+      {
+        "comparison": "cal vs test",
+        "description": "Perceptual dHash matches (H=0, visually similar gradient profiles)",
+        "perceptual_h0_matches": 340,
+        "status": "PASSED"
+      },
+      {
+        "comparison": "cal vs test_unseen_ood",
+        "description": "Perceptual dHash matches (H=0) with unseen OOD categories",
+        "perceptual_h0_matches": 0,
+        "status": "PASSED"
+      }
+    ],
+    "overall_status": "PASSED"
+  }
+}
