@@ -9,6 +9,25 @@ BACKEND_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BACKEND_DIR / "data"
 MODELS_DIR = BACKEND_DIR / "models"
 ARTIFACTS_DIR = BACKEND_DIR / "artifacts"
+OOD_ARTIFACTS_DIR = BACKEND_DIR / "ood_artifacts"
+OOD_CANDIDATE_MODEL_PATH = OOD_ARTIFACTS_DIR / "robustness_candidate" / "ood_detector_candidate.keras"
+
+# Calibrated OOD Decision Thresholds (Stage 4.1.1 Audited)
+DEFAULT_OOD_REJECT_THRESHOLD: float = 0.02
+DEFAULT_OOD_ACCEPT_THRESHOLD: float = 0.98
+
+
+def validate_ood_thresholds(reject_threshold: float, accept_threshold: float) -> None:
+    """
+    Validates calibrated OOD decision thresholds:
+    Must satisfy: 0.0 <= reject_threshold < accept_threshold <= 1.0.
+    Raises ValueError if thresholds are inconsistent or invalid.
+    """
+    if not (0.0 <= reject_threshold < accept_threshold <= 1.0):
+        raise ValueError(
+            f"Invalid OOD thresholds: reject_threshold ({reject_threshold}) and "
+            f"accept_threshold ({accept_threshold}) must satisfy 0.0 <= reject < accept <= 1.0."
+        )
 
 # Fashion-MNIST 10 Canonical Class Labels
 FASHION_MNIST_CLASSES = [
@@ -56,6 +75,11 @@ class Settings(BaseModel):
     DOMAIN: str = "Computer Vision / Retail"
     VERSION: str = "1.0.0"
     API_PREFIX: str = "/api"
+
+    # Out-of-Distribution (OOD) Gate Configuration
+    OOD_MODEL_PATH: Path = OOD_CANDIDATE_MODEL_PATH
+    OOD_REJECT_THRESHOLD: float = DEFAULT_OOD_REJECT_THRESHOLD
+    OOD_ACCEPT_THRESHOLD: float = DEFAULT_OOD_ACCEPT_THRESHOLD
 
     @property
     def CORS_ORIGINS(self) -> list[str]:

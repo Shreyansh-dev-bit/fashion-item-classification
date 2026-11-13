@@ -143,10 +143,15 @@ class ClassProbability(BaseModel):
 
 
 class PredictResponse(BaseModel):
-    predicted_class_id: int
-    predicted_class_name: str
-    confidence: float
-    confidence_percentage: float
-    probabilities: List[ClassProbability]
+    ood_decision: str = Field(..., description="OOD gate decision: 'ACCEPT', 'REJECT', or 'UNCERTAIN'")
+    ood_score: Optional[float] = Field(None, description="OOD clothing domain probability score in [0.0, 1.0]")
+    classifier_executed: bool = Field(..., description="Whether the original 10-class Fashion-MNIST classifier was executed")
+    message: Optional[str] = Field(None, description="User-friendly status explanation or domain warning message")
+    detail: Optional[str] = Field(None, description="Detail message for HTTP client compatibility")
+    predicted_class_id: Optional[int] = Field(None, description="Predicted class ID if accepted (0-9)")
+    predicted_class_name: Optional[str] = Field(None, description="Predicted class name if accepted")
+    confidence: Optional[float] = Field(None, description="Top predicted class confidence in [0.0, 1.0] if accepted")
+    confidence_percentage: Optional[float] = Field(None, description="Top predicted class confidence percentage (0-100%) if accepted")
+    probabilities: Optional[List[ClassProbability]] = Field(default_factory=list, description="All 10 class probabilities if accepted")
     input_image_details: Dict[str, Any]
     model_version: str = "DL-002 (FashionMNIST_CNN)"

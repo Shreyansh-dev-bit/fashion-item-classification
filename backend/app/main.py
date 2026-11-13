@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 import io
 import json
 import os
@@ -6,12 +7,19 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, File, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 import numpy as np
 from PIL import Image
 import tensorflow as tf
 
-from app.config import ARTIFACTS_DIR, FASHION_MNIST_CLASSES, MODELS_DIR, settings
+from app.config import (
+    ARTIFACTS_DIR,
+    FASHION_MNIST_CLASSES,
+    MODELS_DIR,
+    settings,
+    validate_ood_thresholds,
+)
+from app.ood_service import evaluate_ood_gate, get_ood_detector
 from app.schemas import (
     ClassMetricItem,
     ClassProbability,
@@ -27,23 +35,6 @@ from app.schemas import (
     SamplesResponse,
     SplitSizes,
     TrainingConfig,
-)
-
-app = FastAPI(
-    title=settings.PROJECT_NAME,
-    description="Authentic Full-Stack Computer Vision Pipeline for Fashion Item Classification with CNN",
-    version=settings.VERSION,
-    docs_url="/docs",
-    redoc_url="/redoc",
-)
-
-# CORS configuration for local frontend development
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
 )
 
 # Cached CNN model singleton
@@ -71,6 +62,39 @@ def get_trained_model() -> tf.keras.Model:
                 detail=f"Failed to load trained Keras model: {e}",
             )
     return _model_instance
+
+
+def reset_trained_model() -> None:
+    """Resets the cached CNN model singleton (useful for testing failure paths)."""
+    global _model_instance
+    _model_instance = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application startup lifespan handler:
+    1. Validates calibrated OOD decision thresholds from configuration.
+    2. Pre-loads and validates the candidate OOD detector CNN once on startup.
+    3. Pre-loads the 10-class Fashion-MNIST classifier CNN once on startup.
+    """
+    # 1. Validate OOD thresholds
+    validate_ood_thresholds(settings.OOD_REJECT_THRESHOLD, settings.OOD_ACCEPT_THRESHOLD)
+    # 2. Pre-load CNN classifier
+    get_trained_model()
+    # 3. Pre-load OOD detector
+    get_ood_detector()
+    yield
+
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    description="Authentic Full-Stack Computer Vision Pipeline for Fashion Item Classification with CNN",
+    version=settings.VERSION,
+    docs_url="/docs",
+    redoc_url="/redoc",
+    lifespan=lifespan,
+)
 
 
 def _read_artifact(filename: str) -> Dict[str, Any]:
@@ -399,8 +423,12 @@ def get_samples(
 @app.post(
     f"{settings.API_PREFIX}/predict",
     response_model=PredictResponse,
+    responses={
+        200: {"model": PredictResponse, "description": "Accepted clothing image classified by CNN"},
+        422: {"model": PredictResponse, "description": "Rejected or uncertain image blocked by OOD gate"},
+    },
     tags=["Inference"],
-    summary="Real inference on an uploaded retail apparel image",
+    summary="Real inference on an uploaded retail apparel image with OOD gate protection",
 )
 async def predict_image(
     file: UploadFile = File(..., description="Image file (PNG, JPG, JPEG, or WEBP)"),
@@ -410,8 +438,9 @@ async def predict_image(
     ),
 ):
     """
-    Accepts an uploaded PNG, JPG, JPEG, or WEBP image, validates it, preprocesses it to
-    (1, 28, 28, 1) normalized [0, 1] grayscale, and runs the real CNN model.
+    Accepts an uploaded PNG, JPG, JPEG, or WEBP image, validates file integrity,
+    applies production preprocessing, evaluates the calibrated OOD gate, and routes
+    to the 10-class Fashion-MNIST classifier ONLY IF the image is accepted.
     """
     # 1. Validate file extension and MIME type
     if not file.filename:
@@ -486,10 +515,62 @@ async def predict_image(
     # 7. Reshape to (1, 28, 28, 1)
     input_tensor = arr.reshape(1, 28, 28, 1)
 
-    # 8. Load real CNN model (or return clear 503 error if untrained)
+    image_details = {
+        "filename": file.filename,
+        "original_size": [orig_width, orig_height],
+        "original_mode": orig_mode,
+        "processed_shape": [1, 28, 28, 1],
+        "inverted_for_dark_background": should_invert,
+    }
+
+    # 8. Evaluate Out-of-Distribution (OOD) Gate
+    # Both REJECT and UNCERTAIN decisions STOP processing before the CNN is called.
+    decision, ood_score, ood_message = evaluate_ood_gate(input_tensor)
+
+    if decision == "REJECT":
+        reject_response = PredictResponse(
+            ood_decision="REJECT",
+            ood_score=round(ood_score, 6) if np.isfinite(ood_score) else None,
+            classifier_executed=False,
+            message=ood_message,
+            detail=ood_message,
+            predicted_class_id=None,
+            predicted_class_name=None,
+            confidence=None,
+            confidence_percentage=None,
+            probabilities=[],
+            input_image_details=image_details,
+            model_version="DL-002 (FashionMNIST_CNN)",
+        )
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content=reject_response.model_dump(),
+        )
+
+    if decision == "UNCERTAIN":
+        uncertain_response = PredictResponse(
+            ood_decision="UNCERTAIN",
+            ood_score=round(ood_score, 6) if np.isfinite(ood_score) else None,
+            classifier_executed=False,
+            message=ood_message,
+            detail=ood_message,
+            predicted_class_id=None,
+            predicted_class_name=None,
+            confidence=None,
+            confidence_percentage=None,
+            probabilities=[],
+            input_image_details=image_details,
+            model_version="DL-002 (FashionMNIST_CNN)",
+        )
+        return JSONResponse(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            content=uncertain_response.model_dump(),
+        )
+
+    # 9. Load real CNN model (ONLY executed when decision is ACCEPT)
     model = get_trained_model()
 
-    # 9. Run real inference
+    # 10. Run real CNN inference
     try:
         raw_preds = model.predict(input_tensor, verbose=0)
         probabilities = raw_preds[0]  # Array of 10 probabilities
@@ -502,7 +583,7 @@ async def predict_image(
     top_idx = int(np.argmax(probabilities))
     top_confidence = float(probabilities[top_idx])
 
-    # 10. Format response with all ten class probabilities
+    # 11. Format response with all ten class probabilities
     class_probs: List[ClassProbability] = [
         ClassProbability(
             class_id=i,
@@ -514,18 +595,17 @@ async def predict_image(
     ]
 
     return PredictResponse(
+        ood_decision="ACCEPT",
+        ood_score=round(ood_score, 6) if np.isfinite(ood_score) else None,
+        classifier_executed=True,
+        message=ood_message,
+        detail=ood_message,
         predicted_class_id=top_idx,
         predicted_class_name=FASHION_MNIST_CLASSES[top_idx],
         confidence=top_confidence,
         confidence_percentage=round(top_confidence * 100, 2),
         probabilities=class_probs,
-        input_image_details={
-            "filename": file.filename,
-            "original_size": [orig_width, orig_height],
-            "original_mode": orig_mode,
-            "processed_shape": [1, 28, 28, 1],
-            "inverted_for_dark_background": should_invert,
-        },
+        input_image_details=image_details,
         model_version="DL-002 (FashionMNIST_CNN)",
     )
 
