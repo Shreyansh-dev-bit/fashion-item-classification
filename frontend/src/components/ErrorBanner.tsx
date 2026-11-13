@@ -3,9 +3,10 @@ import { AlertCircle, RefreshCw } from 'lucide-react'
 interface ErrorBannerProps {
   message: string
   onRetry?: () => void
+  isReconnecting?: boolean
 }
 
-export function ErrorBanner({ message, onRetry }: ErrorBannerProps) {
+export function ErrorBanner({ message, onRetry, isReconnecting }: ErrorBannerProps) {
   return (
     <div className="rounded-lg border border-rose-200 bg-white p-5 text-stone-900 shadow-xs my-6">
       <div className="flex items-start justify-between gap-4">
@@ -24,10 +25,11 @@ export function ErrorBanner({ message, onRetry }: ErrorBannerProps) {
         {onRetry && (
           <button
             onClick={onRetry}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-stone-200 bg-stone-50 hover:bg-stone-100 text-stone-700 text-xs font-medium transition-colors shrink-0"
+            disabled={isReconnecting}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-stone-200 bg-stone-50 hover:bg-stone-100 disabled:opacity-60 disabled:cursor-not-allowed text-stone-700 text-xs font-medium transition-colors shrink-0"
           >
-            <RefreshCw className="w-3.5 h-3.5" />
-            <span>Reconnect</span>
+            <RefreshCw className={`w-3.5 h-3.5 ${isReconnecting ? 'animate-spin text-stone-500' : ''}`} />
+            <span>{isReconnecting ? 'Connecting...' : 'Reconnect'}</span>
           </button>
         )}
       </div>

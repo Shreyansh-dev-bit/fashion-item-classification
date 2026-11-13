@@ -96,6 +96,17 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# CORS configuration for local development and production Vercel frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_origin_regex=r"^https:\/\/fashion-item-classification.*\.vercel\.app$",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+)
+
 
 def _read_artifact(filename: str) -> Dict[str, Any]:
     file_path = ARTIFACTS_DIR / filename
@@ -137,6 +148,12 @@ def root():
     response_model=HealthResponse,
     tags=["Status"],
     summary="Check API, model, and artifact availability",
+)
+@app.get(
+    "/health",
+    response_model=HealthResponse,
+    tags=["Status"],
+    include_in_schema=False,
 )
 def get_health():
     """Returns the operational status of the API, saved model file, and evaluation artifacts."""

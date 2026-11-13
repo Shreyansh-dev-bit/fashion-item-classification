@@ -10,19 +10,24 @@ import {
 
 /**
  * Resolves the backend API base URL:
- * - Uses import.meta.env.VITE_API_URL when configured.
+ * - Uses import.meta.env.VITE_API_URL or VITE_API_BASE_URL when configured.
  * - Safely trims whitespace and trailing slashes to avoid double slashes.
+ * - Ensures the `/api` prefix is present if a bare host URL is provided.
  * - Falls back to the local "/api" route when unconfigured, preserving local development.
  */
-function resolveApiBase(): string {
-  const envUrl = import.meta.env.VITE_API_URL
+export function resolveApiBase(): string {
+  const envUrl = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL
   if (typeof envUrl === 'string' && envUrl.trim() !== '') {
-    return envUrl.trim().replace(/\/+$/, '')
+    const trimmed = envUrl.trim().replace(/\/+$/, '')
+    if (!trimmed.endsWith('/api')) {
+      return `${trimmed}/api`
+    }
+    return trimmed
   }
   return '/api'
 }
 
-const API_BASE = resolveApiBase()
+export const API_BASE = resolveApiBase()
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {

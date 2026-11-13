@@ -42,11 +42,28 @@ export default function App() {
   // Async states
   const [loading, setLoading] = useState<boolean>(true)
   const [healthLoading, setHealthLoading] = useState<boolean>(true)
+  const [isReconnecting, setIsReconnecting] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const [loadingMessage, setLoadingMessage] = useState<string>(
+    'Querying real model artifacts from FastAPI...'
+  )
 
   useEffect(() => {
     loadAllData()
   }, [])
+
+  useEffect(() => {
+    let timer: any
+    if (loading) {
+      setLoadingMessage('Querying real model artifacts from FastAPI...')
+      timer = setTimeout(() => {
+        setLoadingMessage(
+          'Connecting to backend service... If the Render free instance is waking up from idle, this may take 30–50 seconds.'
+        )
+      }, 4000)
+    }
+    return () => clearTimeout(timer)
+  }, [loading])
 
   const loadAllData = async () => {
     try {
@@ -80,10 +97,31 @@ export default function App() {
       setConfusionMatrix(cm)
       setSamples(samp.samples)
     } catch (err: any) {
-      setError(err.message || 'Failed to connect to FastAPI service at http://127.0.0.1:8000')
+      const msg = err?.message || ''
+      if (
+        msg.includes('Failed to fetch') ||
+        msg.includes('NetworkError') ||
+        msg.includes('Load failed') ||
+        msg.includes('Network connection error')
+      ) {
+        setError(
+          'Unable to connect to the FastAPI backend service. If hosted on Render free tier, the instance may be spinning up from sleep (~30–50s). Please wait a moment and click Reconnect.'
+        )
+      } else {
+        setError(msg || 'Failed to connect to FastAPI service.')
+      }
     } finally {
       setLoading(false)
       setHealthLoading(false)
+    }
+  }
+
+  const handleReconnect = async () => {
+    setIsReconnecting(true)
+    try {
+      await loadAllData()
+    } finally {
+      setIsReconnecting(false)
     }
   }
 
@@ -123,10 +161,16 @@ export default function App() {
         />
 
         <main className="flex-1 p-6 sm:p-12 overflow-y-auto">
-          {error && <ErrorBanner message={error} onRetry={loadAllData} />}
+          {error && (
+            <ErrorBanner
+              message={error}
+              onRetry={handleReconnect}
+              isReconnecting={isReconnecting}
+            />
+          )}
 
           {loading ? (
-            <LoadingSpinner message="Querying real model artifacts from FastAPI..." />
+            <LoadingSpinner message={loadingMessage} />
           ) : needsTraining ? (
             <EmptyState
               onRefresh={loadAllData}

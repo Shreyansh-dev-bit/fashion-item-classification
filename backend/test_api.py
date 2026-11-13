@@ -480,9 +480,51 @@ def test_threshold_configuration_validation():
     print(" -> PASSED: Threshold bounds validation enforced (0.0 <= reject < accept <= 1.0)")
 
 
+def test_cors_configuration():
+    """Test 16: Verify CORS headers, preflight OPTIONS handling, and allowed origins."""
+    print("\n[Test 16] Testing CORS Configuration & Preflight Handling...")
+    prod_origin = "https://fashion-item-classification.vercel.app"
+    preview_origin = "https://fashion-item-classification-git-main.vercel.app"
+    unauthorized_origin = "https://unauthorized-domain.com"
+
+    # 1. OPTIONS preflight from production Vercel frontend
+    res_opt = client.options(
+        "/api/health",
+        headers={
+            "Origin": prod_origin,
+            "Access-Control-Request-Method": "GET",
+            "Access-Control-Request-Headers": "content-type",
+        },
+    )
+    assert res_opt.status_code == 200, f"OPTIONS preflight failed: {res_opt.status_code}"
+    assert res_opt.headers.get("access-control-allow-origin") == prod_origin
+    assert "GET" in res_opt.headers.get("access-control-allow-methods", "")
+
+    # 2. GET request with production Origin
+    res_get = client.get("/api/health", headers={"Origin": prod_origin})
+    assert res_get.status_code == 200
+    assert res_get.headers.get("access-control-allow-origin") == prod_origin
+
+    # 3. Root-level /health endpoint
+    res_root_health = client.get("/health", headers={"Origin": prod_origin})
+    assert res_root_health.status_code == 200
+    assert res_root_health.json()["status"] == "healthy"
+    assert res_root_health.headers.get("access-control-allow-origin") == prod_origin
+
+    # 4. Preview Vercel Origin via regex
+    res_preview = client.get("/api/health", headers={"Origin": preview_origin})
+    assert res_preview.headers.get("access-control-allow-origin") == preview_origin
+
+    # 5. Unauthorized origin must not receive allow-origin header
+    res_unauth = client.get("/api/health", headers={"Origin": unauthorized_origin})
+    assert res_unauth.headers.get("access-control-allow-origin") is None
+
+    print(" -> PASSED: Production Vercel & preview CORS preflight and headers verified cleanly")
+
+
 if __name__ == "__main__":
     print("=" * 70)
-    print("RUNNING COMPLETE FASTAPI & OOD GATE ENDPOINT SUITE (DL-002 STAGE 5)")
+    print("RUNNING COMPLETE FASTAPI & OOD GATE ENDPOINT SUITE (DL-002)")
     print("=" * 70)
     test_health()
     test_model_info()
@@ -499,6 +541,7 @@ if __name__ == "__main__":
     test_ood_detector_loading_failure()
     test_classifier_loading_failure_when_accepted()
     test_threshold_configuration_validation()
+    test_cors_configuration()
     print("\n" + "=" * 70)
-    print("ALL 15 API & OOD GATE TESTS PASSED CLEANLY (100% SUCCESS)!")
+    print("ALL 16 API, CORS & OOD GATE TESTS PASSED CLEANLY (100% SUCCESS)!")
     print("=" * 70)
