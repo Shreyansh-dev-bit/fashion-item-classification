@@ -403,14 +403,14 @@ def get_samples(
     summary="Real inference on an uploaded retail apparel image",
 )
 async def predict_image(
-    file: UploadFile = File(..., description="Image file (PNG, JPG, or JPEG)"),
+    file: UploadFile = File(..., description="Image file (PNG, JPG, JPEG, or WEBP)"),
     invert_colors: Optional[bool] = Query(
         None,
         description="Invert pixel intensities (useful for light-background product images). Auto-detected if omitted.",
     ),
 ):
     """
-    Accepts an uploaded PNG, JPG, or JPEG image, validates it, preprocesses it to
+    Accepts an uploaded PNG, JPG, JPEG, or WEBP image, validates it, preprocesses it to
     (1, 28, 28, 1) normalized [0, 1] grayscale, and runs the real CNN model.
     """
     # 1. Validate file extension and MIME type
@@ -421,19 +421,19 @@ async def predict_image(
         )
 
     file_ext = Path(file.filename).suffix.lower()
-    allowed_extensions = {".png", ".jpg", ".jpeg"}
-    allowed_content_types = {"image/png", "image/jpeg", "image/jpg"}
+    allowed_extensions = {".png", ".jpg", ".jpeg", ".webp"}
+    allowed_content_types = {"image/png", "image/jpeg", "image/jpg", "image/webp"}
 
     if file_ext not in allowed_extensions:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Invalid file extension '{file_ext}'. Allowed file types are PNG, JPG, and JPEG only.",
+            detail=f"Invalid file extension '{file_ext}'. Allowed file types are PNG, JPG, JPEG, and WEBP only.",
         )
 
     if file.content_type and file.content_type.lower() not in allowed_content_types:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Invalid MIME type '{file.content_type}'. Allowed types are image/png, image/jpeg.",
+            detail=f"Invalid MIME type '{file.content_type}'. Allowed types are image/png, image/jpeg, image/webp.",
         )
 
     # 2. Read image bytes
@@ -460,7 +460,7 @@ async def predict_image(
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Corrupted or invalid image file. Must be a valid PNG or JPEG image: {e}",
+            detail=f"Corrupted or invalid image file. Must be a valid PNG, JPEG, or WEBP image: {e}",
         )
 
     orig_width, orig_height = pil_img.size

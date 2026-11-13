@@ -91,7 +91,8 @@ export async function fetchSamples(
 
 export async function uploadPredictImage(
   file: File,
-  invertColors?: boolean
+  invertColors?: boolean,
+  signal?: AbortSignal
 ): Promise<PredictResponse> {
   const formData = new FormData()
   formData.append('file', file)
@@ -105,6 +106,7 @@ export async function uploadPredictImage(
   const res = await fetch(url, {
     method: 'POST',
     body: formData,
+    signal,
   })
 
   return handleResponse<PredictResponse>(res)

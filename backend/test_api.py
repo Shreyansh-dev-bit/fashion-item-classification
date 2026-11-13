@@ -153,29 +153,90 @@ def test_predict():
     assert np.isclose(prob_sum, 1.0, atol=1e-3), f"Probabilities must sum to 1.0, got {prob_sum}"
     print(f" -> PASSED: Valid PNG Prediction -> {pred_data['predicted_class_name']} ({pred_data['confidence_percentage']}%), Prob Sum={prob_sum:.4f}")
 
-    # 7b. Test valid JPEG image
+    # 7b. Test valid JPEG and JPG image
     buf_jpg = io.BytesIO()
     img.save(buf_jpg, format="JPEG")
+    buf_jpg.seek(0)
+    res_jpeg = client.post(
+        "/api/predict",
+        files={"file": ("trouser_test.jpeg", buf_jpg.getvalue(), "image/jpeg")},
+    )
+    assert res_jpeg.status_code == 200
+    print(f" -> PASSED: Valid JPEG Prediction -> {res_jpeg.json()['predicted_class_name']}")
+
     buf_jpg.seek(0)
     res_jpg = client.post(
         "/api/predict",
         files={"file": ("trouser_test.jpg", buf_jpg.getvalue(), "image/jpeg")},
     )
     assert res_jpg.status_code == 200
-    print(f" -> PASSED: Valid JPEG Prediction -> {res_jpg.json()['predicted_class_name']}")
+    print(f" -> PASSED: Valid JPG Prediction -> {res_jpg.json()['predicted_class_name']}")
 
-    # 7c. Test invalid file extension (.txt)
-    res_invalid_ext = client.post(
+    # 7c. Test valid WEBP image
+    buf_webp = io.BytesIO()
+    img.save(buf_webp, format="WEBP")
+    buf_webp.seek(0)
+    res_webp = client.post(
         "/api/predict",
-        files={"file": ("malicious.txt", b"plain text content", "text/plain")},
+        files={"file": ("trouser_test.webp", buf_webp.getvalue(), "image/webp")},
     )
-    assert res_invalid_ext.status_code == 400
-    print(f" -> PASSED: Invalid Extension correctly rejected with HTTP 400: '{res_invalid_ext.json()['detail']}'")
+    assert res_webp.status_code == 200, f"Expected 200, got {res_webp.status_code}: {res_webp.text}"
+    webp_data = res_webp.json()
+    assert "predicted_class_name" in webp_data
+    assert "confidence" in webp_data
+    assert len(webp_data["probabilities"]) == 10
+    print(f" -> PASSED: Valid WEBP Prediction -> {webp_data['predicted_class_name']} ({webp_data['confidence_percentage']}%)")
 
-    # 7d. Test corrupted image bytes
+    # 7d. Test background inversion parameters with WEBP
+    buf_webp.seek(0)
+    res_invert = client.post(
+        "/api/predict?invert_colors=true",
+        files={"file": ("trouser_test.webp", buf_webp.getvalue(), "image/webp")},
+    )
+    assert res_invert.status_code == 200
+    assert res_invert.json()["input_image_details"]["inverted_for_dark_background"] is True
+    print(" -> PASSED: Explicit Background Inversion (True) verified")
+
+    buf_webp.seek(0)
+    res_no_invert = client.post(
+        "/api/predict?invert_colors=false",
+        files={"file": ("trouser_test.webp", buf_webp.getvalue(), "image/webp")},
+    )
+    assert res_no_invert.status_code == 200
+    assert res_no_invert.json()["input_image_details"]["inverted_for_dark_background"] is False
+    print(" -> PASSED: Explicit Background Inversion (False) verified")
+
+    # 7e. Test invalid file extensions (.txt, .bmp, .gif, .pdf)
+    for bad_ext in ["malicious.txt", "unsupported.bmp", "sample.gif", "document.pdf"]:
+        res_bad_ext = client.post(
+            "/api/predict",
+            files={"file": (bad_ext, b"binary content", "image/png")},
+        )
+        assert res_bad_ext.status_code == 400
+        assert "Allowed file types are PNG, JPG, JPEG, and WEBP only" in res_bad_ext.json()["detail"]
+    print(" -> PASSED: Unsupported extensions (.txt, .bmp, .gif, .pdf) correctly rejected with HTTP 400")
+
+    # 7f. Test invalid MIME type
+    res_invalid_mime = client.post(
+        "/api/predict",
+        files={"file": ("trouser_test.webp", buf_webp.getvalue(), "application/pdf")},
+    )
+    assert res_invalid_mime.status_code == 400
+    print(f" -> PASSED: Invalid MIME type correctly rejected with HTTP 400: '{res_invalid_mime.json()['detail']}'")
+
+    # 7g. Test empty file (0 bytes)
+    res_empty = client.post(
+        "/api/predict",
+        files={"file": ("empty.webp", b"", "image/webp")},
+    )
+    assert res_empty.status_code == 400
+    assert "empty" in res_empty.json()["detail"].lower()
+    print(" -> PASSED: Empty file (0 bytes) correctly rejected with HTTP 400")
+
+    # 7h. Test corrupted image bytes
     res_corrupt = client.post(
         "/api/predict",
-        files={"file": ("corrupted.png", b"not-a-valid-png-stream", "image/png")},
+        files={"file": ("corrupted.webp", b"not-a-valid-webp-stream", "image/webp")},
     )
     assert res_corrupt.status_code == 400
     print(f" -> PASSED: Corrupted image correctly rejected with HTTP 400: '{res_corrupt.json()['detail']}'")

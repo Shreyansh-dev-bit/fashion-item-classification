@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   UploadCloud,
   Info,
@@ -23,6 +23,7 @@ interface RealPredictionPageProps {
 export function RealPredictionPage({ samples }: RealPredictionPageProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [fileDetails, setFileDetails] = useState<{ name: string; format: string } | null>(null)
   const [prediction, setPrediction] = useState<PredictResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -30,11 +31,50 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
   const [isDragging, setIsDragging] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const resultsRef = useRef<HTMLElement | null>(null)
+  const shouldScrollRef = useRef(false)
+  const requestIdRef = useRef(0)
+  const abortControllerRef = useRef<AbortController | null>(null)
+
+  const getFileFormat = (fileName: string): string => {
+    const ext = fileName.slice(fileName.lastIndexOf('.')).toLowerCase()
+    if (ext === '.jpg' || ext === '.jpeg') return 'JPEG'
+    if (ext === '.png') return 'PNG'
+    if (ext === '.webp') return 'WEBP'
+    return ext.replace('.', '').toUpperCase() || 'IMAGE'
+  }
+
+  // Smoothly scroll to Inference Results once prediction successfully finishes
+  useEffect(() => {
+    if (prediction && shouldScrollRef.current && resultsRef.current) {
+      shouldScrollRef.current = false
+      const prefersReduced =
+        typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      resultsRef.current.scrollIntoView({
+        behavior: prefersReduced ? 'auto' : 'smooth',
+        block: 'start',
+      })
+    }
+  }, [prediction])
+
+  // Cleanup abort controller on unmount
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort()
+      }
+    }
+  }, [])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       processSelectedFile(e.target.files[0])
     }
+    // Reset input value so repeated uploads of the same file trigger change
+    e.target.value = ''
   }
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -60,59 +100,127 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
 
   const processSelectedFile = (file: File) => {
     const ext = file.name.slice(file.name.lastIndexOf('.')).toLowerCase()
-    const validExtensions = ['.png', '.jpg', '.jpeg']
+    const validExtensions = ['.png', '.jpg', '.jpeg', '.webp']
 
     if (!validExtensions.includes(ext)) {
       setError(
-        `Invalid file format "${file.name}". Only PNG, JPG, and JPEG images are supported by the CNN inference pipeline.`
+        `Invalid file format "${file.name}". Only PNG, JPG, JPEG, and WEBP images are supported by the CNN inference pipeline.`
       )
       setSelectedFile(null)
       setPreviewUrl(null)
+      setFileDetails(null)
       setPrediction(null)
+      shouldScrollRef.current = false
       return
     }
 
+    if (previewUrl && previewUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(previewUrl)
+    }
+
+    const url = URL.createObjectURL(file)
     setSelectedFile(file)
+    setFileDetails({
+      name: file.name,
+      format: getFileFormat(file.name),
+    })
+    setPreviewUrl(url)
     setError(null)
     setPrediction(null)
-
-    // Create object URL for preview
-    const url = URL.createObjectURL(file)
-    setPreviewUrl(url)
+    shouldScrollRef.current = true
 
     // Run real inference
     executeInference(file, invertOption)
   }
 
   const executeInference = async (file: File, invert?: boolean) => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+    const currentRequestId = ++requestIdRef.current
+
     try {
       setLoading(true)
       setError(null)
-      const res = await uploadPredictImage(file, invert)
+      const res = await uploadPredictImage(file, invert, controller.signal)
+      if (currentRequestId !== requestIdRef.current) {
+        return
+      }
       setPrediction(res)
     } catch (err: any) {
+      if (err.name === 'AbortError') {
+        return
+      }
+      if (currentRequestId !== requestIdRef.current) {
+        return
+      }
+      shouldScrollRef.current = false
+      setPrediction(null)
       setError(err.message || 'Model prediction failed. Please ensure the backend is running.')
     } finally {
-      setLoading(false)
+      if (currentRequestId === requestIdRef.current) {
+        setLoading(false)
+      }
     }
   }
 
   const handleSelectSample = async (sample: SamplePredictionItem) => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+    const currentRequestId = ++requestIdRef.current
+
+    const fileName = `sample_${sample.test_index}_${sample.true_label_name}.png`
+
+    if (previewUrl && previewUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(previewUrl)
+    }
+
+    // Immediately display preview inside upload section
+    setSelectedFile(null)
+    setFileDetails({
+      name: fileName,
+      format: 'PNG',
+    })
+    setPreviewUrl(sample.image_base64)
+    setError(null)
+    setPrediction(null)
+    shouldScrollRef.current = true
+
     try {
       setLoading(true)
-      setError(null)
-      const res = await fetch(sample.image_base64)
+      const res = await fetch(sample.image_base64, { signal: controller.signal })
       const blob = await res.blob()
-      const file = new File([blob], `sample_${sample.test_index}_${sample.true_label_name}.png`, {
+      const file = new File([blob], fileName, {
         type: 'image/png',
       })
+      if (currentRequestId !== requestIdRef.current) {
+        return
+      }
       setSelectedFile(file)
-      setPreviewUrl(sample.image_base64)
-      await executeInference(file, false)
+      const predRes = await uploadPredictImage(file, false, controller.signal)
+      if (currentRequestId !== requestIdRef.current) {
+        return
+      }
+      setPrediction(predRes)
     } catch (err: any) {
+      if (err.name === 'AbortError') {
+        return
+      }
+      if (currentRequestId !== requestIdRef.current) {
+        return
+      }
+      shouldScrollRef.current = false
+      setPrediction(null)
       setError(err.message || 'Failed to process sample image')
     } finally {
-      setLoading(false)
+      if (currentRequestId === requestIdRef.current) {
+        setLoading(false)
+      }
     }
   }
 
@@ -159,7 +267,7 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
               Input Console &bull; Upload or Select Garment
             </h2>
           </div>
-          <span className="text-[11px] font-mono text-stone-400">PNG, JPG, JPEG</span>
+          <span className="text-[11px] font-mono text-stone-400">PNG, JPG, JPEG, WEBP</span>
         </div>
 
         {/* Large Drag & Drop Box */}
@@ -168,7 +276,7 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`relative border-2 border-dashed rounded-xl p-10 sm:p-14 text-center cursor-pointer transition-all ${
+          className={`relative border-2 border-dashed rounded-xl p-8 sm:p-12 text-center cursor-pointer transition-all ${
             isDragging
               ? 'border-indigo-600 bg-indigo-50/50'
               : 'border-stone-300 hover:border-stone-400 bg-white hover:bg-stone-50/40 shadow-xs'
@@ -177,29 +285,70 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
           <input
             ref={fileInputRef}
             type="file"
-            accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+            accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
             onChange={handleFileChange}
             className="hidden"
           />
 
-          <div className="w-12 h-12 rounded-full border border-stone-200 bg-stone-50 flex items-center justify-center mx-auto text-stone-600 mb-4">
-            <UploadCloud className="w-6 h-6 text-stone-700" />
-          </div>
+          {previewUrl ? (
+            <div>
+              <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-lg bg-black border border-stone-300 flex items-center justify-center overflow-hidden shadow-xs mb-4">
+                <img
+                  src={previewUrl}
+                  alt={fileDetails?.name || 'Selected apparel preview'}
+                  className="w-full h-full object-contain pixelated"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </div>
 
-          <h3 className="text-base font-bold text-stone-950 tracking-tight">
-            Drop an apparel image here, or click to browse
-          </h3>
+              <div className="flex flex-wrap items-center justify-center gap-2 max-w-md mx-auto">
+                <span
+                  className="font-mono text-xs sm:text-sm font-semibold text-stone-900 truncate max-w-xs"
+                  title={fileDetails?.name}
+                >
+                  {fileDetails?.name}
+                </span>
+                {fileDetails?.format && (
+                  <span className="text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded bg-stone-100 text-stone-700 border border-stone-200">
+                    {fileDetails.format}
+                  </span>
+                )}
+              </div>
 
-          <p className="text-xs text-stone-500 mt-2 max-w-md mx-auto leading-relaxed">
-            Upload any apparel photo (PNG, JPG, or JPEG). The pipeline will automatically downsample, 
-            convert to grayscale, and stream to the trained CNN.
-          </p>
+              <p className="text-xs text-stone-500 mt-2 max-w-md mx-auto leading-relaxed">
+                {loading
+                  ? 'Computing CNN feed-forward inference...'
+                  : 'Drop another apparel image here, or click to browse and replace'}
+              </p>
 
-          <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-mono text-stone-400 border border-stone-200 bg-white px-3 py-1 rounded-md">
-            <span>FastAPI POST /api/predict</span>
-            <span>&bull;</span>
-            <span>Max 10MB</span>
-          </div>
+              <div className="mt-4 inline-flex items-center gap-2 text-[11px] font-mono text-stone-400 border border-stone-200 bg-white px-3 py-1 rounded-md">
+                <span>FastAPI POST /api/predict</span>
+                <span>&bull;</span>
+                <span>Max 10MB</span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="w-12 h-12 rounded-full border border-stone-200 bg-stone-50 flex items-center justify-center mx-auto text-stone-600 mb-4">
+                <UploadCloud className="w-6 h-6 text-stone-700" />
+              </div>
+
+              <h3 className="text-base font-bold text-stone-950 tracking-tight">
+                Drop an apparel image here, or click to browse
+              </h3>
+
+              <p className="text-xs text-stone-500 mt-2 max-w-md mx-auto leading-relaxed">
+                Upload any apparel photo (PNG, JPG, JPEG, or WEBP). The pipeline will automatically downsample, 
+                convert to grayscale, and stream to the trained CNN.
+              </p>
+
+              <div className="mt-5 inline-flex items-center gap-2 text-[11px] font-mono text-stone-400 border border-stone-200 bg-white px-3 py-1 rounded-md">
+                <span>FastAPI POST /api/predict</span>
+                <span>&bull;</span>
+                <span>Max 10MB</span>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Inversion and Preprocessing Controls */}
@@ -216,7 +365,10 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
             <button
               onClick={() => {
                 setInvertOption(undefined)
-                if (selectedFile) executeInference(selectedFile, undefined)
+                if (selectedFile) {
+                  shouldScrollRef.current = true
+                  executeInference(selectedFile, undefined)
+                }
               }}
               className={`px-3 py-1 rounded border transition-colors ${
                 invertOption === undefined
@@ -229,7 +381,10 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
             <button
               onClick={() => {
                 setInvertOption(true)
-                if (selectedFile) executeInference(selectedFile, true)
+                if (selectedFile) {
+                  shouldScrollRef.current = true
+                  executeInference(selectedFile, true)
+                }
               }}
               className={`px-3 py-1 rounded border transition-colors ${
                 invertOption === true
@@ -242,7 +397,10 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
             <button
               onClick={() => {
                 setInvertOption(false)
-                if (selectedFile) executeInference(selectedFile, false)
+                if (selectedFile) {
+                  shouldScrollRef.current = true
+                  executeInference(selectedFile, false)
+                }
               }}
               className={`px-3 py-1 rounded border transition-colors ${
                 invertOption === false
@@ -299,7 +457,7 @@ export function RealPredictionPage({ samples }: RealPredictionPageProps) {
 
       {/* Prediction Output Results (Ranked Layout) */}
       {(prediction || loading) && (
-        <section className="space-y-6">
+        <section ref={resultsRef} className="space-y-6">
           <div className="flex items-center justify-between border-b border-stone-200 pb-3">
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-bold text-stone-400">02</span>
