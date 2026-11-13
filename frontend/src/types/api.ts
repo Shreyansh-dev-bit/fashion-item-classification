@@ -144,12 +144,19 @@ export interface ClassProbability {
   percentage: number
 }
 
+export type OODDecision = 'ACCEPT' | 'REJECT' | 'UNCERTAIN'
+
 export interface PredictResponse {
-  predicted_class_id: number
-  predicted_class_name: string
-  confidence: number
-  confidence_percentage: number
-  probabilities: ClassProbability[]
+  ood_decision: OODDecision
+  ood_score: number | null
+  classifier_executed: boolean
+  message?: string | null
+  detail?: string | null
+  predicted_class_id?: number | null
+  predicted_class_name?: string | null
+  confidence?: number | null
+  confidence_percentage?: number | null
+  probabilities?: ClassProbability[]
   input_image_details: {
     filename: string
     original_size: number[]

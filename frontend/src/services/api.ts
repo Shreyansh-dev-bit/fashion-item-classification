@@ -103,11 +103,74 @@ export async function uploadPredictImage(
   }
 
   const url = `${API_BASE}/predict${params.toString() ? `?${params.toString()}` : ''}`
-  const res = await fetch(url, {
-    method: 'POST',
-    body: formData,
-    signal,
-  })
 
-  return handleResponse<PredictResponse>(res)
+  let res: Response
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      body: formData,
+      signal,
+    })
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      throw err
+    }
+    throw new Error(
+      'Network connection error: Unable to reach the inference backend service. Please check your connection and ensure the backend is running.'
+    )
+  }
+
+  // HTTP 200 (ACCEPT) and HTTP 422 (REJECT / UNCERTAIN) both provide structured PredictResponse JSON
+  if (res.status === 200 || res.status === 422) {
+    try {
+      const data: PredictResponse = await res.json()
+      // Normalize probabilities array in case it is omitted
+      if (!data.probabilities) {
+        data.probabilities = []
+      }
+      return data
+    } catch {
+      throw new Error('Received malformed response payload from prediction service.')
+    }
+  }
+
+  // HTTP 400: Bad Request / Upload validation error
+  if (res.status === 400) {
+    let errorDetail = 'Invalid image upload. Allowed file types are PNG, JPG, JPEG, and WEBP.'
+    try {
+      const errorJson = await res.json()
+      if (errorJson.detail) {
+        errorDetail = errorJson.detail
+      }
+    } catch {
+      // ignore
+    }
+    throw new Error(errorDetail)
+  }
+
+  // HTTP 503: Service / Model unavailable
+  if (res.status === 503) {
+    let errorDetail = 'The prediction service or model checkpoint is currently unavailable.'
+    try {
+      const errorJson = await res.json()
+      if (errorJson.detail) {
+        errorDetail = errorJson.detail
+      }
+    } catch {
+      // ignore
+    }
+    throw new Error(errorDetail)
+  }
+
+  // Any other unexpected HTTP error (e.g. 500)
+  let errorDetail = `Inference request failed with status ${res.status}`
+  try {
+    const errorJson = await res.json()
+    if (errorJson.detail) {
+      errorDetail = errorJson.detail
+    }
+  } catch {
+    // ignore
+  }
+  throw new Error(errorDetail)
 }
