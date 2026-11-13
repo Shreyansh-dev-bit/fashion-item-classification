@@ -1,0 +1,244 @@
+{
+  "calibrated_thresholds": {
+    "reject_threshold": 0.02,
+    "accept_threshold": 0.98,
+    "calibration_dataset": "cal.npz (20,000 samples)",
+    "far_pct": 0.01,
+    "frr_pct": 0.0,
+    "uncertain_rate_pct": 0.26,
+    "coverage_pct": 99.74
+  },
+  "score_distribution": {
+    "positive_mean": 0.999609,
+    "positive_min": 0.068744,
+    "negative_mean": 0.00101,
+    "negative_max": 0.997594
+  },
+  "grid_search": [
+    {
+      "reject_th": 0.001,
+      "accept_th": 0.8,
+      "far": 0.0003,
+      "frr": 0.0,
+      "uncertain_count": 97,
+      "uncertain_rate": 0.00485,
+      "coverage": 0.99515
+    },
+    {
+      "reject_th": 0.001,
+      "accept_th": 0.9,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 100,
+      "uncertain_rate": 0.005,
+      "coverage": 0.995
+    },
+    {
+      "reject_th": 0.001,
+      "accept_th": 0.95,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 104,
+      "uncertain_rate": 0.0052,
+      "coverage": 0.9948
+    },
+    {
+      "reject_th": 0.001,
+      "accept_th": 0.98,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 108,
+      "uncertain_rate": 0.0054,
+      "coverage": 0.9946
+    },
+    {
+      "reject_th": 0.001,
+      "accept_th": 0.99,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 110,
+      "uncertain_rate": 0.0055,
+      "coverage": 0.9945
+    },
+    {
+      "reject_th": 0.01,
+      "accept_th": 0.8,
+      "far": 0.0003,
+      "frr": 0.0,
+      "uncertain_count": 49,
+      "uncertain_rate": 0.00245,
+      "coverage": 0.99755
+    },
+    {
+      "reject_th": 0.01,
+      "accept_th": 0.9,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 52,
+      "uncertain_rate": 0.0026,
+      "coverage": 0.9974
+    },
+    {
+      "reject_th": 0.01,
+      "accept_th": 0.95,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 56,
+      "uncertain_rate": 0.0028,
+      "coverage": 0.9972
+    },
+    {
+      "reject_th": 0.01,
+      "accept_th": 0.98,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 60,
+      "uncertain_rate": 0.003,
+      "coverage": 0.997
+    },
+    {
+      "reject_th": 0.01,
+      "accept_th": 0.99,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 62,
+      "uncertain_rate": 0.0031,
+      "coverage": 0.9969
+    },
+    {
+      "reject_th": 0.02,
+      "accept_th": 0.8,
+      "far": 0.0003,
+      "frr": 0.0,
+      "uncertain_count": 41,
+      "uncertain_rate": 0.00205,
+      "coverage": 0.99795
+    },
+    {
+      "reject_th": 0.02,
+      "accept_th": 0.9,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 44,
+      "uncertain_rate": 0.0022,
+      "coverage": 0.9978
+    },
+    {
+      "reject_th": 0.02,
+      "accept_th": 0.95,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 48,
+      "uncertain_rate": 0.0024,
+      "coverage": 0.9976
+    },
+    {
+      "reject_th": 0.02,
+      "accept_th": 0.98,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 52,
+      "uncertain_rate": 0.0026,
+      "coverage": 0.9974
+    },
+    {
+      "reject_th": 0.02,
+      "accept_th": 0.99,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 54,
+      "uncertain_rate": 0.0027,
+      "coverage": 0.9973
+    },
+    {
+      "reject_th": 0.05,
+      "accept_th": 0.8,
+      "far": 0.0003,
+      "frr": 0.0,
+      "uncertain_count": 26,
+      "uncertain_rate": 0.0013,
+      "coverage": 0.9987
+    },
+    {
+      "reject_th": 0.05,
+      "accept_th": 0.9,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 29,
+      "uncertain_rate": 0.00145,
+      "coverage": 0.99855
+    },
+    {
+      "reject_th": 0.05,
+      "accept_th": 0.95,
+      "far": 0.0002,
+      "frr": 0.0,
+      "uncertain_count": 33,
+      "uncertain_rate": 0.00165,
+      "coverage": 0.99835
+    },
+    {
+      "reject_th": 0.05,
+      "accept_th": 0.98,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 37,
+      "uncertain_rate": 0.00185,
+      "coverage": 0.99815
+    },
+    {
+      "reject_th": 0.05,
+      "accept_th": 0.99,
+      "far": 0.0001,
+      "frr": 0.0,
+      "uncertain_count": 39,
+      "uncertain_rate": 0.00195,
+      "coverage": 0.99805
+    },
+    {
+      "reject_th": 0.1,
+      "accept_th": 0.8,
+      "far": 0.0003,
+      "frr": 0.0001,
+      "uncertain_count": 21,
+      "uncertain_rate": 0.00105,
+      "coverage": 0.99895
+    },
+    {
+      "reject_th": 0.1,
+      "accept_th": 0.9,
+      "far": 0.0002,
+      "frr": 0.0001,
+      "uncertain_count": 24,
+      "uncertain_rate": 0.0012,
+      "coverage": 0.9988
+    },
+    {
+      "reject_th": 0.1,
+      "accept_th": 0.95,
+      "far": 0.0002,
+      "frr": 0.0001,
+      "uncertain_count": 28,
+      "uncertain_rate": 0.0014,
+      "coverage": 0.9986
+    },
+    {
+      "reject_th": 0.1,
+      "accept_th": 0.98,
+      "far": 0.0001,
+      "frr": 0.0001,
+      "uncertain_count": 32,
+      "uncertain_rate": 0.0016,
+      "coverage": 0.9984
+    },
+    {
+      "reject_th": 0.1,
+      "accept_th": 0.99,
+      "far": 0.0001,
+      "frr": 0.0001,
+      "uncertain_count": 34,
+      "uncertain_rate": 0.0017,
+      "coverage": 0.9983
+    }
+  ]
+}

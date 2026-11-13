@@ -1,0 +1,122 @@
+{
+  "project_id": "DL-002",
+  "stage": "STAGE 3 - Train & Evaluate Independent OOD Detector",
+  "model_file": "ood_detector.keras",
+  "model_file_size_bytes": 2676577,
+  "model_file_size_mb": 2.55,
+  "total_parameters": 219649,
+  "trainable_parameters": 219649,
+  "non_trainable_parameters": 0,
+  "python_version": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
+  "tensorflow_version": "2.18.1",
+  "keras_version": "3.15.1",
+  "hardware": "CPU (Intel Core i5-14450HX, 16 logical threads)",
+  "training_metadata": {
+    "project_id": "DL-002",
+    "stage": "STAGE 3 - Train & Evaluate Independent OOD Detector",
+    "timestamp_utc": "2026-11-13 15:44:26 UTC",
+    "random_seed": 42,
+    "epochs_configured": 15,
+    "epochs_run": 15,
+    "best_epoch": 15,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "loss_function": "BinaryCrossentropy",
+    "early_stopping_patience": 3,
+    "training_duration_seconds": 98.8,
+    "best_val_loss": 0.000739,
+    "best_val_accuracy": 0.9998,
+    "best_val_auc": 0.99995
+  },
+  "layers": [
+    {
+      "name": "ood_conv2d_1",
+      "class_name": "Conv2D",
+      "output_shape": [
+        null,
+        28,
+        28,
+        32
+      ],
+      "param_count": 320,
+      "activation": "relu"
+    },
+    {
+      "name": "ood_maxpool_1",
+      "class_name": "MaxPooling2D",
+      "output_shape": [
+        null,
+        14,
+        14,
+        32
+      ],
+      "param_count": 0,
+      "activation": null
+    },
+    {
+      "name": "ood_conv2d_2",
+      "class_name": "Conv2D",
+      "output_shape": [
+        null,
+        14,
+        14,
+        64
+      ],
+      "param_count": 18496,
+      "activation": "relu"
+    },
+    {
+      "name": "ood_maxpool_2",
+      "class_name": "MaxPooling2D",
+      "output_shape": [
+        null,
+        7,
+        7,
+        64
+      ],
+      "param_count": 0,
+      "activation": null
+    },
+    {
+      "name": "ood_flatten",
+      "class_name": "Flatten",
+      "output_shape": [
+        null,
+        3136
+      ],
+      "param_count": 0,
+      "activation": null
+    },
+    {
+      "name": "ood_dense_features",
+      "class_name": "Dense",
+      "output_shape": [
+        null,
+        64
+      ],
+      "param_count": 200768,
+      "activation": "relu"
+    },
+    {
+      "name": "ood_dropout",
+      "class_name": "Dropout",
+      "output_shape": [
+        null,
+        64
+      ],
+      "param_count": 0,
+      "activation": null
+    },
+    {
+      "name": "ood_clothing_probability",
+      "class_name": "Dense",
+      "output_shape": [
+        null,
+        1
+      ],
+      "param_count": 65,
+      "activation": "sigmoid"
+    }
+  ]
+}

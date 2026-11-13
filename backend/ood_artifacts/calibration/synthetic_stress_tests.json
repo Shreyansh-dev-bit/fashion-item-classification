@@ -1,0 +1,79 @@
+[
+  {
+    "test_pattern": "Solid Black (All Zeros)",
+    "score": 0.334697,
+    "decision": "UNCERTAIN",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Solid White (All Ones)",
+    "score": 0.334697,
+    "decision": "UNCERTAIN",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Mid-Gray (All 0.5)",
+    "score": 0.0,
+    "decision": "REJECT",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Uniform Random Noise [0, 1] (Seed 42)",
+    "score": 1.0,
+    "decision": "ACCEPT",
+    "passes_to_classifier": true,
+    "is_safely_handled": false
+  },
+  {
+    "test_pattern": "Uniform Random Noise [0, 1] (Seed 123)",
+    "score": 1.0,
+    "decision": "ACCEPT",
+    "passes_to_classifier": true,
+    "is_safely_handled": false
+  },
+  {
+    "test_pattern": "Gaussian Noise N(0.5, 0.15) (Seed 42)",
+    "score": 0.0,
+    "decision": "REJECT",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Low Contrast Random Noise (0.50 +/- 0.02)",
+    "score": 0.0,
+    "decision": "REJECT",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Single Center 2x2 Pixel in Black",
+    "score": 0.040088,
+    "decision": "UNCERTAIN",
+    "passes_to_classifier": false,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Checkerboard Pattern 2x2",
+    "score": 1.0,
+    "decision": "ACCEPT",
+    "passes_to_classifier": true,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Horizontal Stripes (1px)",
+    "score": 1.0,
+    "decision": "ACCEPT",
+    "passes_to_classifier": true,
+    "is_safely_handled": true
+  },
+  {
+    "test_pattern": "Vertical Stripes (1px)",
+    "score": 1.0,
+    "decision": "ACCEPT",
+    "passes_to_classifier": true,
+    "is_safely_handled": true
+  }
+]

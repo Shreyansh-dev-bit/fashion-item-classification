@@ -1,0 +1,18 @@
+{
+  "project_id": "DL-002",
+  "stage": "STAGE 3 - Train & Evaluate Independent OOD Detector",
+  "timestamp_utc": "2026-11-13 15:44:26 UTC",
+  "random_seed": 42,
+  "epochs_configured": 15,
+  "epochs_run": 15,
+  "best_epoch": 15,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "optimizer": "Adam",
+  "loss_function": "BinaryCrossentropy",
+  "early_stopping_patience": 3,
+  "training_duration_seconds": 98.8,
+  "best_val_loss": 0.000739,
+  "best_val_accuracy": 0.9998,
+  "best_val_auc": 0.99995
+}

@@ -1,0 +1,70 @@
+{
+  "Known Test Set (test.npz)": {
+    "total_samples": 20000,
+    "is_binary": true,
+    "metrics": {
+      "existing_auc": 1.0,
+      "candidate_auc": 0.999998,
+      "existing_accuracy": 0.9998,
+      "candidate_accuracy": 0.9992,
+      "existing_brier": 0.000111,
+      "candidate_brier": 0.0006,
+      "existing_far": 0.0001,
+      "candidate_far": 0.0014,
+      "existing_frr": 0.0003,
+      "candidate_frr": 0.0002
+    }
+  },
+  "Unseen CIFAR-100 (test_unseen_ood.npz)": {
+    "total_samples": 9998,
+    "is_binary": false,
+    "metrics": {
+      "existing_false_acceptances": 30,
+      "candidate_false_acceptances": 124,
+      "existing_far_pct": 0.3,
+      "candidate_far_pct": 1.24,
+      "existing_rejection_pct": 99.7,
+      "candidate_rejection_pct": 98.76,
+      "existing_mean_score": 0.003309,
+      "candidate_mean_score": 0.013622,
+      "existing_median_score": 0.0,
+      "candidate_median_score": 0.0,
+      "existing_p90_score": 0.0,
+      "candidate_p90_score": 9e-06
+    }
+  },
+  "Independent Tiny ImageNet (test_independent_ood.npz)": {
+    "total_samples": 9050,
+    "is_binary": false,
+    "metrics": {
+      "existing_false_acceptances": 74,
+      "candidate_false_acceptances": 91,
+      "existing_far_pct": 0.82,
+      "candidate_far_pct": 1.01,
+      "existing_rejection_pct": 99.18,
+      "candidate_rejection_pct": 98.99,
+      "existing_mean_score": 0.008295,
+      "candidate_mean_score": 0.010865,
+      "existing_median_score": 0.0,
+      "candidate_median_score": 0.0,
+      "existing_p90_score": 0.0,
+      "candidate_p90_score": 0.0
+    }
+  },
+  "Calibration Set (cal.npz)": {
+    "total_samples": 20000,
+    "is_binary": true,
+    "metrics": {
+      "existing_auc": 1.0,
+      "candidate_auc": 0.999999,
+      "existing_accuracy": 0.99975,
+      "candidate_accuracy": 0.99945,
+      "existing_brier": 0.000159,
+      "candidate_brier": 0.000404,
+      "existing_far": 0.0003,
+      "candidate_far": 0.0007,
+      "existing_frr": 0.0002,
+      "candidate_frr": 0.0004
+    }
+  }
+}

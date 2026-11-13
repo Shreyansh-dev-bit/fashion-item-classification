@@ -1,0 +1,79 @@
+[
+  {
+    "test_pattern": "Solid Black (All Zeros)",
+    "existing_score": 0.334697,
+    "candidate_score": 0.005771,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Solid White (All Ones)",
+    "existing_score": 0.334697,
+    "candidate_score": 0.005771,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Mid-Gray (All 0.5)",
+    "existing_score": 0.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Uniform Random Noise [0, 1] (Seed 42)",
+    "existing_score": 1.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "ACCEPT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Uniform Random Noise [0, 1] (Seed 123)",
+    "existing_score": 1.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "ACCEPT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Gaussian Noise N(0.5, 0.15) (Seed 42)",
+    "existing_score": 0.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Low Contrast Random Noise (0.50 +/- 0.02)",
+    "existing_score": 0.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Single Center 2x2 Pixel in Black",
+    "existing_score": 0.040088,
+    "candidate_score": 0.035585,
+    "existing_decision_tau_0_5": "REJECT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Checkerboard Pattern 2x2",
+    "existing_score": 1.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "ACCEPT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Horizontal Stripes (1px)",
+    "existing_score": 1.0,
+    "candidate_score": 0.0,
+    "existing_decision_tau_0_5": "ACCEPT",
+    "candidate_decision_tau_0_5": "REJECT"
+  },
+  {
+    "test_pattern": "Vertical Stripes (1px)",
+    "existing_score": 1.0,
+    "candidate_score": 1e-06,
+    "existing_decision_tau_0_5": "ACCEPT",
+    "candidate_decision_tau_0_5": "REJECT"
+  }
+]

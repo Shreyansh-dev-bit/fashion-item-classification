@@ -1,0 +1,762 @@
+{
+  "benchmark": "Tiny ImageNet (181 classes, 9,050 samples)",
+  "illustrative_threshold": 0.5,
+  "total_failures": 74,
+  "false_acceptance_rate_pct": 0.82,
+  "representative_failures": [
+    {
+      "index": 1313,
+      "original_filename": "val_1432.JPEG",
+      "category": "comic book",
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 3538,
+      "original_filename": "val_3881.JPEG",
+      "category": "spider web, spider's web",
+      "synset": "n04275548",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 4612,
+      "original_filename": "val_5066.JPEG",
+      "category": "beaker",
+      "synset": "n02815834",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 6111,
+      "original_filename": "val_6751.JPEG",
+      "category": "remote control, remote",
+      "synset": "n04074963",
+      "domain_group": "electronics",
+      "detector_score": 1.0
+    },
+    {
+      "index": 7223,
+      "original_filename": "val_7994.JPEG",
+      "category": "beer bottle",
+      "synset": "n02823428",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 7479,
+      "original_filename": "val_8280.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 4268,
+      "original_filename": "val_4689.JPEG",
+      "category": "bucket, pail",
+      "synset": "n02909870",
+      "domain_group": "household_objects",
+      "detector_score": 0.999999
+    },
+    {
+      "index": 6630,
+      "original_filename": "val_7343.JPEG",
+      "category": "water jug",
+      "synset": "n04560804",
+      "domain_group": "household_objects",
+      "detector_score": 0.999999
+    },
+    {
+      "index": 4044,
+      "original_filename": "val_4448.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 0.999992
+    },
+    {
+      "index": 451,
+      "original_filename": "val_494.JPEG",
+      "category": "beaker",
+      "synset": "n02815834",
+      "domain_group": "household_objects",
+      "detector_score": 0.999983
+    },
+    {
+      "index": 8525,
+      "original_filename": "val_9428.JPEG",
+      "category": "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon",
+      "synset": "n02814533",
+      "domain_group": "vehicles",
+      "detector_score": 0.999979
+    },
+    {
+      "index": 1680,
+      "original_filename": "val_1833.JPEG",
+      "category": "dumbbell",
+      "synset": "n03255030",
+      "domain_group": "household_objects",
+      "detector_score": 0.999971
+    },
+    {
+      "index": 5432,
+      "original_filename": "val_6000.JPEG",
+      "category": "parking meter",
+      "synset": "n03891332",
+      "domain_group": "electronics",
+      "detector_score": 0.999953
+    },
+    {
+      "index": 1487,
+      "original_filename": "val_1623.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 0.999861
+    },
+    {
+      "index": 2809,
+      "original_filename": "val_3078.JPEG",
+      "category": "pole",
+      "synset": "n03976657",
+      "domain_group": "household_objects",
+      "detector_score": 0.999834
+    },
+    {
+      "index": 8235,
+      "original_filename": "val_9112.JPEG",
+      "category": "space heater",
+      "synset": "n04265275",
+      "domain_group": "electronics",
+      "detector_score": 0.999754
+    },
+    {
+      "index": 6983,
+      "original_filename": "val_7724.JPEG",
+      "category": "bell pepper",
+      "synset": "n07720875",
+      "domain_group": "fruits_and_food",
+      "detector_score": 0.999654
+    },
+    {
+      "index": 5778,
+      "original_filename": "val_6383.JPEG",
+      "category": "walking stick, walkingstick, stick insect",
+      "synset": "n02231487",
+      "domain_group": "animals",
+      "detector_score": 0.999425
+    },
+    {
+      "index": 7858,
+      "original_filename": "val_8693.JPEG",
+      "category": "comic book",
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "detector_score": 0.999243
+    },
+    {
+      "index": 8572,
+      "original_filename": "val_9481.JPEG",
+      "category": "reel",
+      "synset": "n04067472",
+      "domain_group": "household_objects",
+      "detector_score": 0.998819
+    }
+  ],
+  "all_failures": [
+    {
+      "index": 1313,
+      "original_filename": "val_1432.JPEG",
+      "category": "comic book",
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 3538,
+      "original_filename": "val_3881.JPEG",
+      "category": "spider web, spider's web",
+      "synset": "n04275548",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 4612,
+      "original_filename": "val_5066.JPEG",
+      "category": "beaker",
+      "synset": "n02815834",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 6111,
+      "original_filename": "val_6751.JPEG",
+      "category": "remote control, remote",
+      "synset": "n04074963",
+      "domain_group": "electronics",
+      "detector_score": 1.0
+    },
+    {
+      "index": 7223,
+      "original_filename": "val_7994.JPEG",
+      "category": "beer bottle",
+      "synset": "n02823428",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 7479,
+      "original_filename": "val_8280.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 1.0
+    },
+    {
+      "index": 4268,
+      "original_filename": "val_4689.JPEG",
+      "category": "bucket, pail",
+      "synset": "n02909870",
+      "domain_group": "household_objects",
+      "detector_score": 0.999999
+    },
+    {
+      "index": 6630,
+      "original_filename": "val_7343.JPEG",
+      "category": "water jug",
+      "synset": "n04560804",
+      "domain_group": "household_objects",
+      "detector_score": 0.999999
+    },
+    {
+      "index": 4044,
+      "original_filename": "val_4448.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 0.999992
+    },
+    {
+      "index": 451,
+      "original_filename": "val_494.JPEG",
+      "category": "beaker",
+      "synset": "n02815834",
+      "domain_group": "household_objects",
+      "detector_score": 0.999983
+    },
+    {
+      "index": 8525,
+      "original_filename": "val_9428.JPEG",
+      "category": "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon",
+      "synset": "n02814533",
+      "domain_group": "vehicles",
+      "detector_score": 0.999979
+    },
+    {
+      "index": 1680,
+      "original_filename": "val_1833.JPEG",
+      "category": "dumbbell",
+      "synset": "n03255030",
+      "domain_group": "household_objects",
+      "detector_score": 0.999971
+    },
+    {
+      "index": 5432,
+      "original_filename": "val_6000.JPEG",
+      "category": "parking meter",
+      "synset": "n03891332",
+      "domain_group": "electronics",
+      "detector_score": 0.999953
+    },
+    {
+      "index": 1487,
+      "original_filename": "val_1623.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 0.999861
+    },
+    {
+      "index": 2809,
+      "original_filename": "val_3078.JPEG",
+      "category": "pole",
+      "synset": "n03976657",
+      "domain_group": "household_objects",
+      "detector_score": 0.999834
+    },
+    {
+      "index": 8235,
+      "original_filename": "val_9112.JPEG",
+      "category": "space heater",
+      "synset": "n04265275",
+      "domain_group": "electronics",
+      "detector_score": 0.999754
+    },
+    {
+      "index": 6983,
+      "original_filename": "val_7724.JPEG",
+      "category": "bell pepper",
+      "synset": "n07720875",
+      "domain_group": "fruits_and_food",
+      "detector_score": 0.999654
+    },
+    {
+      "index": 5778,
+      "original_filename": "val_6383.JPEG",
+      "category": "walking stick, walkingstick, stick insect",
+      "synset": "n02231487",
+      "domain_group": "animals",
+      "detector_score": 0.999425
+    },
+    {
+      "index": 7858,
+      "original_filename": "val_8693.JPEG",
+      "category": "comic book",
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "detector_score": 0.999243
+    },
+    {
+      "index": 8572,
+      "original_filename": "val_9481.JPEG",
+      "category": "reel",
+      "synset": "n04067472",
+      "domain_group": "household_objects",
+      "detector_score": 0.998819
+    },
+    {
+      "index": 5178,
+      "original_filename": "val_5713.JPEG",
+      "category": "picket fence, paling",
+      "synset": "n03930313",
+      "domain_group": "household_objects",
+      "detector_score": 0.998786
+    },
+    {
+      "index": 4492,
+      "original_filename": "val_4935.JPEG",
+      "category": "black widow, Latrodectus mactans",
+      "synset": "n01774384",
+      "domain_group": "animals",
+      "detector_score": 0.998584
+    },
+    {
+      "index": 7769,
+      "original_filename": "val_8596.JPEG",
+      "category": "comic book",
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "detector_score": 0.998184
+    },
+    {
+      "index": 7591,
+      "original_filename": "val_8401.JPEG",
+      "category": "nail",
+      "synset": "n03804744",
+      "domain_group": "household_objects",
+      "detector_score": 0.997385
+    },
+    {
+      "index": 6211,
+      "original_filename": "val_6862.JPEG",
+      "category": "stopwatch, stop watch",
+      "synset": "n04328186",
+      "domain_group": "household_objects",
+      "detector_score": 0.997226
+    },
+    {
+      "index": 4830,
+      "original_filename": "val_5315.JPEG",
+      "category": "reel",
+      "synset": "n04067472",
+      "domain_group": "household_objects",
+      "detector_score": 0.997052
+    },
+    {
+      "index": 6806,
+      "original_filename": "val_7533.JPEG",
+      "category": "stopwatch, stop watch",
+      "synset": "n04328186",
+      "domain_group": "household_objects",
+      "detector_score": 0.995964
+    },
+    {
+      "index": 1423,
+      "original_filename": "val_1556.JPEG",
+      "category": "sports car, sport car",
+      "synset": "n04285008",
+      "domain_group": "vehicles",
+      "detector_score": 0.995508
+    },
+    {
+      "index": 331,
+      "original_filename": "val_363.JPEG",
+      "category": "wooden spoon",
+      "synset": "n04597913",
+      "domain_group": "household_objects",
+      "detector_score": 0.994749
+    },
+    {
+      "index": 8005,
+      "original_filename": "val_8860.JPEG",
+      "category": "broom",
+      "synset": "n02906734",
+      "domain_group": "household_objects",
+      "detector_score": 0.994231
+    },
+    {
+      "index": 6814,
+      "original_filename": "val_7542.JPEG",
+      "category": "dining table, board",
+      "synset": "n03201208",
+      "domain_group": "furniture",
+      "detector_score": 0.994059
+    },
+    {
+      "index": 4507,
+      "original_filename": "val_4953.JPEG",
+      "category": "suspension bridge",
+      "synset": "n04366367",
+      "domain_group": "buildings",
+      "detector_score": 0.993996
+    },
+    {
+      "index": 727,
+      "original_filename": "val_798.JPEG",
+      "category": "nail",
+      "synset": "n03804744",
+      "domain_group": "household_objects",
+      "detector_score": 0.993592
+    },
+    {
+      "index": 7235,
+      "original_filename": "val_8008.JPEG",
+      "category": "dining table, board",
+      "synset": "n03201208",
+      "domain_group": "furniture",
+      "detector_score": 0.993351
+    },
+    {
+      "index": 7739,
+      "original_filename": "val_8564.JPEG",
+      "category": "abacus",
+      "synset": "n02666196",
+      "domain_group": "household_objects",
+      "detector_score": 0.991696
+    },
+    {
+      "index": 5652,
+      "original_filename": "val_6247.JPEG",
+      "category": "basketball",
+      "synset": "n02802426",
+      "domain_group": "household_objects",
+      "detector_score": 0.991408
+    },
+    {
+      "index": 7031,
+      "original_filename": "val_7775.JPEG",
+      "category": "computer keyboard, keypad",
+      "synset": "n03085013",
+      "domain_group": "electronics",
+      "detector_score": 0.989663
+    },
+    {
+      "index": 394,
+      "original_filename": "val_431.JPEG",
+      "category": "sea slug, nudibranch",
+      "synset": "n01950731",
+      "domain_group": "animals",
+      "detector_score": 0.981933
+    },
+    {
+      "index": 2176,
+      "original_filename": "val_2372.JPEG",
+      "category": "bucket, pail",
+      "synset": "n02909870",
+      "domain_group": "household_objects",
+      "detector_score": 0.981623
+    },
+    {
+      "index": 5442,
+      "original_filename": "val_6011.JPEG",
+      "category": "potter's wheel",
+      "synset": "n03992509",
+      "domain_group": "household_objects",
+      "detector_score": 0.979699
+    },
+    {
+      "index": 2236,
+      "original_filename": "val_2446.JPEG",
+      "category": "reel",
+      "synset": "n04067472",
+      "domain_group": "household_objects",
+      "detector_score": 0.975712
+    },
+    {
+      "index": 7809,
+      "original_filename": "val_8638.JPEG",
+      "category": "convertible",
+      "synset": "n03100240",
+      "domain_group": "vehicles",
+      "detector_score": 0.975618
+    },
+    {
+      "index": 4061,
+      "original_filename": "val_4467.JPEG",
+      "category": "dining table, board",
+      "synset": "n03201208",
+      "domain_group": "furniture",
+      "detector_score": 0.967727
+    },
+    {
+      "index": 3424,
+      "original_filename": "val_3756.JPEG",
+      "category": "chimpanzee, chimp, Pan troglodytes",
+      "synset": "n02481823",
+      "domain_group": "animals",
+      "detector_score": 0.964322
+    },
+    {
+      "index": 8582,
+      "original_filename": "val_9492.JPEG",
+      "category": "gasmask, respirator, gas helmet",
+      "synset": "n03424325",
+      "domain_group": "household_objects",
+      "detector_score": 0.957969
+    },
+    {
+      "index": 1899,
+      "original_filename": "val_2072.JPEG",
+      "category": "water jug",
+      "synset": "n04560804",
+      "domain_group": "household_objects",
+      "detector_score": 0.9533
+    },
+    {
+      "index": 1869,
+      "original_filename": "val_2040.JPEG",
+      "category": "go-kart",
+      "synset": "n03444034",
+      "domain_group": "vehicles",
+      "detector_score": 0.950213
+    },
+    {
+      "index": 5994,
+      "original_filename": "val_6625.JPEG",
+      "category": "space heater",
+      "synset": "n04265275",
+      "domain_group": "electronics",
+      "detector_score": 0.940622
+    },
+    {
+      "index": 5896,
+      "original_filename": "val_6511.JPEG",
+      "category": "abacus",
+      "synset": "n02666196",
+      "domain_group": "household_objects",
+      "detector_score": 0.933212
+    },
+    {
+      "index": 7933,
+      "original_filename": "val_8781.JPEG",
+      "category": "hourglass",
+      "synset": "n03544143",
+      "domain_group": "household_objects",
+      "detector_score": 0.930936
+    },
+    {
+      "index": 1278,
+      "original_filename": "val_1397.JPEG",
+      "category": "pay-phone, pay-station",
+      "synset": "n03902125",
+      "domain_group": "electronics",
+      "detector_score": 0.929371
+    },
+    {
+      "index": 1819,
+      "original_filename": "val_1985.JPEG",
+      "category": "punching bag, punch bag, punching ball, punchball",
+      "synset": "n04023962",
+      "domain_group": "household_objects",
+      "detector_score": 0.928951
+    },
+    {
+      "index": 3452,
+      "original_filename": "val_3786.JPEG",
+      "category": "punching bag, punch bag, punching ball, punchball",
+      "synset": "n04023962",
+      "domain_group": "household_objects",
+      "detector_score": 0.904042
+    },
+    {
+      "index": 973,
+      "original_filename": "val_1062.JPEG",
+      "category": "brown bear, bruin, Ursus arctos",
+      "synset": "n02132136",
+      "domain_group": "animals",
+      "detector_score": 0.894626
+    },
+    {
+      "index": 6411,
+      "original_filename": "val_7099.JPEG",
+      "category": "beer bottle",
+      "synset": "n02823428",
+      "domain_group": "household_objects",
+      "detector_score": 0.892621
+    },
+    {
+      "index": 3301,
+      "original_filename": "val_3624.JPEG",
+      "category": "cockroach, roach",
+      "synset": "n02233338",
+      "domain_group": "animals",
+      "detector_score": 0.885772
+    },
+    {
+      "index": 6070,
+      "original_filename": "val_6708.JPEG",
+      "category": "magnetic compass",
+      "synset": "n03706229",
+      "domain_group": "household_objects",
+      "detector_score": 0.875791
+    },
+    {
+      "index": 1219,
+      "original_filename": "val_1328.JPEG",
+      "category": "barn",
+      "synset": "n02793495",
+      "domain_group": "buildings",
+      "detector_score": 0.87165
+    },
+    {
+      "index": 2368,
+      "original_filename": "val_2601.JPEG",
+      "category": "abacus",
+      "synset": "n02666196",
+      "domain_group": "household_objects",
+      "detector_score": 0.828071
+    },
+    {
+      "index": 4734,
+      "original_filename": "val_5208.JPEG",
+      "category": "turnstile",
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "detector_score": 0.769497
+    },
+    {
+      "index": 7898,
+      "original_filename": "val_8742.JPEG",
+      "category": "birdhouse",
+      "synset": "n02843684",
+      "domain_group": "household_objects",
+      "detector_score": 0.767559
+    },
+    {
+      "index": 294,
+      "original_filename": "val_320.JPEG",
+      "category": "hourglass",
+      "synset": "n03544143",
+      "domain_group": "household_objects",
+      "detector_score": 0.751604
+    },
+    {
+      "index": 1104,
+      "original_filename": "val_1207.JPEG",
+      "category": "lawn mower, mower",
+      "synset": "n03649909",
+      "domain_group": "household_objects",
+      "detector_score": 0.748368
+    },
+    {
+      "index": 5627,
+      "original_filename": "val_6216.JPEG",
+      "category": "rocking chair, rocker",
+      "synset": "n04099969",
+      "domain_group": "furniture",
+      "detector_score": 0.711707
+    },
+    {
+      "index": 1765,
+      "original_filename": "val_1926.JPEG",
+      "category": "dumbbell",
+      "synset": "n03255030",
+      "domain_group": "household_objects",
+      "detector_score": 0.710117
+    },
+    {
+      "index": 3268,
+      "original_filename": "val_3587.JPEG",
+      "category": "syringe",
+      "synset": "n04376876",
+      "domain_group": "household_objects",
+      "detector_score": 0.706063
+    },
+    {
+      "index": 2702,
+      "original_filename": "val_2965.JPEG",
+      "category": "lemon",
+      "synset": "n07749582",
+      "domain_group": "fruits_and_food",
+      "detector_score": 0.704258
+    },
+    {
+      "index": 5397,
+      "original_filename": "val_5964.JPEG",
+      "category": "banana",
+      "synset": "n07753592",
+      "domain_group": "fruits_and_food",
+      "detector_score": 0.698253
+    },
+    {
+      "index": 4387,
+      "original_filename": "val_4820.JPEG",
+      "category": "Egyptian cat",
+      "synset": "n02124075",
+      "domain_group": "animals",
+      "detector_score": 0.68017
+    },
+    {
+      "index": 2790,
+      "original_filename": "val_3059.JPEG",
+      "category": "standard poodle",
+      "synset": "n02113799",
+      "domain_group": "animals",
+      "detector_score": 0.675886
+    },
+    {
+      "index": 7360,
+      "original_filename": "val_8147.JPEG",
+      "category": "candle, taper, wax light",
+      "synset": "n02948072",
+      "domain_group": "household_objects",
+      "detector_score": 0.674351
+    },
+    {
+      "index": 3744,
+      "original_filename": "val_4114.JPEG",
+      "category": "crane",
+      "synset": "n03126707",
+      "domain_group": "buildings",
+      "detector_score": 0.640866
+    },
+    {
+      "index": 7297,
+      "original_filename": "val_8076.JPEG",
+      "category": "European fire salamander, Salamandra salamandra",
+      "synset": "n01629819",
+      "domain_group": "animals",
+      "detector_score": 0.596752
+    },
+    {
+      "index": 5345,
+      "original_filename": "val_5906.JPEG",
+      "category": "dining table, board",
+      "synset": "n03201208",
+      "domain_group": "furniture",
+      "detector_score": 0.589172
+    }
+  ]
+}

@@ -1,0 +1,1145 @@
+{
+  "dataset": "backend/ood_data/test_unseen_ood.npz",
+  "total_unseen_samples": 9998,
+  "illustrative_threshold": 0.5,
+  "overall_summary": {
+    "correctly_rejected": 9968,
+    "falsely_accepted": 30,
+    "rejection_rate_pct": 99.7,
+    "false_acceptance_rate_pct": 0.3
+  },
+  "score_distribution": {
+    "mean": 0.003309,
+    "std": 0.049722,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p95": 1e-06,
+    "p99": 0.004678
+  },
+  "domain_groupings": {
+    "fruits_and_vegetables": {
+      "superclasses_included": [
+        "fruit_and_vegetables"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 497,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 99.4,
+      "false_acceptance_rate_pct": 0.6,
+      "mean_score": 0.0047
+    },
+    "trees_and_plants": {
+      "superclasses_included": [
+        "trees",
+        "flowers"
+      ],
+      "total_samples": 1000,
+      "correctly_rejected": 1000,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0003
+    },
+    "household_furniture": {
+      "superclasses_included": [
+        "household_furniture"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 491,
+      "falsely_accepted": 9,
+      "rejection_rate_pct": 98.2,
+      "false_acceptance_rate_pct": 1.8,
+      "mean_score": 0.019
+    },
+    "electronics_and_appliances": {
+      "superclasses_included": [
+        "household_electrical_devices"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 498,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 99.6,
+      "false_acceptance_rate_pct": 0.4,
+      "mean_score": 0.0081
+    },
+    "buildings_and_structures": {
+      "superclasses_included": [
+        "large_man_made_outdoor_things"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "food_containers": {
+      "superclasses_included": [
+        "food_containers"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 490,
+      "falsely_accepted": 10,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0192
+    },
+    "natural_scenes": {
+      "superclasses_included": [
+        "large_natural_outdoor_scenes"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "animals": {
+      "superclasses_included": [
+        "aquatic_mammals",
+        "fish",
+        "insects",
+        "large_carnivores",
+        "large_omnivores_and_herbivores",
+        "medium_mammals",
+        "non_insect_invertebrates",
+        "reptiles",
+        "small_mammals"
+      ],
+      "total_samples": 4499,
+      "correctly_rejected": 4498,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.98,
+      "false_acceptance_rate_pct": 0.02,
+      "mean_score": 0.0003
+    },
+    "vehicles": {
+      "superclasses_included": [
+        "vehicles_1",
+        "vehicles_2"
+      ],
+      "total_samples": 999,
+      "correctly_rejected": 995,
+      "falsely_accepted": 4,
+      "rejection_rate_pct": 99.6,
+      "false_acceptance_rate_pct": 0.4,
+      "mean_score": 0.0051
+    },
+    "people": {
+      "superclasses_included": [
+        "people"
+      ],
+      "total_samples": 500,
+      "correctly_rejected": 499,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.8,
+      "false_acceptance_rate_pct": 0.2,
+      "mean_score": 0.0021
+    }
+  },
+  "superclass_breakdown": {
+    "aquatic_mammals": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001,
+      "median_score": 0.0
+    },
+    "fish": {
+      "total_samples": 500,
+      "correctly_rejected": 499,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.8,
+      "false_acceptance_rate_pct": 0.2,
+      "mean_score": 0.0011,
+      "median_score": 0.0
+    },
+    "flowers": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0005,
+      "median_score": 0.0
+    },
+    "food_containers": {
+      "total_samples": 500,
+      "correctly_rejected": 490,
+      "falsely_accepted": 10,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0192,
+      "median_score": 0.0
+    },
+    "fruit_and_vegetables": {
+      "total_samples": 500,
+      "correctly_rejected": 497,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 99.4,
+      "false_acceptance_rate_pct": 0.6,
+      "mean_score": 0.0047,
+      "median_score": 0.0
+    },
+    "household_electrical_devices": {
+      "total_samples": 500,
+      "correctly_rejected": 498,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 99.6,
+      "false_acceptance_rate_pct": 0.4,
+      "mean_score": 0.0081,
+      "median_score": 0.0
+    },
+    "household_furniture": {
+      "total_samples": 500,
+      "correctly_rejected": 491,
+      "falsely_accepted": 9,
+      "rejection_rate_pct": 98.2,
+      "false_acceptance_rate_pct": 1.8,
+      "mean_score": 0.019,
+      "median_score": 0.0
+    },
+    "insects": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001,
+      "median_score": 0.0
+    },
+    "large_carnivores": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "large_man_made_outdoor_things": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "large_natural_outdoor_scenes": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "large_omnivores_and_herbivores": {
+      "total_samples": 499,
+      "correctly_rejected": 499,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0002,
+      "median_score": 0.0
+    },
+    "medium_mammals": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "non_insect_invertebrates": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0008,
+      "median_score": 0.0
+    },
+    "people": {
+      "total_samples": 500,
+      "correctly_rejected": 499,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.8,
+      "false_acceptance_rate_pct": 0.2,
+      "mean_score": 0.0021,
+      "median_score": 0.0
+    },
+    "reptiles": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "small_mammals": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "trees": {
+      "total_samples": 500,
+      "correctly_rejected": 500,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0,
+      "median_score": 0.0
+    },
+    "vehicles_1": {
+      "total_samples": 499,
+      "correctly_rejected": 498,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.8,
+      "false_acceptance_rate_pct": 0.2,
+      "mean_score": 0.0025,
+      "median_score": 0.0
+    },
+    "vehicles_2": {
+      "total_samples": 500,
+      "correctly_rejected": 497,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 99.4,
+      "false_acceptance_rate_pct": 0.6,
+      "mean_score": 0.0076,
+      "median_score": 0.0
+    }
+  },
+  "top_5_rejection_classes": [
+    "aquarium_fish",
+    "baby",
+    "bear",
+    "beaver",
+    "bee"
+  ],
+  "bottom_5_rejection_classes": [
+    "telephone",
+    "cup",
+    "lawn_mower",
+    "bottle",
+    "chair"
+  ],
+  "fine_class_breakdown": {
+    "apple": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0112
+    },
+    "aquarium_fish": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "baby": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bear": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "beaver": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0004
+    },
+    "bed": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0078
+    },
+    "bee": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0003
+    },
+    "beetle": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bicycle": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0008
+    },
+    "bottle": {
+      "total_samples": 100,
+      "correctly_rejected": 95,
+      "falsely_accepted": 5,
+      "rejection_rate_pct": 95.0,
+      "false_acceptance_rate_pct": 5.0,
+      "mean_score": 0.0509
+    },
+    "bowl": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "boy": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0004
+    },
+    "bridge": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bus": {
+      "total_samples": 99,
+      "correctly_rejected": 99,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "butterfly": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "camel": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "can": {
+      "total_samples": 100,
+      "correctly_rejected": 98,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0196
+    },
+    "castle": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "caterpillar": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cattle": {
+      "total_samples": 99,
+      "correctly_rejected": 99,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "chair": {
+      "total_samples": 100,
+      "correctly_rejected": 95,
+      "falsely_accepted": 5,
+      "rejection_rate_pct": 95.0,
+      "false_acceptance_rate_pct": 5.0,
+      "mean_score": 0.0467
+    },
+    "chimpanzee": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "clock": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0045
+    },
+    "cloud": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cockroach": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0004
+    },
+    "couch": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0016
+    },
+    "crab": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0039
+    },
+    "crocodile": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cup": {
+      "total_samples": 100,
+      "correctly_rejected": 97,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 97.0,
+      "false_acceptance_rate_pct": 3.0,
+      "mean_score": 0.0257
+    },
+    "dinosaur": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "dolphin": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "elephant": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0009
+    },
+    "flatfish": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "forest": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "fox": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "girl": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "hamster": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "house": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "kangaroo": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "keyboard": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0032
+    },
+    "lamp": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0076
+    },
+    "lawn_mower": {
+      "total_samples": 100,
+      "correctly_rejected": 97,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 97.0,
+      "false_acceptance_rate_pct": 3.0,
+      "mean_score": 0.0377
+    },
+    "leopard": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lion": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lizard": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lobster": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "man": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "maple_tree": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "motorcycle": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0118
+    },
+    "mountain": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "mouse": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "mushroom": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "oak_tree": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "orange": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "orchid": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0026
+    },
+    "otter": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "palm_tree": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pear": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0056
+    },
+    "pickup_truck": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pine_tree": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "plain": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "plate": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "poppy": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "porcupine": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "possum": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "rabbit": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "raccoon": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "ray": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "road": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "rocket": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0005
+    },
+    "rose": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "sea": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "seal": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "shark": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0052
+    },
+    "shrew": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "skunk": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "skyscraper": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "snail": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "snake": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "spider": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "squirrel": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "streetcar": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "sunflower": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "sweet_pepper": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0065
+    },
+    "table": {
+      "total_samples": 100,
+      "correctly_rejected": 98,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0291
+    },
+    "tank": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "telephone": {
+      "total_samples": 100,
+      "correctly_rejected": 98,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.021
+    },
+    "television": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0041
+    },
+    "tiger": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "tractor": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "train": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "trout": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "tulip": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "turtle": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "wardrobe": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0099
+    },
+    "whale": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "willow_tree": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "wolf": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "woman": {
+      "total_samples": 100,
+      "correctly_rejected": 99,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 99.0,
+      "false_acceptance_rate_pct": 1.0,
+      "mean_score": 0.0099
+    },
+    "worm": {
+      "total_samples": 100,
+      "correctly_rejected": 100,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0003
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "positive_scores": {
+    "count": 10000,
+    "mean": 0.999779,
+    "std": 0.012682,
+    "median": 1.0,
+    "min": 0.021187,
+    "max": 1.0,
+    "p01": 0.992091,
+    "p05": 0.999941,
+    "p1": 0.999993,
+    "p5": 1.0,
+    "p10": 1.0,
+    "p25": 1.0,
+    "p50": 1.0,
+    "p75": 1.0,
+    "p90": 1.0,
+    "p95": 1.0,
+    "p99": 1.0,
+    "p995": 1.0,
+    "p999": 1.0
+  },
+  "negative_scores": {
+    "count": 10000,
+    "mean": 0.000222,
+    "std": 0.012549,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.953038,
+    "p01": 0.0,
+    "p05": 0.0,
+    "p1": 0.0,
+    "p5": 0.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p95": 0.0,
+    "p99": 1e-06,
+    "p995": 5e-06,
+    "p999": 0.000481
+  },
+  "overlap_analysis": {
+    "min_positive_score": 0.021187,
+    "max_negative_score": 0.953038,
+    "positives_below_max_negative": 4,
+    "positives_below_max_negative_pct": 0.04,
+    "negatives_above_min_positive": 4,
+    "negatives_above_min_positive_pct": 0.04
+  }
+}

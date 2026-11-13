@@ -1,0 +1,19 @@
+{
+  "reject_threshold": 0.02,
+  "accept_threshold": 0.98,
+  "operating_metrics": {
+    "reject_threshold": 0.02,
+    "accept_threshold": 0.98,
+    "false_acceptance_rate": 0.0,
+    "false_rejection_rate": 0.0,
+    "false_acceptances_count": 0,
+    "false_rejections_count": 0,
+    "clothing_acceptance_rate": 0.9994,
+    "non_clothing_rejection_rate": 0.9996,
+    "uncertain_count": 10,
+    "uncertain_rate": 0.0005,
+    "coverage": 0.9995,
+    "decisive_accuracy": 1.0
+  },
+  "rationale": "Symmetric safety margins (0.02, 0.98) provide 0.000% False Acceptance Rate and 0.000% False Rejection Rate on the 20,000 calibration samples while achieving 99.950% decisive coverage. Borderline ambiguous inputs (0.050%) fall into UNCERTAIN and are safely prevented from passing to the 10-class CNN classifier."
+}

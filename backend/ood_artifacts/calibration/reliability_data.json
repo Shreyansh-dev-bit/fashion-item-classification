@@ -1,0 +1,82 @@
+[
+  {
+    "bin_lower": 0.0,
+    "bin_upper": 0.1,
+    "sample_count": 9998,
+    "accuracy": 0.0001,
+    "confidence": 1.4e-05,
+    "calibration_gap": 8.6e-05
+  },
+  {
+    "bin_lower": 0.1,
+    "bin_upper": 0.2,
+    "sample_count": 0,
+    "accuracy": 0.0,
+    "confidence": 0.15,
+    "calibration_gap": 0.0
+  },
+  {
+    "bin_lower": 0.2,
+    "bin_upper": 0.3,
+    "sample_count": 1,
+    "accuracy": 1.0,
+    "confidence": 0.225842,
+    "calibration_gap": 0.774158
+  },
+  {
+    "bin_lower": 0.3,
+    "bin_upper": 0.4,
+    "sample_count": 0,
+    "accuracy": 0.0,
+    "confidence": 0.35,
+    "calibration_gap": 0.0
+  },
+  {
+    "bin_lower": 0.4,
+    "bin_upper": 0.5,
+    "sample_count": 0,
+    "accuracy": 0.0,
+    "confidence": 0.45,
+    "calibration_gap": 0.0
+  },
+  {
+    "bin_lower": 0.5,
+    "bin_upper": 0.6,
+    "sample_count": 1,
+    "accuracy": 0.0,
+    "confidence": 0.541518,
+    "calibration_gap": 0.541518
+  },
+  {
+    "bin_lower": 0.6,
+    "bin_upper": 0.7,
+    "sample_count": 1,
+    "accuracy": 0.0,
+    "confidence": 0.604594,
+    "calibration_gap": 0.604594
+  },
+  {
+    "bin_lower": 0.7,
+    "bin_upper": 0.8,
+    "sample_count": 0,
+    "accuracy": 0.0,
+    "confidence": 0.75,
+    "calibration_gap": 0.0
+  },
+  {
+    "bin_lower": 0.8,
+    "bin_upper": 0.9,
+    "sample_count": 2,
+    "accuracy": 1.0,
+    "confidence": 0.843396,
+    "calibration_gap": 0.156604
+  },
+  {
+    "bin_lower": 0.9,
+    "bin_upper": 1.0,
+    "sample_count": 9997,
+    "accuracy": 0.9999,
+    "confidence": 0.999981,
+    "calibration_gap": 8.1e-05
+  }
+]

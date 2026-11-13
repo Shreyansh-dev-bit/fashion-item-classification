@@ -1,0 +1,205 @@
+{
+  "stage": "STAGE 4 - OOD Probability Calibration and Decision Threshold Selection",
+  "timestamp_utc": "2026-11-13 16:07:10 UTC",
+  "dataset": "cal.npz (20,000 samples)",
+  "selected_thresholds": {
+    "reject_threshold": 0.02,
+    "accept_threshold": 0.98,
+    "operating_metrics": {
+      "reject_threshold": 0.02,
+      "accept_threshold": 0.98,
+      "false_acceptance_rate": 0.0,
+      "false_rejection_rate": 0.0,
+      "false_acceptances_count": 0,
+      "false_rejections_count": 0,
+      "clothing_acceptance_rate": 0.9994,
+      "non_clothing_rejection_rate": 0.9996,
+      "uncertain_count": 10,
+      "uncertain_rate": 0.0005,
+      "coverage": 0.9995,
+      "decisive_accuracy": 1.0
+    },
+    "rationale": "Symmetric safety margins (0.02, 0.98) provide 0.000% False Acceptance Rate and 0.000% False Rejection Rate on the 20,000 calibration samples while achieving 99.950% decisive coverage. Borderline ambiguous inputs (0.050%) fall into UNCERTAIN and are safely prevented from passing to the 10-class CNN classifier."
+  },
+  "calibration_quality": {
+    "brier_score": 0.0001592,
+    "ece_10_bins": 0.00019513,
+    "ece_10_bins_pct": 0.0195,
+    "ece_15_bins": 0.00020409,
+    "bin_details": [
+      {
+        "bin_lower": 0.0,
+        "bin_upper": 0.1,
+        "sample_count": 9998,
+        "accuracy": 0.0001,
+        "confidence": 1.4e-05,
+        "calibration_gap": 8.6e-05
+      },
+      {
+        "bin_lower": 0.1,
+        "bin_upper": 0.2,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.15,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.2,
+        "bin_upper": 0.3,
+        "sample_count": 1,
+        "accuracy": 1.0,
+        "confidence": 0.225842,
+        "calibration_gap": 0.774158
+      },
+      {
+        "bin_lower": 0.3,
+        "bin_upper": 0.4,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.35,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.4,
+        "bin_upper": 0.5,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.45,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.5,
+        "bin_upper": 0.6,
+        "sample_count": 1,
+        "accuracy": 0.0,
+        "confidence": 0.541518,
+        "calibration_gap": 0.541518
+      },
+      {
+        "bin_lower": 0.6,
+        "bin_upper": 0.7,
+        "sample_count": 1,
+        "accuracy": 0.0,
+        "confidence": 0.604594,
+        "calibration_gap": 0.604594
+      },
+      {
+        "bin_lower": 0.7,
+        "bin_upper": 0.8,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.75,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.8,
+        "bin_upper": 0.9,
+        "sample_count": 2,
+        "accuracy": 1.0,
+        "confidence": 0.843396,
+        "calibration_gap": 0.156604
+      },
+      {
+        "bin_lower": 0.9,
+        "bin_upper": 1.0,
+        "sample_count": 9997,
+        "accuracy": 0.9999,
+        "confidence": 0.999981,
+        "calibration_gap": 8.1e-05
+      }
+    ]
+  },
+  "temperature_scaling_quality": {
+    "optimal_temperature_T": 1.3781,
+    "brier_score": 0.00014807,
+    "ece_10_bins": 0.00023466,
+    "ece_10_bins_pct": 0.0235,
+    "ece_15_bins": 0.00022694,
+    "bin_details": [
+      {
+        "bin_lower": 0.0,
+        "bin_upper": 0.1,
+        "sample_count": 9997,
+        "accuracy": 0.0001,
+        "confidence": 2.7e-05,
+        "calibration_gap": 7.3e-05
+      },
+      {
+        "bin_lower": 0.1,
+        "bin_upper": 0.2,
+        "sample_count": 1,
+        "accuracy": 0.0,
+        "confidence": 0.156745,
+        "calibration_gap": 0.156745
+      },
+      {
+        "bin_lower": 0.2,
+        "bin_upper": 0.3,
+        "sample_count": 1,
+        "accuracy": 1.0,
+        "confidence": 0.290302,
+        "calibration_gap": 0.709698
+      },
+      {
+        "bin_lower": 0.3,
+        "bin_upper": 0.4,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.35,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.4,
+        "bin_upper": 0.5,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.45,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.5,
+        "bin_upper": 0.6,
+        "sample_count": 2,
+        "accuracy": 0.0,
+        "confidence": 0.553294,
+        "calibration_gap": 0.553294
+      },
+      {
+        "bin_lower": 0.6,
+        "bin_upper": 0.7,
+        "sample_count": 0,
+        "accuracy": 0.0,
+        "confidence": 0.65,
+        "calibration_gap": 0.0
+      },
+      {
+        "bin_lower": 0.7,
+        "bin_upper": 0.8,
+        "sample_count": 2,
+        "accuracy": 1.0,
+        "confidence": 0.772375,
+        "calibration_gap": 0.227625
+      },
+      {
+        "bin_lower": 0.8,
+        "bin_upper": 0.9,
+        "sample_count": 1,
+        "accuracy": 0.0,
+        "confidence": 0.898835,
+        "calibration_gap": 0.898835
+      },
+      {
+        "bin_lower": 0.9,
+        "bin_upper": 1.0,
+        "sample_count": 9996,
+        "accuracy": 1.0,
+        "confidence": 0.999936,
+        "calibration_gap": 6.4e-05
+      }
+    ]
+  },
+  "synthetic_stress_test_summary": {
+    "total_tests": 11,
+    "safely_handled": 9
+  }
+}

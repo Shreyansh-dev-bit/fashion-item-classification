@@ -1,0 +1,1902 @@
+{
+  "benchmark": "Tiny ImageNet Validation Set (181 non-clothing classes)",
+  "illustrative_threshold": 0.5,
+  "total_samples": 9050,
+  "correctly_rejected": 8976,
+  "falsely_accepted": 74,
+  "rejection_rate_pct": 99.18,
+  "false_acceptance_rate_pct": 0.82,
+  "score_distribution": {
+    "mean": 0.008295,
+    "std": 0.084439,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p95": 1e-06,
+    "p99": 0.135729
+  },
+  "domain_group_breakdown": {
+    "animals": {
+      "total_samples": 2950,
+      "correctly_rejected": 2941,
+      "falsely_accepted": 9,
+      "rejection_rate_pct": 99.69,
+      "false_acceptance_rate_pct": 0.31,
+      "mean_score": 0.0029
+    },
+    "buildings": {
+      "total_samples": 800,
+      "correctly_rejected": 797,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 99.62,
+      "false_acceptance_rate_pct": 0.38,
+      "mean_score": 0.0048
+    },
+    "electronics": {
+      "total_samples": 500,
+      "correctly_rejected": 494,
+      "falsely_accepted": 6,
+      "rejection_rate_pct": 98.8,
+      "false_acceptance_rate_pct": 1.2,
+      "mean_score": 0.0143
+    },
+    "fruits_and_food": {
+      "total_samples": 850,
+      "correctly_rejected": 847,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 99.65,
+      "false_acceptance_rate_pct": 0.35,
+      "mean_score": 0.003
+    },
+    "furniture": {
+      "total_samples": 300,
+      "correctly_rejected": 295,
+      "falsely_accepted": 5,
+      "rejection_rate_pct": 98.33,
+      "false_acceptance_rate_pct": 1.67,
+      "mean_score": 0.017
+    },
+    "household_objects": {
+      "total_samples": 2600,
+      "correctly_rejected": 2556,
+      "falsely_accepted": 44,
+      "rejection_rate_pct": 98.31,
+      "false_acceptance_rate_pct": 1.69,
+      "mean_score": 0.0169
+    },
+    "trees_and_plants": {
+      "total_samples": 300,
+      "correctly_rejected": 300,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "vehicles": {
+      "total_samples": 750,
+      "correctly_rejected": 746,
+      "falsely_accepted": 4,
+      "rejection_rate_pct": 99.47,
+      "false_acceptance_rate_pct": 0.53,
+      "mean_score": 0.0052
+    }
+  },
+  "class_breakdown": {
+    "goldfish, Carassius auratus": {
+      "synset": "n01443537",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "European fire salamander, Salamandra salamandra": {
+      "synset": "n01629819",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0119
+    },
+    "bullfrog, Rana catesbeiana": {
+      "synset": "n01641577",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "tailed frog, bell toad, ribbed toad, tailed toad, Ascaphus trui": {
+      "synset": "n01644900",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "American alligator, Alligator mississipiensis": {
+      "synset": "n01698640",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "boa constrictor, Constrictor constrictor": {
+      "synset": "n01742172",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "trilobite": {
+      "synset": "n01768244",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "scorpion": {
+      "synset": "n01770393",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "black widow, Latrodectus mactans": {
+      "synset": "n01774384",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.02
+    },
+    "tarantula": {
+      "synset": "n01774750",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "centipede": {
+      "synset": "n01784675",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0051
+    },
+    "goose": {
+      "synset": "n01855672",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "koala, koala bear, kangaroo bear, native bear, Phascolarctos cinereus": {
+      "synset": "n01882714",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "jellyfish": {
+      "synset": "n01910747",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "brain coral": {
+      "synset": "n01917289",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "snail": {
+      "synset": "n01944390",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "slug": {
+      "synset": "n01945685",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0009
+    },
+    "sea slug, nudibranch": {
+      "synset": "n01950731",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0197
+    },
+    "American lobster, Northern lobster, Maine lobster, Homarus americanus": {
+      "synset": "n01983481",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0002
+    },
+    "spiny lobster, langouste, rock lobster, crawfish, crayfish, sea crawfish": {
+      "synset": "n01984695",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "black stork, Ciconia nigra": {
+      "synset": "n02002724",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "king penguin, Aptenodytes patagonica": {
+      "synset": "n02056570",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "albatross, mollymawk": {
+      "synset": "n02058221",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "dugong, Dugong dugon": {
+      "synset": "n02074367",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Chihuahua": {
+      "synset": "n02085620",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Yorkshire terrier": {
+      "synset": "n02094433",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "golden retriever": {
+      "synset": "n02099601",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Labrador retriever": {
+      "synset": "n02099712",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "German shepherd, German shepherd dog, German police dog, alsatian": {
+      "synset": "n02106662",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "standard poodle": {
+      "synset": "n02113799",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0149
+    },
+    "tabby, tabby cat": {
+      "synset": "n02123045",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Persian cat": {
+      "synset": "n02123394",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Egyptian cat": {
+      "synset": "n02124075",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0136
+    },
+    "cougar, puma, catamount, mountain lion, painter, panther, Felis concolor": {
+      "synset": "n02125311",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lion, king of beasts, Panthera leo": {
+      "synset": "n02129165",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0031
+    },
+    "brown bear, bruin, Ursus arctos": {
+      "synset": "n02132136",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0179
+    },
+    "ladybug, ladybeetle, lady beetle, ladybird, ladybird beetle": {
+      "synset": "n02165456",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "fly": {
+      "synset": "n02190166",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bee": {
+      "synset": "n02206856",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "grasshopper, hopper": {
+      "synset": "n02226429",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "walking stick, walkingstick, stick insect": {
+      "synset": "n02231487",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0222
+    },
+    "cockroach, roach": {
+      "synset": "n02233338",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0177
+    },
+    "mantis, mantid": {
+      "synset": "n02236044",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "dragonfly, darning needle, devil's darning needle, sewing needle, snake feeder, snake doctor, mosquito hawk, skeeter hawk": {
+      "synset": "n02268443",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "monarch, monarch butterfly, milkweed butterfly, Danaus plexippus": {
+      "synset": "n02279972",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0041
+    },
+    "sulphur butterfly, sulfur butterfly": {
+      "synset": "n02281406",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "sea cucumber, holothurian": {
+      "synset": "n02321529",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "guinea pig, Cavia cobaya": {
+      "synset": "n02364673",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "hog, pig, grunter, squealer, Sus scrofa": {
+      "synset": "n02395406",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "ox": {
+      "synset": "n02403003",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bison": {
+      "synset": "n02410509",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bighorn, bighorn sheep, cimarron, Rocky Mountain bighorn, Rocky Mountain sheep, Ovis canadensis": {
+      "synset": "n02415577",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "gazelle": {
+      "synset": "n02423022",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "Arabian camel, dromedary, Camelus dromedarius": {
+      "synset": "n02437312",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "orangutan, orang, orangutang, Pongo pygmaeus": {
+      "synset": "n02480495",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0002
+    },
+    "chimpanzee, chimp, Pan troglodytes": {
+      "synset": "n02481823",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0193
+    },
+    "baboon": {
+      "synset": "n02486410",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "African elephant, Loxodonta africana": {
+      "synset": "n02504458",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lesser panda, red panda, panda, bear cat, cat bear, Ailurus fulgens": {
+      "synset": "n02509815",
+      "domain_group": "animals",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "abacus": {
+      "synset": "n02666196",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 47,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 94.0,
+      "false_acceptance_rate_pct": 6.0,
+      "mean_score": 0.0551
+    },
+    "altar": {
+      "synset": "n02699494",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "bannister, banister, balustrade, balusters, handrail": {
+      "synset": "n02788148",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0008
+    },
+    "barbershop": {
+      "synset": "n02791270",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0103
+    },
+    "barn": {
+      "synset": "n02793495",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0174
+    },
+    "barrel, cask": {
+      "synset": "n02795169",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0005
+    },
+    "basketball": {
+      "synset": "n02802426",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0199
+    },
+    "bathtub, bathing tub, bath, tub": {
+      "synset": "n02808440",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "beach wagon, station wagon, wagon, estate car, beach waggon, station waggon, waggon": {
+      "synset": "n02814533",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.02
+    },
+    "beacon, lighthouse, beacon light, pharos": {
+      "synset": "n02814860",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "beaker": {
+      "synset": "n02815834",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0455
+    },
+    "beer bottle": {
+      "synset": "n02823428",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0381
+    },
+    "binoculars, field glasses, opera glasses": {
+      "synset": "n02841315",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "birdhouse": {
+      "synset": "n02843684",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0157
+    },
+    "brass, memorial tablet, plaque": {
+      "synset": "n02892201",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0004
+    },
+    "broom": {
+      "synset": "n02906734",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0199
+    },
+    "bucket, pail": {
+      "synset": "n02909870",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.04
+    },
+    "bullet train, bullet": {
+      "synset": "n02917067",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "butcher shop, meat market": {
+      "synset": "n02927161",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "candle, taper, wax light": {
+      "synset": "n02948072",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0135
+    },
+    "cannon": {
+      "synset": "n02950826",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM": {
+      "synset": "n02977058",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0007
+    },
+    "CD player": {
+      "synset": "n02988304",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0007
+    },
+    "chain": {
+      "synset": "n02999410",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "chest": {
+      "synset": "n03014705",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cliff dwelling": {
+      "synset": "n03042490",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "computer keyboard, keypad": {
+      "synset": "n03085013",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0198
+    },
+    "confectionery, confectionary, candy store": {
+      "synset": "n03089624",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "convertible": {
+      "synset": "n03100240",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0195
+    },
+    "crane": {
+      "synset": "n03126707",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.013
+    },
+    "dam, dike, dyke": {
+      "synset": "n03160309",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "desk": {
+      "synset": "n03179701",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "dining table, board": {
+      "synset": "n03201208",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 46,
+      "falsely_accepted": 4,
+      "rejection_rate_pct": 92.0,
+      "false_acceptance_rate_pct": 8.0,
+      "mean_score": 0.071
+    },
+    "drumstick": {
+      "synset": "n03250847",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0002
+    },
+    "dumbbell": {
+      "synset": "n03255030",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0344
+    },
+    "flagpole, flagstaff": {
+      "synset": "n03355925",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "fountain": {
+      "synset": "n03388043",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0015
+    },
+    "freight car": {
+      "synset": "n03393912",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "frying pan, frypan, skillet": {
+      "synset": "n03400231",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "gasmask, respirator, gas helmet": {
+      "synset": "n03424325",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0194
+    },
+    "go-kart": {
+      "synset": "n03444034",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.019
+    },
+    "gondola": {
+      "synset": "n03447447",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "hourglass": {
+      "synset": "n03544143",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0407
+    },
+    "iPod": {
+      "synset": "n03584254",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0051
+    },
+    "jinrikisha, ricksha, rickshaw": {
+      "synset": "n03599486",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lampshade, lamp shade": {
+      "synset": "n03637318",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "lawn mower, mower": {
+      "synset": "n03649909",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0157
+    },
+    "lifeboat": {
+      "synset": "n03662601",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "limousine, limo": {
+      "synset": "n03670208",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "magnetic compass": {
+      "synset": "n03706229",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0186
+    },
+    "maypole": {
+      "synset": "n03733131",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0031
+    },
+    "moving van": {
+      "synset": "n03796401",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "nail": {
+      "synset": "n03804744",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0427
+    },
+    "obelisk": {
+      "synset": "n03837869",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "oboe, hautboy, hautbois": {
+      "synset": "n03838899",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "organ, pipe organ": {
+      "synset": "n03854065",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "parking meter": {
+      "synset": "n03891332",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.02
+    },
+    "pay-phone, pay-station": {
+      "synset": "n03902125",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0188
+    },
+    "picket fence, paling": {
+      "synset": "n03930313",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.02
+    },
+    "pill bottle": {
+      "synset": "n03937543",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0023
+    },
+    "plunger, plumber's helper": {
+      "synset": "n03970156",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pole": {
+      "synset": "n03976657",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0201
+    },
+    "police van, police wagon, paddy wagon, patrol wagon, wagon, black Maria": {
+      "synset": "n03977966",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pop bottle, soda bottle": {
+      "synset": "n03983396",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0005
+    },
+    "potter's wheel": {
+      "synset": "n03992509",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0196
+    },
+    "projectile, missile": {
+      "synset": "n04008634",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "punching bag, punch bag, punching ball, punchball": {
+      "synset": "n04023962",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0368
+    },
+    "reel": {
+      "synset": "n04067472",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 47,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 94.0,
+      "false_acceptance_rate_pct": 6.0,
+      "mean_score": 0.0677
+    },
+    "refrigerator, icebox": {
+      "synset": "n04070727",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "remote control, remote": {
+      "synset": "n04074963",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0356
+    },
+    "rocking chair, rocker": {
+      "synset": "n04099969",
+      "domain_group": "furniture",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0309
+    },
+    "rugby ball": {
+      "synset": "n04118538",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "school bus": {
+      "synset": "n04146614",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "scoreboard": {
+      "synset": "n04149813",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0009
+    },
+    "sewing machine": {
+      "synset": "n04179913",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "snorkel": {
+      "synset": "n04251144",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.001
+    },
+    "space heater": {
+      "synset": "n04265275",
+      "domain_group": "electronics",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0427
+    },
+    "spider web, spider's web": {
+      "synset": "n04275548",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0201
+    },
+    "sports car, sport car": {
+      "synset": "n04285008",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0199
+    },
+    "steel arch bridge": {
+      "synset": "n04311004",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "stopwatch, stop watch": {
+      "synset": "n04328186",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.04
+    },
+    "suspension bridge": {
+      "synset": "n04366367",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0265
+    },
+    "syringe": {
+      "synset": "n04376876",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0156
+    },
+    "teapot": {
+      "synset": "n04398044",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0011
+    },
+    "teddy, teddy bear": {
+      "synset": "n04399382",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "thatch, thatched roof": {
+      "synset": "n04417672",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "torch": {
+      "synset": "n04456115",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "tractor": {
+      "synset": "n04465501",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "triumphal arch": {
+      "synset": "n04486054",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "trolleybus, trolley coach, trackless trolley": {
+      "synset": "n04487081",
+      "domain_group": "vehicles",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "turnstile": {
+      "synset": "n04501370",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 46,
+      "falsely_accepted": 4,
+      "rejection_rate_pct": 92.0,
+      "false_acceptance_rate_pct": 8.0,
+      "mean_score": 0.0764
+    },
+    "umbrella": {
+      "synset": "n04507155",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "viaduct": {
+      "synset": "n04532670",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0058
+    },
+    "volleyball": {
+      "synset": "n04540053",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "water jug": {
+      "synset": "n04560804",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 48,
+      "falsely_accepted": 2,
+      "rejection_rate_pct": 96.0,
+      "false_acceptance_rate_pct": 4.0,
+      "mean_score": 0.0409
+    },
+    "water tower": {
+      "synset": "n04562935",
+      "domain_group": "buildings",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0015
+    },
+    "wok": {
+      "synset": "n04596742",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "wooden spoon": {
+      "synset": "n04597913",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0199
+    },
+    "comic book": {
+      "synset": "n06596364",
+      "domain_group": "household_objects",
+      "total_samples": 50,
+      "correctly_rejected": 47,
+      "falsely_accepted": 3,
+      "rejection_rate_pct": 94.0,
+      "false_acceptance_rate_pct": 6.0,
+      "mean_score": 0.0718
+    },
+    "plate": {
+      "synset": "n07579787",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "guacamole": {
+      "synset": "n07583066",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "ice cream, icecream": {
+      "synset": "n07614500",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "ice lolly, lolly, lollipop, popsicle": {
+      "synset": "n07615774",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pretzel": {
+      "synset": "n07695742",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "mashed potato": {
+      "synset": "n07711569",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cauliflower": {
+      "synset": "n07715103",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0001
+    },
+    "bell pepper": {
+      "synset": "n07720875",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0211
+    },
+    "mushroom": {
+      "synset": "n07734744",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "orange": {
+      "synset": "n07747607",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0005
+    },
+    "lemon": {
+      "synset": "n07749582",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0149
+    },
+    "banana": {
+      "synset": "n07753592",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 49,
+      "falsely_accepted": 1,
+      "rejection_rate_pct": 98.0,
+      "false_acceptance_rate_pct": 2.0,
+      "mean_score": 0.0146
+    },
+    "pomegranate": {
+      "synset": "n07768694",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0003
+    },
+    "meat loaf, meatloaf": {
+      "synset": "n07871810",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "pizza, pizza pie": {
+      "synset": "n07873807",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "potpie": {
+      "synset": "n07875152",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "espresso": {
+      "synset": "n07920052",
+      "domain_group": "fruits_and_food",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "alp": {
+      "synset": "n09193705",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "cliff, drop, drop-off": {
+      "synset": "n09246464",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "coral reef": {
+      "synset": "n09256479",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "lakeside, lakeshore": {
+      "synset": "n09332890",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "seashore, coast, seacoast, sea-coast": {
+      "synset": "n09428293",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    },
+    "acorn": {
+      "synset": "n12267677",
+      "domain_group": "trees_and_plants",
+      "total_samples": 50,
+      "correctly_rejected": 50,
+      "falsely_accepted": 0,
+      "rejection_rate_pct": 100.0,
+      "false_acceptance_rate_pct": 0.0,
+      "mean_score": 0.0
+    }
+  },
+  "failure_count": 74
+}
